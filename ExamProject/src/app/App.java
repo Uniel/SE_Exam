@@ -28,16 +28,17 @@ public class App {
 		return dates;
 	}
 	
-//	public Project returnNewProject() {
-//		return new Project(projectService);
-//	}
-	
 	public void createProject() {
 		projects.add(new Project(projectService));
 	}
 	
-	public void getProjectWithID(int ID) {
-		
+	public Project findProjectWithID(int ID) {
+		for(Project p : projects) {
+			if(p.getProjectID() == ID) {
+				return p;
+			}
+		}
+		return null;
 	}
 	
 //	public void addProject(Project proj) {

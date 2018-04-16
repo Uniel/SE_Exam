@@ -20,7 +20,7 @@ public class ProjectSteps {
 	private App app = new App();
 	private Project project;
 	
-	private ProjectService projServ = new ProjectService();
+	//private ProjectService projServ = new ProjectService();
 	
 	private List<Project> projects;
 	
@@ -29,12 +29,6 @@ public class ProjectSteps {
 		this.app = app;
 		this.project = project;
 	}
-	
-//	@Given("^I have the project with ID (\\d+)$")
-//	public void iHaveTheProjectWithID(int ID) throws Exception {
-//	    project = new Project(projServ);
-//	    assertTrue(project.getProjectID() == ID);
-//	}
 
 //	@Given("^the project with ID (\\d+) exists$")
 //	public void theProjectWithIDExists(int arg1) throws Exception {
@@ -76,14 +70,14 @@ public class ProjectSteps {
 	public void theYearIs(int thisYear) throws Exception {
 	    app.projectService.setYear(thisYear);
 	    assertTrue(app.projectService.getYear() == thisYear);
-	    projServ.setYear(thisYear);
-	    assertTrue(projServ.getYear() == thisYear);
+//	    projServ.setYear(thisYear);
+//	    assertTrue(projServ.getYear() == thisYear);
 	}
 
 	@Given("^the serial number is (\\d+)$")
 	public void theSerialNumberIs(int thisSerial) throws Exception {
 	    app.projectService.setSerial(thisSerial);
-	    projServ.setSerial(thisSerial);
+//	    projServ.setSerial(thisSerial);
 	}
 
 	@Given("^the project with ID (\\d+) does not exist$")
@@ -98,8 +92,9 @@ public class ProjectSteps {
 
 	@Then("^the project with ID (\\d+) exists$")
 	public void theProjectWithIDExists(int ID) throws Exception {
-		projects = app.getProjects();
-	    assertThat(app.getProjects(), hasItem(project));
+		//projects = app.getProjects();
+	    //assertThat(app.getProjects(), hasItem(project));
+		assertTrue(app.findProjectWithID(ID).getProjectID() == ID);
 	}
 
 	@Then("^the serial number is now (\\d+)$")

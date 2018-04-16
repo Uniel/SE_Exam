@@ -28,10 +28,10 @@ public class ProjectService {
 
 	
 	private int calcProjectID() {
-		System.out.println("ThisYear ps " + thisYear);
+		//System.out.println("ThisYear ps " + thisYear);
 		int ID = ((thisYear%100) * 10000) + (serialNumber%100000);
 		updateSerialNumber();
-		System.out.println("ID " + ID);
+		//System.out.println("ID " + ID);
 		return ID;
 	}
 	
