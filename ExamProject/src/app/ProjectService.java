@@ -3,12 +3,13 @@ package app;
 //import java.util.*;
 
 public class ProjectService {
+	private App application;
 	
 	private int serialNumber = 1;
 	private int thisYear = 0;
 	
-	public ProjectService(){
-
+	public ProjectService(App app){
+		this.application = app;
 	}
 	
 	public void setYear(int newYear) {
@@ -32,6 +33,10 @@ public class ProjectService {
 		int ID = ((thisYear%100) * 10000) + (serialNumber%100000);
 		updateSerialNumber();
 		//System.out.println("ID " + ID);
+		while(application.idExists(ID)) {
+			ID = ((thisYear%100) * 10000) + (serialNumber%100000);
+			updateSerialNumber();
+		}
 		return ID;
 	}
 	
@@ -40,9 +45,11 @@ public class ProjectService {
 	}
 	
 	private void updateProjectNumber() {
+		
 	}
 		
 	public int getId() {
+		
 		return calcProjectID();
 	}
 }

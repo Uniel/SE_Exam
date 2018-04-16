@@ -4,9 +4,6 @@ import java.util.*;
 
 public class Project {
 	
-	//private App thisApp;
-	//public ProjectService projServ;
-	
 	private List<Activity> activities = new ArrayList<Activity>();
 
 	private int projectID;

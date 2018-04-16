@@ -8,7 +8,7 @@ import app.ProjectService;
 public class App {
 
 	private Project project;
-	public ProjectService projectService = new ProjectService();
+	public ProjectService projectService = new ProjectService(this);
 	
 	
 	private List<Project> projects = new ArrayList<>();
@@ -31,14 +31,39 @@ public class App {
 	public void createProject() {
 		projects.add(new Project(projectService));
 	}
+	public void createProject(int ID) {
+		projects.add(new Project(ID));
+	}
 	
 	public Project findProjectWithID(int ID) {
+		if(projects.isEmpty()) {
+			return null;
+		}
 		for(Project p : projects) {
 			if(p.getProjectID() == ID) {
 				return p;
 			}
 		}
 		return null;
+	}
+	
+	public boolean idExists(int ID) {
+		if(projects.isEmpty()) {
+			return false;
+		}
+		for(Project p : projects) {
+			if(p.getProjectID() == ID) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public int lastIdGenerated(){
+		if (projects.isEmpty()) {
+			return -1;
+		}
+		return projects.get(projects.lastIndexOf(project)).getProjectID();
 	}
 	
 //	public void addProject(Project proj) {
