@@ -78,8 +78,8 @@ public class App {
 		//Unfinished
 	}
 	
-	public void createWorker(String initials){
-		//Unfinished
+	public void createWorker(Worker worker){
+		workers.add(worker);
 	}
 	
 	public void /*Project*/ findProject(String projectID) {

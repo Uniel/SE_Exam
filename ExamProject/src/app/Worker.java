@@ -9,6 +9,10 @@ public class Worker {
 	private String initials;
 	private int maxActivities = 20;
 
+	public Worker(String initials) {
+		this.initials = initials;
+	}
+
 	public String getInitials() {
 		return initials;
 	}

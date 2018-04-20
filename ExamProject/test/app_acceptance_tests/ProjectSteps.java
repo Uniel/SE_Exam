@@ -94,7 +94,7 @@ public class ProjectSteps {
 	@When("^I create the project$")
 	public void iCreateTheProject() throws Exception {
 	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+//	    throw new PendingException();
 	}
 
 }

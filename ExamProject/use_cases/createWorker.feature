@@ -2,11 +2,11 @@ Feature: Create worker
 	Description: The user creates a worker (max 4 initials).
 	Actors: User
 	
-#Scenario: User creates a valid worker successfully
-#	Given I have the worker "DANK"
-#	And the worker "DANK" does not exist
-#	When I add the worker "DANK"
-#	Then the worker "DANK" exists
+Scenario: User creates a valid worker successfully
+	Given I have the worker "DANK"
+	And the worker "DANK" does not exist
+	When I add the worker "DANK"
+	Then the worker "DANK" exists
 
 #Scenario: User creates a worker with too many initials
 #	Given I have the worker "DANKMEMES" 

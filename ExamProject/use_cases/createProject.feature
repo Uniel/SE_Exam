@@ -20,10 +20,10 @@ Scenario: Conflict in project ID
 	#Then I get the error message "A project with that ID already exists"
 	Then the project with ID 180002 exists
 	
-Scenario: It is a new year
-	Given the year is 2019
-	And the serial number is 0100
-	And the ID of the last project created does not start with 19
-	When I create the project
-	Then the project with ID 190000 exists
-	And the serial number is 0001 
+#Scenario: It is a new year
+#	Given the year is 2019
+#	And the serial number is 0100
+#	And the ID of the last project created does not start with 19
+#	When I create the project
+#	Then the project with ID 190000 exists
+#	And the serial number is 0001 
