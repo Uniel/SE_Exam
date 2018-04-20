@@ -18,7 +18,7 @@ public class Project {
 	
 	public Project(int ID) {
 		projectID = ID;
-	} // TEST FUNCTION
+	} // TEST construction
 	
 	public Project(ProjectService projServ) {
 		projectID = projServ.getId();

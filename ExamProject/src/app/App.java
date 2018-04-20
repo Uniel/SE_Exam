@@ -7,9 +7,10 @@ import app.ProjectService;
 
 public class App {
 
+	private boolean TEST_MODE = true;
+	
 	private Project project;
 	public ProjectService projectService = new ProjectService(this);
-	
 	
 	private List<Project> projects = new ArrayList<>();
 	private List<Worker> workers = new ArrayList<>();
@@ -36,39 +37,31 @@ public class App {
 	}
 	
 	public Project findProjectWithID(int ID) {
-		if(projects.isEmpty()) {
-			return null;
-		}
+		if(projects.isEmpty()) {return null;}
 		for(Project p : projects) {
-			if(p.getProjectID() == ID) {
-				return p;
-			}
+			if(p.getProjectID() == ID) {return p;}
 		}
 		return null;
 	}
 	
 	public boolean idExists(int ID) {
-		if(projects.isEmpty()) {
-			return false;
-		}
+		if(projects.isEmpty()) {return false;}
 		for(Project p : projects) {
-			if(p.getProjectID() == ID) {
-				return true;
-			}
+			if(p.getProjectID() == ID) {return true;}
 		}
 		return false;
 	}
 	
 	public int lastIdGenerated(){
-		if (projects.isEmpty()) {
-			return -1;
+		//if (projects.isEmpty()) {return -1;	}
+		int lstID = 0;
+		for(Project p : projects) {
+			if(p.getProjectID() > lstID) {lstID = p.getProjectID();}
 		}
-		return projects.get(projects.lastIndexOf(project)).getProjectID();
+		return lstID;
+//		if(TEST_MODE){System.out.println("App: lastIdGen " + projects.get(projects.lastIndexOf(project)).getProjectID());}
+//		return projects.get(projects.lastIndexOf(project)).getProjectID();
 	}
-	
-//	public void addProject(Project proj) {
-//		projects.add(proj);
-//	}
 	
 	public void removeProject(int projectID) {
 		//Unfinished
@@ -81,9 +74,8 @@ public class App {
 	public void createWorker(Worker worker) throws OperationNotAllowedException{
 		if (worker.getInitials().length() > 4) {
 			throw new OperationNotAllowedException("Too many initials");
-		}
-		else {
-		workers.add(worker);
+		} else {
+			workers.add(worker);
 		}
 	}
 	
