@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -20,12 +21,14 @@ public class WorkerSteps {
 
 	private App app = new App();
 	private Worker worker;
+	private ErrorMessageHolder errorMessage;
 		
 	private List<Worker> workers;
 	
 	
-	public WorkerSteps(App app) {
+	public WorkerSteps(App app, ErrorMessageHolder errorMessage) {
 		this.app = app;
+		this.errorMessage = errorMessage;
 	}
 
 	// First Create Worker Scenario
@@ -49,7 +52,11 @@ public class WorkerSteps {
 		if (worker.getInitials() != initials) {
 			worker = new Worker(initials);
 		}
+		try {
 		app.createWorker(worker);
+		} catch (Exception e) {
+			errorMessage.setErrorMessage(e.getMessage());
+		}
 	}
 	
 	@Then("^the worker \"([^\"]*)\" exists$")

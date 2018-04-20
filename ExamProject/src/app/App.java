@@ -78,8 +78,13 @@ public class App {
 		//Unfinished
 	}
 	
-	public void createWorker(Worker worker){
+	public void createWorker(Worker worker) throws OperationNotAllowedException{
+		if (worker.getInitials().length() > 4) {
+			throw new OperationNotAllowedException("Too many initials");
+		}
+		else {
 		workers.add(worker);
+		}
 	}
 	
 	public void /*Project*/ findProject(String projectID) {
