@@ -61,9 +61,6 @@ public class WorkerSteps {
 	
 	@Then("^the worker \"([^\"]*)\" exists$")
 	public void theWorkerExists(String initials) throws Exception {
-		if (worker.getInitials() != initials) {
-			worker = new Worker(initials);
-		}
 		assertTrue(app.getWorkers().contains(worker));
 	}
 

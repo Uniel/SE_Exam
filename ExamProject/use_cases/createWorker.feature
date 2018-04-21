@@ -26,13 +26,13 @@ Scenario: Creating a worker with blank name
     Then the worker "" does not exist
     Then I get the error message "Worker must have initials"
     
-#Scenario: Creating a worker with spaces in the initials
-#    Given I have the worker "GJ"
-#    And the worker "GJ" does not exist
-#    And I have the worker " g j"
-#    When I add the worker " g j"
-#    Then the worker "GJ" exists
-#    
+Scenario: Creating a worker with spaces in the initials
+    Given I have the worker "GJ"
+    And the worker "GJ" does not exist
+    And I have the worker " g j"
+    When I add the worker " g j"
+    Then the worker "GJ" exists
+    
 #Scenario: Creating a worker with spaces in the initials
 #    Given I have the worker "GJ"
 #    And the worker "GJ" does not exist
