@@ -72,7 +72,7 @@ public class App {
 	}
 	
 	public void createWorker(Worker worker) throws OperationNotAllowedException{
-		String initials = worker.getInitials().replaceAll("\\s+","").toUpperCase();
+		String initials = worker.getInitials().replaceAll("\\s+","").replace(".","").toUpperCase();
 		worker.setInitials(initials);
 		if (worker.getInitials().length() > 4) {
 			throw new OperationNotAllowedException("Too many initials");
