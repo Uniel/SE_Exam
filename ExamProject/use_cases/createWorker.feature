@@ -14,18 +14,18 @@ Scenario: User creates a worker with too many initials
     Then the worker "DANKMEMES" does not exist
     And I get the error message "Too many initials"
 
-#Scenario: User creates an existing worker
-#    Given I have the worker "DANK"
-#    And the worker "DANK" exists
-#	When I add the worker "DANK"
-#    Then I get the error message "The worker DANK already exists"
-#    
+Scenario: User creates an existing worker
+    Given I have the worker "DANK"
+    And I add the worker "DANK"
+	When I add the worker "DANK"
+    Then I get the error message "This worker already exists"
+    
 #Scenario: Creating a worker with blank name
 #    Given I have the worker ""
 #    When I add the worker ""
 #    Then the worker "" does not exist
 #    Then I get the error message "Worker must have initials"
-#    
+    
 #Scenario: Creating a worker with spaces in the initials
 #    Given I have the worker "GJ"
 #    And the worker "GJ" does not exist

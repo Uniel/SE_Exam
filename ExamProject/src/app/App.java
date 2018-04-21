@@ -74,7 +74,10 @@ public class App {
 	public void createWorker(Worker worker) throws OperationNotAllowedException{
 		if (worker.getInitials().length() > 4) {
 			throw new OperationNotAllowedException("Too many initials");
-		} else {
+		} else if (workers.contains(worker)) {
+			throw new OperationNotAllowedException("This worker already exists");
+		}
+		else {
 			workers.add(worker);
 		}
 	}
