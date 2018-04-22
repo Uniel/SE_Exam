@@ -91,13 +91,17 @@ public class Project {
 	public void setEndYear(int year) {
 		endYear = year;
 	}
-	
+	//	ACTIVITIES
 	public List<Activity> getActivities(){
 		return activities;
 	}
-
-	public void renameActivity(Activity activity, String newName) {
-		//Unfinished
+	// First argument of type Activity have been changed to String
+	public void renameActivity(String activity, String newName) throws OperationNotAllowedException{
+		if(activityExists(newName)) {
+			throw new OperationNotAllowedException("That activity name already exists");
+		} else {
+			findProjectWithID(activity).setName(newName);
+		}
 	}
 	
 	public int remainingBudgetTime() {
@@ -105,10 +109,50 @@ public class Project {
 		return 0;
 	}
 	
-	public void addActivity(String name) {
+	public void addActivity(String name) throws OperationNotAllowedException{
+		if(validName(name)) {
+			throw new OperationNotAllowedException("An activity must have a name");
+		} else if(activityExists(name)) {
+			throw new OperationNotAllowedException("That activity already exists");
+		} else {
+			activities.add(new Activity(name));
+		}
+	}
+
+	private boolean validName(String name) {
+		return name.trim() == null || name.trim().isEmpty() || name.trim() == "";
 	}
 	
-	public void removeActivity(String name) {
+	public void removeActivity(String name) throws OperationNotAllowedException{
+		if(activityExists(name)) {
+			activities.remove(indexOfActivity(name));
+		} else {
+			throw new OperationNotAllowedException("That activity does not exist");
+		}
+	}
+	
+	public boolean activityExists(String name) {
+		return (indexOfActivity(name) == -1 ? false : true);
+	}
+	
+	public Activity findProjectWithID(String name) {
+		if(activities.isEmpty()) {return null;}
+		for(Activity a : activities) {
+			if(a.getName() == name) {return activities.get(activities.indexOf(a));}
+		}
+		return null;
+	}
+	
+	private int indexOfActivity(String name) {
+//		if(activities.isEmpty()) {
+//			return -1;
+//		}
+//		for(Activity a : activities) {
+//			if(a.getName() == name) {return activities.indexOf(a);}
+//		}
+//		return -1; 
+		return (findProjectWithID(name) == null ? -1 : activities.indexOf(findProjectWithID(name)));
+		
 	}
 	
 	public void showTimeUse() {

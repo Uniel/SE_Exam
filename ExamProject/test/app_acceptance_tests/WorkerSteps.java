@@ -53,7 +53,7 @@ public class WorkerSteps {
 			worker = new Worker(initials);
 		}
 		try {
-		app.createWorker(worker);
+			app.createWorker(worker);
 		} catch (Exception e) {
 			errorMessage.setErrorMessage(e.getMessage());
 		}

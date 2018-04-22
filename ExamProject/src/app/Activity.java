@@ -14,8 +14,8 @@ public class Activity {
 	private int endYear;
 	private int budgetTime;
 	
-	public Activity() {
-		
+	public Activity(String newName) {
+		this.name = newName;
 	} // constructor
 
 	public List<Worker> listWorkers() {

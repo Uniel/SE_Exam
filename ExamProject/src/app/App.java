@@ -39,17 +39,30 @@ public class App {
 	public Project findProjectWithID(int ID) {
 		if(projects.isEmpty()) {return null;}
 		for(Project p : projects) {
-			if(p.getProjectID() == ID) {return p;}
+			if(p.getProjectID() == ID) {return projects.get(projects.indexOf(p));}
 		}
 		return null;
 	}
 	
-	public boolean idExists(int ID) {
-		if(projects.isEmpty()) {return false;}
-		for(Project p : projects) {
-			if(p.getProjectID() == ID) {return true;}
+	public Project selectProject(int ID) throws OperationNotAllowedException{
+		if(findProjectWithID(ID) == null) {
+			throw new OperationNotAllowedException("A project with that ID does not exist");
+		} else {
+			return findProjectWithID(ID);
 		}
-		return false;
+	}
+	
+	public int indexOfProjectWithID(int ID) {
+		return projects.indexOf(findProjectWithID(ID));
+	}
+	
+	public boolean idExists(int ID) {
+//		if(projects.isEmpty()) {return false;}
+//		for(Project p : projects) {
+//			if(p.getProjectID() == ID) {return true;}
+//		}
+//		return false;
+		return (findProjectWithID(ID) == null ? false : true);
 	}
 	
 	public int lastIdGenerated(){
@@ -85,10 +98,6 @@ public class App {
 		else {
 			workers.add(worker);
 		}
-	}
-	
-	public void /*Project*/ findProject(String projectID) {
-		//Unfinished
 	}
 	
 	public void /*List<Worker>*/ assignedWorkers(Project project, Activity activity) {

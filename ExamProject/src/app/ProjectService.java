@@ -4,7 +4,7 @@ package app;
 
 public class ProjectService {
 	private App application;
-	private boolean TEST_MODE = true;
+	private boolean TEST_MODE = false;
 	private int serialNumber = 1;
 	private int thisYear = 0;
 	private int nextYear = -10;
