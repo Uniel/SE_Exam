@@ -976,4 +976,59 @@ formatter.match({
 formatter.result({
   "status": "passed"
 });
+formatter.scenario({
+  "name": "Rename non existing activity",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "I have the project with ID 180001",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the project with ID 180001 exists",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDExists(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the activity \"Programming\" does not exist in the project with ID 180001",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "ActivitySteps.theActivityDoesNotExistInTheProjectWithID(String,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I rename the activity \"Programming\" in the project with ID 180001 to \"Coffee break\"",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "ActivitySteps.iRenameTheActivityInTheProjectWithIDTo(String,int,String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I get the error message \"That activity does not exist\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "MiscSteps.iGetTheErrorMessage(String)"
+});
+formatter.result({
+  "status": "passed"
+});
 });

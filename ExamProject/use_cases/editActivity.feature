@@ -56,3 +56,11 @@ Scenario: Rename activity to existing name
 	And the activity "Coffee break" has already been added to the project with ID 180001
 	When I rename the activity "Programming" in the project with ID 180001 to "Coffee break"
 	Then I get the error message "That activity name already exists"
+	
+Scenario: Rename non existing activity
+	Given I have the project with ID 180001
+	And the project with ID 180001 exists
+	And the activity "Programming" does not exist in the project with ID 180001
+	When I rename the activity "Programming" in the project with ID 180001 to "Coffee break"
+	Then I get the error message "That activity does not exist"
+	

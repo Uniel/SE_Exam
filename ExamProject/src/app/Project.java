@@ -97,7 +97,9 @@ public class Project {
 	}
 	// First argument of type Activity have been changed to String
 	public void renameActivity(String activity, String newName) throws OperationNotAllowedException{
-		if(activityExists(newName)) {
+		if(!activityExists(activity)){
+			throw new OperationNotAllowedException("That activity does not exist");
+		}else if(activityExists(newName)) {
 			throw new OperationNotAllowedException("That activity name already exists");
 		} else {
 			findProjectWithID(activity).setName(newName);
@@ -110,7 +112,7 @@ public class Project {
 	}
 	
 	public void addActivity(String name) throws OperationNotAllowedException{
-		if(validName(name)) {
+		if(inValidName(name)) {
 			throw new OperationNotAllowedException("An activity must have a name");
 		} else if(activityExists(name)) {
 			throw new OperationNotAllowedException("That activity already exists");
@@ -119,7 +121,7 @@ public class Project {
 		}
 	}
 
-	private boolean validName(String name) {
+	private boolean inValidName(String name) {
 		return name.trim() == null || name.trim().isEmpty() || name.trim() == "";
 	}
 	
@@ -144,15 +146,7 @@ public class Project {
 	}
 	
 	private int indexOfActivity(String name) {
-//		if(activities.isEmpty()) {
-//			return -1;
-//		}
-//		for(Activity a : activities) {
-//			if(a.getName() == name) {return activities.indexOf(a);}
-//		}
-//		return -1; 
 		return (findProjectWithID(name) == null ? -1 : activities.indexOf(findProjectWithID(name)));
-		
 	}
 	
 	public void showTimeUse() {
