@@ -105,9 +105,6 @@ public class App {
 		return (Integer.toString(p.getProjectID()).contains(search)) || p.getName().contains(search);		
 	}
 	
-	//return name.trim() == null || name.trim().isEmpty() || name.trim() == "";
-
-	
 	/*
 	 * Worker functions
 	 */
