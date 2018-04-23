@@ -1,16 +1,23 @@
 package app;
 
+import java.util.Calendar;
+
 //import java.util.*;
 
 public class ProjectService {
 	private App application;
-	private boolean TEST_MODE = false;
+	private DateServer dateServer = new DateServer();
+	private boolean TEST_MODE = true;
 	private int serialNumber = 1;
 	private int thisYear = 0;
 	private int nextYear = -10;
 	
 	public ProjectService(App app){
 		this.application = app;
+	}
+	
+	public void setDateServer(DateServer dateServer) {
+		this.dateServer = dateServer;
 	}
 	
 	public void setYear(int newYear) {
@@ -47,6 +54,8 @@ public class ProjectService {
 	}
 	
 	private void updateProjectNumber() {
+		Calendar date = dateServer.getDate();
+		nextYear = date.get(Calendar.YEAR);
 		if(TEST_MODE){System.out.println("PS.updPno: Checking if date is after the saved year of " + thisYear);}
 		if(TEST_MODE){System.out.println("PS.updPno: Gets calendar with year: " + nextYear);}
 		if(nextYear != thisYear) {

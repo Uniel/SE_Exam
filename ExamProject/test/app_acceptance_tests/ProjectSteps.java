@@ -20,17 +20,21 @@ public class ProjectSteps {
 	private App app = new App();
 	private ErrorMessageHolder errorMessage;
 	private List<Project> projects = new ArrayList<>();
+	MockDateHolder dateHolder;
 	
-	public ProjectSteps(App app, ErrorMessageHolder errorMessage) {
+	public ProjectSteps(App app, ErrorMessageHolder errorMessage, MockDateHolder dateHolder) {
 		this.app = app;
 		this.errorMessage = errorMessage;
+		this.dateHolder = dateHolder;
 	}
 
 	// First Create Project Scenario
 	@Given("^the year is (\\d+)$")
 	public void theYearIs(int thisYear) throws Exception {
-	    app.projectService.setYear(thisYear);
-	    assertTrue(app.projectService.getYear() == thisYear);
+//	    app.projectService.setYear(thisYear);
+//	    assertTrue(app.projectService.getYear() == thisYear);
+		dateHolder.setYear(thisYear);
+		assertTrue(app.projectService.getYear() == thisYear);
 	}
 
 	@Given("^the serial number is (\\d+)$")
@@ -74,7 +78,9 @@ public class ProjectSteps {
 	
 	@When("^it is the next year$")
 	public void itIsTheNextYear() throws Exception {
-	    app.projectService.setYear(app.projectService.getYear() + 1);
+	    int thisYear = app.projectService.getYear();
+		dateHolder.advanceDateByYears(1);
+	    assertTrue(app.projectService.getYear() == thisYear + 1);
 	}
 	
 	// Fourth scenario

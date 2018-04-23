@@ -14,5 +14,9 @@
 	<classpathentry kind="lib" path="lib/maven-surefire-plugin-2.12.4.jar"/>
 	<classpathentry kind="lib" path="lib/picocontainer-2.15.jar"/>
 	<classpathentry kind="lib" path="lib/tag-expressions-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/mockito-core-2.13.0.jar"/>
+	<classpathentry kind="lib" path="lib/byte-buddy-1.7.9.jar"/>
+	<classpathentry kind="lib" path="lib/byte-buddy-agent-1.7.9.jar"/>
+	<classpathentry kind="lib" path="lib/objenesis-2.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

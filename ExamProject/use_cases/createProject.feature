@@ -3,10 +3,10 @@ Feature: Create a project
 	Actor: User
 	
 Scenario: Successfully create a project
-	Given the year is 2018
+	Given the year is 2019
 	And the serial number is 0001
 	When I create a project
-	Then the project with ID 180001 exists
+	Then the project with ID 190001 exists
 	And the serial number is now 0002
 	
 	# EDITERET - Selvom det ikke er plausibelt at det sker, så genererer vi blot et nyt ID, hvis det allerede generede findes
