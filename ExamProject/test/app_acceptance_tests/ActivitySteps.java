@@ -32,19 +32,19 @@ public class ActivitySteps {
 	@Given("^I have the project with ID (\\d+)$")
 	public void iHaveTheProjectWithID(int ID) throws Exception {
 	    app.createProject(ID);
-		assertTrue(app.findProjectWithID(ID).getProjectID() == ID);
+		assertTrue(app.selectProject(ID).getProjectID() == ID);
 	}
 
 	@Given("^the activity \"([^\"]*)\" does not exist in the project with ID (\\d+)$")
 	public void theActivityDoesNotExistInTheProjectWithID(String act, int ID) throws Exception {
-	    project = app.findProjectWithID(ID);
+	    project = app.selectProject(ID);
 	    assertFalse(project.activityExists(act));
 	}
 
 	@When("^I add the activity \"([^\"]*)\" to the project with ID (\\d+)$")
 	public void iAddTheActivityToTheProjectWithID(String act, int ID) throws Exception {
 		try {
-			app.findProjectWithID(ID).addActivity(act);
+			app.selectProject(ID).addActivity(act);
 		} catch (Exception e) {
 			errorMessage.setErrorMessage(e.getMessage());
 		}
@@ -52,20 +52,20 @@ public class ActivitySteps {
 
 	@Then("^the activity \"([^\"]*)\" exists in the project with ID (\\d+)$")
 	public void theActivityExistsInTheProjectWithID(String act, int ID) throws Exception {
-		assertTrue(app.findProjectWithID(ID).activityExists(act));
+		assertTrue(app.selectProject(ID).activityExists(act));
 	}
 	
 	// Third Scenario
 	@Given("^the activity \"([^\"]*)\" has already been added to the project with ID (\\d+)$")
 	public void theActivityHasAlreadyBeenCreatedInTheProjectWithID(String act, int ID) throws Exception {
-		app.findProjectWithID(ID).addActivity(act);
+		app.selectProject(ID).addActivity(act);
 	}
 
 	// Fourth scenario
 	@When("^I remove the activity \"([^\"]*)\" from the project with ID (\\d+)$")
 	public void iRemoveTheActivityFromTheProjectWithID(String act, int ID) throws Exception {
 		try {
-			app.findProjectWithID(ID).removeActivity(act);
+			app.selectProject(ID).removeActivity(act);
 		} catch (Exception e) {
 			errorMessage.setErrorMessage(e.getMessage());
 		}
@@ -85,7 +85,7 @@ public class ActivitySteps {
 	@When("^I rename the activity \"([^\"]*)\" in the project with ID (\\d+) to \"([^\"]*)\"$")
 	public void iRenameTheActivityInTheProjectWithIDTo(String existingAct, int ID, String newActName) throws Exception {
 	    try {
-			app.findProjectWithID(ID).renameActivity(existingAct, newActName);
+			app.selectProject(ID).renameActivity(existingAct, newActName);
 		} catch (Exception e) {
 			errorMessage.setErrorMessage(e.getMessage());
 		}

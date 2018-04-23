@@ -91,7 +91,11 @@ public class Project {
 	public void setEndYear(int year) {
 		endYear = year;
 	}
-	//	ACTIVITIES
+	
+	/*
+	 * Activity functions
+	 */
+	
 	public List<Activity> getActivities(){
 		return activities;
 	}
@@ -99,16 +103,11 @@ public class Project {
 	public void renameActivity(String activity, String newName) throws OperationNotAllowedException{
 		if(!activityExists(activity)){
 			throw new OperationNotAllowedException("That activity does not exist");
-		}else if(activityExists(newName)) {
+		} else if(activityExists(newName)) {
 			throw new OperationNotAllowedException("That activity name already exists");
 		} else {
 			findProjectWithID(activity).setName(newName);
 		}
-	}
-	
-	public int remainingBudgetTime() {
-		//Unfinished
-		return 0;
 	}
 	
 	public void addActivity(String name) throws OperationNotAllowedException{
@@ -147,6 +146,11 @@ public class Project {
 	
 	private int indexOfActivity(String name) {
 		return (findProjectWithID(name) == null ? -1 : activities.indexOf(findProjectWithID(name)));
+	}
+	
+	public int remainingBudgetTime() {
+		//Unfinished
+		return 0;
 	}
 	
 	public void showTimeUse() {

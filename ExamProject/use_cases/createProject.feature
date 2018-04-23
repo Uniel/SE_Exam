@@ -15,9 +15,7 @@ Scenario: Conflict in project ID
 	And the serial number is 0001
 	And the project with ID 180001 has been created
 	And the project with ID 180002 does not exist
-	#When I add the project with ID 180001
 	When I create a project
-	#Then I get the error message "A project with that ID already exists"
 	Then the project with ID 180002 exists
 	
 Scenario: It is a new year
@@ -29,3 +27,13 @@ Scenario: It is a new year
 	And I create a project
 	Then the project with ID 190000 exists
 	And the serial number is now 0001
+	
+Scenario: Remove a project
+	Given the project with ID 180001 has been created
+	When I remove the project with ID 180001
+	Then the project with ID 180001 does not exist
+
+Scenario: Remove a non existing activity
+	Given the project with ID 180001 does not exist
+	When I remove the project with ID 180001
+	Then I get the error message "A project with that ID does not exist"

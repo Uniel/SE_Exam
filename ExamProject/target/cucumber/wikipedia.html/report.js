@@ -209,6 +209,76 @@ formatter.match({
 formatter.result({
   "status": "passed"
 });
+formatter.scenario({
+  "name": "Remove a project",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "the project with ID 180001 has been created",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I remove the project with ID 180001",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "ProjectSteps.iRemoveTheProjectWithID(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the project with ID 180001 does not exist",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDDoesNotExist(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "Remove a non existing activity",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "the project with ID 180001 does not exist",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDDoesNotExist(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I remove the project with ID 180001",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "ProjectSteps.iRemoveTheProjectWithID(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I get the error message \"A project with that ID does not exist\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "MiscSteps.iGetTheErrorMessage(String)"
+});
+formatter.result({
+  "status": "passed"
+});
 formatter.uri("use_cases/createWorker.feature");
 formatter.feature({
   "name": "Create worker",
@@ -1023,6 +1093,474 @@ formatter.result({
 });
 formatter.step({
   "name": "I get the error message \"That activity does not exist\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "MiscSteps.iGetTheErrorMessage(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.uri("use_cases/listProject.feature");
+formatter.feature({
+  "name": "List projects",
+  "description": "\tDescription: A user searches for projects and gets a list\n\tActors: User",
+  "keyword": "Feature"
+});
+formatter.background({
+  "name": "The system has a number of projects",
+  "description": "",
+  "keyword": "Background"
+});
+formatter.step({
+  "name": "these project IDs with names exist in the system",
+  "rows": [
+    {
+      "cells": [
+        "180001",
+        "Project 2018 1"
+      ]
+    },
+    {
+      "cells": [
+        "160021",
+        "The Number 21"
+      ]
+    },
+    {
+      "cells": [
+        "170404",
+        "Damned difficult to find"
+      ]
+    },
+    {
+      "cells": [
+        "180042",
+        "The meaning"
+      ]
+    }
+  ],
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theseIDsWithNamesExistsInTheSystem(String\u003e\u003e)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "Searching for all projects",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "I search for \"*\"",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.iSearchFor(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I find projects with ID 180001, 160021, 170404 and 180042",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "ProjectSteps.iFindProjectsWithIDAnd(int,int,int,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.background({
+  "name": "The system has a number of projects",
+  "description": "",
+  "keyword": "Background"
+});
+formatter.step({
+  "name": "these project IDs with names exist in the system",
+  "rows": [
+    {
+      "cells": [
+        "180001",
+        "Project 2018 1"
+      ]
+    },
+    {
+      "cells": [
+        "160021",
+        "The Number 21"
+      ]
+    },
+    {
+      "cells": [
+        "170404",
+        "Damned difficult to find"
+      ]
+    },
+    {
+      "cells": [
+        "180042",
+        "The meaning"
+      ]
+    }
+  ],
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theseIDsWithNamesExistsInTheSystem(String\u003e\u003e)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "Finding exact match by ID search",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "I search for \"180001\"",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.iSearchFor(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I find projects with ID 180001",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "ProjectSteps.iFindProjectsWithID(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.background({
+  "name": "The system has a number of projects",
+  "description": "",
+  "keyword": "Background"
+});
+formatter.step({
+  "name": "these project IDs with names exist in the system",
+  "rows": [
+    {
+      "cells": [
+        "180001",
+        "Project 2018 1"
+      ]
+    },
+    {
+      "cells": [
+        "160021",
+        "The Number 21"
+      ]
+    },
+    {
+      "cells": [
+        "170404",
+        "Damned difficult to find"
+      ]
+    },
+    {
+      "cells": [
+        "180042",
+        "The meaning"
+      ]
+    }
+  ],
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theseIDsWithNamesExistsInTheSystem(String\u003e\u003e)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "Find multiple projects by searching for part of ID",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "I search for \"18\"",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.iSearchFor(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I find projects with ID 180001 and 180042",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "ProjectSteps.iFindProjectsWithIDAnd(int,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.background({
+  "name": "The system has a number of projects",
+  "description": "",
+  "keyword": "Background"
+});
+formatter.step({
+  "name": "these project IDs with names exist in the system",
+  "rows": [
+    {
+      "cells": [
+        "180001",
+        "Project 2018 1"
+      ]
+    },
+    {
+      "cells": [
+        "160021",
+        "The Number 21"
+      ]
+    },
+    {
+      "cells": [
+        "170404",
+        "Damned difficult to find"
+      ]
+    },
+    {
+      "cells": [
+        "180042",
+        "The meaning"
+      ]
+    }
+  ],
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theseIDsWithNamesExistsInTheSystem(String\u003e\u003e)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "Find one project by name search",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "I search for \"The Number 21\"",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.iSearchFor(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I find projects with ID 160021",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "ProjectSteps.iFindProjectsWithID(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.background({
+  "name": "The system has a number of projects",
+  "description": "",
+  "keyword": "Background"
+});
+formatter.step({
+  "name": "these project IDs with names exist in the system",
+  "rows": [
+    {
+      "cells": [
+        "180001",
+        "Project 2018 1"
+      ]
+    },
+    {
+      "cells": [
+        "160021",
+        "The Number 21"
+      ]
+    },
+    {
+      "cells": [
+        "170404",
+        "Damned difficult to find"
+      ]
+    },
+    {
+      "cells": [
+        "180042",
+        "The meaning"
+      ]
+    }
+  ],
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theseIDsWithNamesExistsInTheSystem(String\u003e\u003e)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "Find multiple projects by part name search",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "I search for \"The\"",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.iSearchFor(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I find projects with ID 160021 and 180042",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "ProjectSteps.iFindProjectsWithIDAnd(int,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.background({
+  "name": "The system has a number of projects",
+  "description": "",
+  "keyword": "Background"
+});
+formatter.step({
+  "name": "these project IDs with names exist in the system",
+  "rows": [
+    {
+      "cells": [
+        "180001",
+        "Project 2018 1"
+      ]
+    },
+    {
+      "cells": [
+        "160021",
+        "The Number 21"
+      ]
+    },
+    {
+      "cells": [
+        "170404",
+        "Damned difficult to find"
+      ]
+    },
+    {
+      "cells": [
+        "180042",
+        "The meaning"
+      ]
+    }
+  ],
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theseIDsWithNamesExistsInTheSystem(String\u003e\u003e)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "No projects found",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "I search for \"haha\"",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.iSearchFor(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I get the error message \"No projects containing that string found\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "MiscSteps.iGetTheErrorMessage(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.background({
+  "name": "The system has a number of projects",
+  "description": "",
+  "keyword": "Background"
+});
+formatter.step({
+  "name": "these project IDs with names exist in the system",
+  "rows": [
+    {
+      "cells": [
+        "180001",
+        "Project 2018 1"
+      ]
+    },
+    {
+      "cells": [
+        "160021",
+        "The Number 21"
+      ]
+    },
+    {
+      "cells": [
+        "170404",
+        "Damned difficult to find"
+      ]
+    },
+    {
+      "cells": [
+        "180042",
+        "The meaning"
+      ]
+    }
+  ],
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theseIDsWithNamesExistsInTheSystem(String\u003e\u003e)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "Search for empty string",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "I search for \" \"",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.iSearchFor(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I get the error message \"Must specify search term\"",
   "keyword": "Then "
 });
 formatter.match({
