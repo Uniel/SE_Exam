@@ -33,6 +33,7 @@ public class ProjectSteps {
 	public void theYearIs(int thisYear) throws Exception {
 //	    app.projectService.setYear(thisYear);
 //	    assertTrue(app.projectService.getYear() == thisYear);
+		app.projectService.setDateServer(dateHolder.dateServer);
 		dateHolder.setYear(thisYear);
 		assertTrue(app.projectService.getYear() == thisYear);
 	}
