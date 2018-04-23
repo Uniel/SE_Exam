@@ -30,6 +30,8 @@ public class Worker {
 	}
 	
 	public void addActivity(Activity activity) {
+		assignedActivities.add(activity);
+		System.out.println(assignedActivities);
 		//Unfinished
 	}
 	

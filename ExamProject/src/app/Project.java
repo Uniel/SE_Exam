@@ -160,9 +160,13 @@ public class Project {
 	}
 	
 	public void assign(Worker worker, Activity activity) {
+		activity.assignWorker(worker);
+		worker.addActivity(activity);
+		
 	}
 	
 	public void assignedWorkers(Activity activity) {
+		activity.listWorkers();
 	}
 	
 	public void removeWorker(Worker worker, Activity activity) {

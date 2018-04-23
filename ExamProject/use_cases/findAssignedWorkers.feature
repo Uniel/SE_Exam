@@ -2,16 +2,13 @@ Feature: Find assigned workers of a given activity
     Description: The user searches for assigned workers of a activity
     Actors: User / project leader
     
-#Scenario: User searches for assigned workers of the activity "G.O.A.T." successfully (1 worker)
-#    Given I have the project with ID 180666
-#    And the project with ID 180666 exists
-#    And I have the activity "G.O.A.T."
-#    And the activity "G.O.A.T." exists in the project with ID 180666
-#    And I have the worker "JONH"
-#    And the worker "JONH" exists
-#    And the worker "JONH" is assigned to the activity "G.O.A.T." in the project with ID 180666
-#    When I search for assigned workers of the activity "G.O.A.T." in the project with ID 180666
-#    Then I get a list of length 1 which contains the workers "JONH"
+Scenario: User searches for assigned workers of the activity "G.O.A.T." successfully (1 worker)
+    Given I have the project with ID 180666
+    And the activity "G.O.A.T." has already been added to the project wih ID 180666
+    And I have the worker "JONH"
+    And the worker "JONH" is assigned to the activity "G.O.A.T." in the project with ID 180666
+    When I search for assigned workers of the activity "G.O.A.T." in the project with ID 180666
+    Then I get a list which contains the worker "JONH"
     
 #Scenario: User searches for assigned workers of the activity "G.O.A.T." successfully (>1 workers)
 #    Given I have the project with ID 180666

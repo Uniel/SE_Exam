@@ -11,8 +11,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import app.Activity;
 import app.App;
 import app.Worker;
+import app.Project;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -20,9 +22,11 @@ import cucumber.api.java.en.When;
 public class WorkerSteps {
 
 	private App app = new App();
+	private Project project;
 	private Worker worker;
+	private Activity activity;
 	private ErrorMessageHolder errorMessage;
-		
+	
 	private List<Worker> workers;
 	
 	
@@ -64,5 +68,32 @@ public class WorkerSteps {
 		assertTrue(app.getWorkers().contains(worker));
 	}
 
+	@Given("^the activity \"([^\"]*)\" has already been added to the project wih ID (\\d+)$")
+	public void theActivityHasAlreadyBeenAddedToTheProjectWihID(String act, int ID) throws Exception {
+		app.selectProject(ID).addActivity(act);
+	}
+
+	@Given("^the worker \"([^\"]*)\" is assigned to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
+	public void theWorkerIsAssignedToTheActivityInTheProjectWithID(String initials, String act, int ID) throws Exception {
+		try {
+			app.assign(worker, project, activity);
+		} catch (Exception e) {
+			errorMessage.setErrorMessage(e.getMessage());
+		}
+	}
+
+	@When("^I search for assigned workers of the activity \"([^\"]*)\" in the project with ID (\\d+)$")
+	public void iSearchForAssignedWorkersOfTheActivityInTheProjectWithID(String act, int ID) throws Exception {
+		 try {
+				app.assignedWorkers(project, activity);
+			} catch (Exception e) {
+				errorMessage.setErrorMessage(e.getMessage());
+			}
+		}
+
+	@Then("^I get a list which contains the worker \"([^\"]*)\"$")
+	public void iGetAListOfLengthWhichContainsTheWorker(String initials) throws Exception {
+		assertThat(activity.assignedWorkers.get(0), is(initials));
+	}
 	
 }

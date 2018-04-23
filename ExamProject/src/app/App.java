@@ -129,11 +129,14 @@ public class App {
 		}
 	}
 	
-	public void /*List<Worker>*/ assignedWorkers(Project project, Activity activity) {
+	public List<Worker> assignedWorkers(Project project, Activity activity) {
+		project.assignedWorkers(activity);
+		return activity.listWorkers();
 		//Unfinished
 	}
 	
 	public void assign(Worker worker, Project project, Activity activity) {
+		project.assign(worker, activity);
 		//Unfinished
 	}
 	

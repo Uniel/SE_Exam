@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Activity {
 
-	private List<Worker> assignedWorkers = new ArrayList<Worker>();
+	public List<Worker> assignedWorkers = new ArrayList<Worker>();
 	
 	private String name;
 	private boolean fulltime;
@@ -20,6 +20,11 @@ public class Activity {
 
 	public List<Worker> listWorkers() {
 		return assignedWorkers;
+		
+	}
+	
+	public void assignWorker(Worker worker) {
+		assignedWorkers.add(worker);
 	}
 	
 	public String getName() {
