@@ -43,7 +43,7 @@ public class ProjectSteps {
 	    app.projectService.setSerial(thisSerial);
 	    assertTrue(app.projectService.getSerial() == thisSerial);
 	}
-
+	
 	@When("^I create a project$")
 	public void iCreateAProject() throws Exception {
 		app.createProject();
