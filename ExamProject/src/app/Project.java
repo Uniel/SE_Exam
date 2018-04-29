@@ -68,21 +68,29 @@ public class Project {
 		customer = c;
 	}
 	
-	public void setStart(int week, int year) {
+	public void setStart(int week, int year) throws Exception {
 		Calendar calendar = new GregorianCalendar();
 		calendar.set(Calendar.WEEK_OF_YEAR, week);
 		calendar.set(Calendar.YEAR, year);
+		if (end != null && end.before(calendar)) {
+			throw new OperationNotAllowedException("Project start must be before project end");
+		}
+		else {
 		start = calendar;
+		}
 	}
 	
 	public Calendar getStart() {
 		return start;
 	}
 	
-	public void setEnd(int week, int year) {
+	public void setEnd(int week, int year) throws Exception {
 		Calendar calendar = new GregorianCalendar();
 		calendar.set(Calendar.WEEK_OF_YEAR, week);
 		calendar.set(Calendar.YEAR, year);
+		if (start != null && start.after(calendar)) {
+			throw new OperationNotAllowedException("Project end must be after project start");
+		}
 		end = calendar;
 	}
 	

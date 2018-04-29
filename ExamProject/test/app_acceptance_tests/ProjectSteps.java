@@ -190,7 +190,11 @@ public class ProjectSteps {
 	
 	@When("^I set project start of the project with ID (\\d+) to be week (\\d+) of (\\d+)$")
 	public void iSetProjectStartOfTheProjectWithIDToBeWeekOf(int ID, int week, int year) throws Exception {
-	    app.selectProject(ID).setStart(week, year);
+	    try {
+		app.selectProject(ID).setStart(week, year);
+	    } catch (Exception e) {
+	    	errorMessage.setErrorMessage(e.getMessage());
+	    }
 	}
 	
 	@Then("^the project start of the project with ID (\\d+) is week (\\d+) of (\\d+)$")
@@ -201,7 +205,11 @@ public class ProjectSteps {
 	
 	@When("^I set project end of the project with ID (\\d+) to be week (\\d+) of (\\d+)$")
 	public void iSetProjectEndOfTheProjectWithIDToBeWeekOf(int ID, int week, int year) throws Exception {
-	    app.selectProject(ID).setEnd(week, year);
+	    try {
+		app.selectProject(ID).setEnd(week, year);
+		} catch (Exception e) {
+			errorMessage.setErrorMessage(e.getMessage());
+		}
 	}
 	
 	@Then("^the project end of the project with ID (\\d+) is week (\\d+) of (\\d+)$")

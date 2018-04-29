@@ -52,7 +52,7 @@ Scenario: User sets project end to be before project start
 	And the project with ID 184321 exists
 	And I set project start of the project with ID 184321 to be week 8 of 2020
 	When I set project end of the project with ID 184321 to be week 7 of 2020
-#	Then I get the error message "Project end must be after project start"
+	Then I get the error message "Project end must be after project start"
 
 #Scenario: User sets project end to be before the end of an activity in the project
 #	Given I have the project with ID 184321
