@@ -79,4 +79,10 @@ public class Activity {
 	public boolean overlaps(int sWeek, int eWeek, int sYear, int eYear) {
 		return false;
 	}
+	
+	public void assignWorker(Worker worker) {
+		//This method should NOT be called directly!
+		//Use the assign method in App instead.
+		assignedWorkers.add(worker);
+	}
 } // class

@@ -2,14 +2,14 @@ Feature: Assign Workers
 	Description: The user assigns workers to an activity
 	Actors: User
 	
-#Scenario: User assigns a worker to an activity
-#	Given I have the project with ID 180000
-#	And the project with ID 180000 exists
-#	And the activity "Kick ass and chew bubblegum" exists in the project with ID 180000
-#	And I have the worker "BJBL"
-#	And the worker "BJBL" exists
-#	When I assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180000
-#	Then the worker "BJBL" is assigned to the activity "Kick ass and chew bubblegum" in the project with ID 180000
+Scenario: User assigns a worker to an activity
+	Given I have the project with ID 180000
+	And the project with ID 180000 exists
+	And the activity "Kick ass and chew bubblegum" has already been added to the project with ID 180000
+	And I have the worker "BJBL"
+	And I add the worker "BJBL"
+	When I assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180000
+	Then the worker "BJBL" is assigned to the activity "Kick ass and chew bubblegum" in the project with ID 180000
 
 #Scenario: User assigns worker to an activity which the worker is already assigned to
 #	Given I have the project with ID 180000

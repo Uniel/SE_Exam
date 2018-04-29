@@ -30,7 +30,9 @@ public class Worker {
 	}
 	
 	public void addActivity(Activity activity) {
-		//Unfinished
+		//This method should NOT be called directly!
+		//Use the method assign in App instead.
+		assignedActivities.add(activity);
 	}
 	
 	public void removeActivity(Activity activity) {

@@ -66,6 +66,16 @@ public class WorkerSteps {
 	public void theWorkerExists(String initials) throws Exception {
 		assertTrue(app.getWorkers().contains(worker));
 	}
+	
+	@When("^I assign the worker \"([^\"]*)\" to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
+	public void iAssignTheWorkerToTheActivityInTheProjectWithID(String initials, String activity, int ID) throws Exception {
+		app.assign(worker, ID, activity);
+	}
 
+	@Then("^the worker \"([^\"]*)\" is assigned to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
+	public void theWorkerIsAssignedToTheActivityInTheProjectWithID(String initials, String activity, int ID) throws Exception {
+	    assertTrue(app.selectProject(ID).findProjectWithID(activity).listWorkers().contains(worker));
+	    assertTrue(worker.getAssignedActivities().contains(app.selectProject(ID).findProjectWithID(activity)));
+	}
 	
 }

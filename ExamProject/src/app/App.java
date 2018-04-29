@@ -133,8 +133,9 @@ public class App {
 		//Unfinished
 	}
 	
-	public void assign(Worker worker, Project project, Activity activity) {
-		//Unfinished
+	public void assign(Worker worker, int ID, String activity) throws Exception {
+		selectProject(ID).findProjectWithID(activity).assignWorker(worker);
+		worker.addActivity(selectProject(ID).findProjectWithID(activity));
 	}
 	
 	public void /*List<Activity>*/ listActivities(Project project){
