@@ -1,6 +1,8 @@
 package app;
 
 import java.util.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Project {
 	
@@ -11,10 +13,8 @@ public class Project {
 	private String name;
 	private String type;
 	private String customer;
-	private int startWeek;
-	private int endWeek;
-	private int startYear;
-	private int endYear;
+	private Calendar start;
+	private Calendar end;
 	
 	public Project(int ID) {
 		projectID = ID;
@@ -48,8 +48,16 @@ public class Project {
 		return type;
 	}
 	
-	public void setType(String t) {
-		type = t;
+	public void setType(String t) throws Exception{
+		if (t.toLowerCase().equals("internal")) {
+			type = "Internal";
+		}
+		else if (t.toLowerCase().equals("external")) {
+			type = "External";
+		}
+		else {
+			throw new OperationNotAllowedException("That is not a valid project type");
+		}
 	}
 	
 	public String getCustomer() {
@@ -60,36 +68,26 @@ public class Project {
 		customer = c;
 	}
 	
-	public int getStartWeek() {
-		return startWeek;
+	public void setStart(int week, int year) {
+		Calendar calendar = new GregorianCalendar();
+		calendar.set(Calendar.WEEK_OF_YEAR, week);
+		calendar.set(Calendar.YEAR, year);
+		start = calendar;
 	}
 	
-	public void setStartWeek(int week) {
-		startWeek = week;
+	public Calendar getStart() {
+		return start;
 	}
 	
-	public int getEndWeek() {
-		return endWeek;
+	public void setEnd(int week, int year) {
+		Calendar calendar = new GregorianCalendar();
+		calendar.set(Calendar.WEEK_OF_YEAR, week);
+		calendar.set(Calendar.YEAR, year);
+		end = calendar;
 	}
 	
-	public void setEndWeek(int week) {
-		endWeek = week;
-	}
-	
-	public int getStartYear() {
-		return startYear;
-	}
-	
-	public void setStartYear(int year) {
-		startYear = year;
-	}
-	
-	public int getEndYear() {
-		return endYear;
-	}
-	
-	public void setEndYear(int year) {
-		endYear = year;
+	public Calendar getEnd() {
+		return end;
 	}
 	
 	/*

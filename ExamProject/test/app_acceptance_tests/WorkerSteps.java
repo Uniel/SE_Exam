@@ -22,13 +22,15 @@ public class WorkerSteps {
 	private App app = new App();
 	private Worker worker;
 	private ErrorMessageHolder errorMessage;
+	private WorkerHelper workerHelper;
 		
 	private List<Worker> workers;
 	
 	
-	public WorkerSteps(App app, ErrorMessageHolder errorMessage) {
+	public WorkerSteps(App app, ErrorMessageHolder errorMessage, WorkerHelper workerHelper) {
 		this.app = app;
 		this.errorMessage = errorMessage;
+		this.workerHelper = workerHelper;
 	}
 
 	// First Create Worker Scenario
@@ -36,6 +38,7 @@ public class WorkerSteps {
 	@Given("^I have the worker \"([^\"]*)\"$")
 	public void iHaveTheWorker(String initials) throws Exception {
 		worker = new Worker(initials);
+		workerHelper.setWorker(worker);
 	    assertThat(worker.getInitials(),is(equalTo(initials)));
 	}
 

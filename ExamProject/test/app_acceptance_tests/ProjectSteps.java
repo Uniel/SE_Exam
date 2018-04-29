@@ -3,11 +3,14 @@ package app_acceptance_tests;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import app.App;
 import app.Project;
@@ -19,20 +22,20 @@ public class ProjectSteps {
 
 	private App app = new App();
 	private ErrorMessageHolder errorMessage;
+	private WorkerHelper workerHelper;
 	private List<Project> projects = new ArrayList<>();
 	MockDateHolder dateHolder;
 	
-	public ProjectSteps(App app, ErrorMessageHolder errorMessage, MockDateHolder dateHolder) {
+	public ProjectSteps(App app, ErrorMessageHolder errorMessage, MockDateHolder dateHolder, WorkerHelper workerHelper) {
 		this.app = app;
 		this.errorMessage = errorMessage;
 		this.dateHolder = dateHolder;
+		this.workerHelper = workerHelper;
 	}
 
 	// First Create Project Scenario
 	@Given("^the year is (\\d+)$")
 	public void theYearIs(int thisYear) throws Exception {
-//	    app.projectService.setYear(thisYear);
-//	    assertTrue(app.projectService.getYear() == thisYear);
 		app.projectService.setDateServer(dateHolder.dateServer);
 		dateHolder.setYear(thisYear);
 		assertTrue(app.projectService.getYear() == thisYear);
@@ -139,5 +142,71 @@ public class ProjectSteps {
 	    assertTrue(projects.get(1).getProjectID() == ID2);
 	}
 	
-
+	@When("^I set the project leader of the project with ID (\\d+) to worker \"([^\"]*)\"$")
+	public void iSetTheProjectLeaderOfTheProjectWithIDToWorker(int ID, String initials) throws Exception {
+		assertTrue(workerHelper.getWorker().getInitials() == initials);
+		app.selectProject(ID).setLeader(workerHelper.getWorker());
+	}
+	
+	@Then("^the project leader of the project with ID (\\d+) is worker \"([^\"]*)\"$")
+	public void theProjectLeaderOfTheProjectWithIDIsWorker(int ID, String initials) throws Exception {
+	    assertTrue(app.selectProject(ID).getLeader().getInitials() == initials);
+	    assertTrue(app.selectProject(ID).getLeader() == workerHelper.getWorker());
+	}
+	
+	@When("^I set the name of the project with ID (\\d+) to \"([^\"]*)\"$")
+	public void iSetTheNameOfTheProjectWithIDTo(int ID, String name) throws Exception {
+	    app.selectProject(ID).setName(name);
+	}
+	
+	@Then("^the name of the project with ID (\\d+) is \"([^\"]*)\"$")
+	public void theNameOfTheProjectWithIDIs(int ID, String name) throws Exception {
+	    assertTrue(app.selectProject(ID).getName().equals(name));
+	}
+	
+	@When("^I set the project type of the project with ID (\\d+) to be \"([^\"]*)\"$")
+	public void iSetTheProjectTypeOfTheProjectWithIDToBe(int ID, String type) throws Exception {
+	    try {
+		app.selectProject(ID).setType(type);
+	    } catch (Exception e) {
+			errorMessage.setErrorMessage(e.getMessage());
+		}
+	}
+	
+	@Then("^the project type of the project with ID (\\d+) is \"([^\"]*)\"$")
+	public void theProjectTypeOfTheProjectWithIDIs(int ID, String type) throws Exception {
+	    assertThat(app.selectProject(ID).getType(),is(equalTo(type)));
+	}
+	
+	@When("^I set the customer of the project with ID (\\d+) to be \"([^\"]*)\"$")
+	public void iSetTheCustomerOfTheProjectWithIDToBe(int ID, String customer) throws Exception {
+		app.selectProject(ID).setCustomer(customer);
+	}
+	
+	@Then("^the customer of the project with ID (\\d+) is \"([^\"]*)\"$")
+	public void theCustomerOfTheProjectWithIDIs(int ID, String customer) throws Exception {
+		assertTrue(app.selectProject(ID).getCustomer().equals(customer));
+	}
+	
+	@When("^I set project start of the project with ID (\\d+) to be week (\\d+) of (\\d+)$")
+	public void iSetProjectStartOfTheProjectWithIDToBeWeekOf(int ID, int week, int year) throws Exception {
+	    app.selectProject(ID).setStart(week, year);
+	}
+	
+	@Then("^the project start of the project with ID (\\d+) is week (\\d+) of (\\d+)$")
+	public void theProjectStartOfTheProjectWithIDIsWeekOf(int ID, int week, int year) throws Exception {
+	    assertTrue(app.selectProject(ID).getStart().get(Calendar.WEEK_OF_YEAR) == week);
+	    assertTrue(app.selectProject(ID).getStart().get(Calendar.YEAR) == year);
+	}
+	
+	@When("^I set project end of the project with ID (\\d+) to be week (\\d+) of (\\d+)$")
+	public void iSetProjectEndOfTheProjectWithIDToBeWeekOf(int ID, int week, int year) throws Exception {
+	    app.selectProject(ID).setEnd(week, year);
+	}
+	
+	@Then("^the project end of the project with ID (\\d+) is week (\\d+) of (\\d+)$")
+	public void theProjectEndOfTheProjectWithIDIsWeekOf(int ID, int week, int year) throws Exception {
+	    assertTrue(app.selectProject(ID).getEnd().get(Calendar.WEEK_OF_YEAR) == week);
+	    assertTrue(app.selectProject(ID).getEnd().get(Calendar.YEAR) == year);
+	}
 }
