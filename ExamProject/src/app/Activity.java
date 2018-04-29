@@ -1,6 +1,8 @@
 package app;
 
 import java.util.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Activity {
 
@@ -8,10 +10,8 @@ public class Activity {
 	
 	private String name;
 	private boolean fulltime;
-	private int startWeek;
-	private int endWeek;
-	private int startYear;
-	private int endYear;
+	private Calendar start;
+	private Calendar end;
 	private int budgetTime;
 	
 	public Activity(String newName) {
@@ -38,36 +38,34 @@ public class Activity {
 		fulltime = f;
 	}
 	
-	public int getStartWeek() {
-		return startWeek;
+	public void setStart(int week, int year) throws Exception {
+		Calendar calendar = new GregorianCalendar();
+		calendar.set(Calendar.WEEK_OF_YEAR, week);
+		calendar.set(Calendar.YEAR, year);
+		if (end != null && end.before(calendar)) {
+			throw new OperationNotAllowedException("Activity start must be before activity end");
+		} else {
+			start = calendar;
+		}
 	}
 	
-	public void setStartWeek(int week) {
-		startWeek = week;
+	public Calendar getStart() {
+		return start;
 	}
 	
-	public int getEndWeek() {
-		return endWeek;
+	public void setEnd(int week, int year) throws Exception {
+		Calendar calendar = new GregorianCalendar();
+		calendar.set(Calendar.WEEK_OF_YEAR, week);
+		calendar.set(Calendar.YEAR, year);
+		if (start != null && start.after(calendar)) {
+			throw new OperationNotAllowedException("Activity end must be after activity start");
+		} else {
+			end = calendar;
+		}
 	}
 	
-	public void setEndWeek(int week) {
-		endWeek = week;
-	}
-	
-	public int getStartYear() {
-		return startYear;
-	}
-	
-	public void setStartYear(int year) {
-		startYear = year;
-	}
-	
-	public int getEndYear() {
-		return endYear;
-	}
-	
-	public void setEndYear(int year) {
-		endYear = year;
+	public Calendar getEnd() {
+		return end;
 	}
 	
 	public int getBudgetTime() {

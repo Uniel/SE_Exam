@@ -90,8 +90,9 @@ public class Project {
 		calendar.set(Calendar.YEAR, year);
 		if (start != null && start.after(calendar)) {
 			throw new OperationNotAllowedException("Project end must be after project start");
+		} else {
+			end = calendar;
 		}
-		end = calendar;
 	}
 	
 	public Calendar getEnd() {
@@ -113,6 +114,22 @@ public class Project {
 			throw new OperationNotAllowedException("That activity name already exists");
 		} else {
 			findProjectWithID(activity).setName(newName);
+		}
+	}
+	
+	public void setActivityStart(String activity, int week, int year) throws Exception {
+		if(!activityExists(activity)){
+			throw new OperationNotAllowedException("That activity does not exist");
+		} else {
+			findProjectWithID(activity).setStart(week, year);
+		}
+	}
+	
+	public void setActivityEnd(String activity, int week, int year) throws Exception {
+		if(!activityExists(activity)){
+			throw new OperationNotAllowedException("That activity does not exist");
+		} else {
+			findProjectWithID(activity).setEnd(week, year);
 		}
 	}
 	

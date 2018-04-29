@@ -64,3 +64,19 @@ Scenario: Rename non existing activity
 	When I rename the activity "Programming" in the project with ID 180001 to "Coffee break"
 	Then I get the error message "That activity does not exist"
 	
+Scenario: Set start and end time of activity
+	Given I have the project with ID 180001
+	And the project with ID 180001 exists
+	And the activity "Programming" has already been added to the project with ID 180001
+	When I set the start of the activity "Programming" in the project with ID 180001 to week 4 of 2130
+	And I set the end of the activity "Programming" in the project with ID 180001 to week 7 of 2130
+	Then the start of the activity "Programming" in the project with ID 180001 is week 4 of 2130
+	And the end of the activity "Programming" in the project with ID 180001 is week 7 of 2130
+	
+Scenario: Set start time of activity after end time
+	Given I have the project with ID 180001
+	And the project with ID 180001 exists
+	And the activity "Programming" has already been added to the project with ID 180001
+	And I set the end of the activity "Programming" in the project with ID 180001 to week 4 of 2130
+	When I set the start of the activity "Programming" in the project with ID 180001 to week 7 of 2130
+	Then I get the error message "Activity start must be before activity end"
