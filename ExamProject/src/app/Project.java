@@ -76,7 +76,16 @@ public class Project {
 			throw new OperationNotAllowedException("Project start must be before project end");
 		}
 		else {
-		start = calendar;
+			boolean flag = false;
+			for (Activity activity : activities) {
+				if (activity.getStart().before(calendar)) {
+					flag = true;
+					throw new OperationNotAllowedException("There are activities in this project which start after this time");
+				}
+			}
+			if (flag == false) {
+				start = calendar;
+			}
 		}
 	}
 	
@@ -91,7 +100,16 @@ public class Project {
 		if (start != null && start.after(calendar)) {
 			throw new OperationNotAllowedException("Project end must be after project start");
 		} else {
-			end = calendar;
+			boolean flag = false;
+			for (Activity activity : activities) {
+				if (activity.getEnd().after(calendar)) {
+					flag = true;
+					throw new OperationNotAllowedException("There are activities in this project which end after this time");
+				}
+			}
+			if (flag == false) {
+				end = calendar;
+			}
 		}
 	}
 	
