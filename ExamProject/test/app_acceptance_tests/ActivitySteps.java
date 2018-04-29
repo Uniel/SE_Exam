@@ -100,7 +100,7 @@ public class ActivitySteps {
 	    	errorMessage.setErrorMessage(e.getMessage());
 	    }
 	}
-	
+
 	@When("^I set the end of the activity \"([^\"]*)\" in the project with ID (\\d+) to week (\\d+) of (\\d+)$")
 	public void iSetTheEndOfTheActivityInTheProjectWithIDToWeekOf(String activity, int ID, int week, int year) throws Exception {
 		try {
