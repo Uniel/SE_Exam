@@ -7,7 +7,7 @@ import java.util.Calendar;
 public class ProjectService {
 	private App application;
 	private DateServer dateServer = new DateServer();
-	private boolean TEST_MODE = true;
+	private boolean TEST_MODE = false;
 	private int serialNumber = 1;
 	private int thisYear = 0;
 	private int nextYear = -10;

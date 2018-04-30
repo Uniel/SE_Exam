@@ -7,7 +7,7 @@ import app.ProjectService;
 
 public class App {
 
-	private boolean TEST_MODE = true;
+	private boolean TEST_MODE = false;
 	
 	private Project project;
 	public ProjectService projectService = new ProjectService(this);
@@ -47,6 +47,34 @@ public class App {
 		} else {
 			return findProjectWithID(ID);
 		}
+	}
+	
+	/*
+	 * Returns of project info
+	 */
+	public String getNameOfProject(int ID) {
+		if(findProjectWithID(ID).getName() == null) {
+			return "";
+		} else {
+			return findProjectWithID(ID).getName();
+		}
+	}
+	public String getTypeOfProject(int ID) {
+		if(findProjectWithID(ID).getType() == null) {
+			return "";
+		} else {
+			return findProjectWithID(ID).getType();
+		}
+	}
+	public String getCustomerOfProject(int ID) {return findProjectWithID(ID).getCustomer();}
+	public int getIdOfProject(int ID) throws OperationNotAllowedException{return selectProject(ID).getProjectID();}
+	public Calendar getStartOfProject(int ID) {return findProjectWithID(ID).getStart();}
+	public Calendar getEndOfProject(int ID) {return findProjectWithID(ID).getEnd();}
+	
+	public String getInfoOfProject(int ID) {
+		String str = "Name: " + getNameOfProject(ID) + "\nType: " + getTypeOfProject(ID) + 
+				"\nCustomer: " + getCustomerOfProject(ID) + "\nStarts: " + getStartOfProject(ID).toString() + "\nEnds: " + getEndOfProject(ID).toString();
+		return str;
 	}
 	
 	public int indexOfProjectWithID(int ID) {
