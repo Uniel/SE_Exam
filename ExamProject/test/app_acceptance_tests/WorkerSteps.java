@@ -129,7 +129,7 @@ public class WorkerSteps {
 	@Then("^I get a list of length (\\d+) which contains the workers \"([^\"]*)\"$")
 	public void iGetAListOfLengthWhichContainsTheWorkers(int n, String initials) throws Exception {
 	    assertTrue(workers.size() == n);
-	    assertTrue(workers.contains(worker));
+	    assertTrue(workers.get(0).getInitials().equals(initials));
 	}
 	
 	@Then("^I get a list of length (\\d+) which contains the workers \"([^\"]*)\" and \"([^\"]*)\"$")

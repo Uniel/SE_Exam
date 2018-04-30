@@ -148,6 +148,8 @@ public class App {
 			throw new OperationNotAllowedException("You have to specify an activity");
 		} else if (!selectProject(ID).activityExists(activity)) {
 			throw new OperationNotAllowedException("This activity does not exist in that project");
+		} else if (selectProject(ID).findProjectWithID(activity).getStart() == null || selectProject(ID).findProjectWithID(activity).getEnd() == null) {
+			throw new OperationNotAllowedException("Must set activity duration before searching for available workers");
 		} else {
 			List<Worker> availableWorkers = new ArrayList<Worker>(); 
 			for (Worker w : workers) {
@@ -155,7 +157,11 @@ public class App {
 					availableWorkers.add(w);
 				}
 			}
-			return availableWorkers;
+			if (availableWorkers.isEmpty()) {
+				throw new OperationNotAllowedException("No workers available");
+			} else {
+				return availableWorkers;
+			}
 		}
 	}
 	
@@ -196,6 +202,8 @@ public class App {
 			throw new OperationNotAllowedException("This activity does not exist in that project");
 		} else if (selectProject(ID).findProjectWithID(activity).listWorkers().contains(worker)) {
 			throw new OperationNotAllowedException("This worker is already assigned to that activity");
+		} else if (selectProject(ID).findProjectWithID(activity).getStart() == null || selectProject(ID).findProjectWithID(activity).getEnd() == null) {
+			throw new OperationNotAllowedException("Must set activity duration assigning workers");
 		} else {
 			selectProject(ID).findProjectWithID(activity).assignWorker(worker);
 			worker.addActivity(selectProject(ID).findProjectWithID(activity));

@@ -6,6 +6,8 @@ Scenario: User searches for assigned workers of the activity "G.O.A.T." successf
     Given I have the project with ID 180666
     And the project with ID 180666 exists
 	And the activity "G.O.A.T." has already been added to the project with ID 180666
+	And I set the end of the activity "G.O.A.T." in the project with ID 180666 to week 7 of 2020
+	And I set the start of the activity "G.O.A.T." in the project with ID 180666 to week 5 of 2020
     And I have the worker "JONH"
     And I add the worker "JONH"
     And I assign the worker "JONH" to the activity "G.O.A.T." in the project with ID 180666
@@ -16,6 +18,9 @@ Scenario: User searches for assigned workers of the activity "G.O.A.T." successf
     Given I have the project with ID 180666
     And the project with ID 180666 exists
     And the activity "G.O.A.T." has already been added to the project with ID 180666
+    
+	And I set the end of the activity "G.O.A.T." in the project with ID 180666 to week 7 of 2020
+	And I set the start of the activity "G.O.A.T." in the project with ID 180666 to week 5 of 2020
     And I have the worker "JONH"
     And I add the worker "JONH"
 	And I assign the worker "JONH" to the activity "G.O.A.T." in the project with ID 180666
