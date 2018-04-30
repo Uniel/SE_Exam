@@ -137,7 +137,9 @@ public class App {
 		if (selectProject(ID).findActivityWithName(activity).listWorkers().contains(worker)) {
 			throw new OperationNotAllowedException("This worker is already assigned to that activity");
 		} else {
+			// Moved to Project class
 			selectProject(ID).findActivityWithName(activity).assignWorker(worker);
+//			project.assign(worker, activity);
 			worker.addActivity(selectProject(ID).findActivityWithName(activity));
 		}
 	}
