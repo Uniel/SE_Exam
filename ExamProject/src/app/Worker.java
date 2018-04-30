@@ -29,18 +29,38 @@ public class Worker {
 		return assignedActivities;
 	}
 	
-	public void addActivity(Activity activity) {
-		//This method should NOT be called directly!
+	public void addActivity(Activity activity) throws Exception {
+		//This method should NOT be called directly unless it is for testing purposes!
 		//Use the method assign in App instead.
+		if (activity.getStart() == null || activity.getEnd() == null) {
+			throw new OperationNotAllowedException("Cannot assign workers to an activity before setting duration of activity");
+		}
+		if (isAvailable(activity)) {
 		assignedActivities.add(activity);
+		} else {
+			throw new OperationNotAllowedException("This worker is unavailable during that time");
+		}
 	}
 	
 	public void removeActivity(Activity activity) {
 		//Unfinished
 	}
 	
-	public boolean isAvailable(int startWeek, int endWeek, int startYear, int endYear) {
-		//Unfinished
-		return false;
+	public boolean isAvailable(Activity activity) {
+		int n = 0;
+		for (Activity a : assignedActivities) {
+			if (a.overlaps(activity)) {
+				if (a.getFulltime()) {
+					return false;
+				} else {
+					n = ++n;
+				}
+			}
+		}
+		if (n < maxActivities) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

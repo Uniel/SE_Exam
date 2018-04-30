@@ -76,13 +76,21 @@ public class Activity {
 		budgetTime = hours;
 	}
 	
-	public boolean overlaps(int sWeek, int eWeek, int sYear, int eYear) {
-		return false;
+	public boolean overlaps(Activity activity) {
+		if (activity.getStart().before(end) && activity.getEnd().after(start)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
-	public void assignWorker(Worker worker) {
+	public void assignWorker(Worker worker) throws Exception {
 		//This method should NOT be called directly!
 		//Use the assign method in App instead.
-		assignedWorkers.add(worker);
+		if (worker.isAvailable(this)) {
+			assignedWorkers.add(worker);
+		} else {
+			throw new OperationNotAllowedException("This worker is unavailable during that time");
+		}
 	}
 } // class

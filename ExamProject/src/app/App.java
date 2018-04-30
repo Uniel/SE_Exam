@@ -134,8 +134,12 @@ public class App {
 	}
 	
 	public void assign(Worker worker, int ID, String activity) throws Exception {
-		selectProject(ID).findProjectWithID(activity).assignWorker(worker);
-		worker.addActivity(selectProject(ID).findProjectWithID(activity));
+		if (selectProject(ID).findProjectWithID(activity).listWorkers().contains(worker)) {
+			throw new OperationNotAllowedException("This worker is already assigned to that activity");
+		} else {
+			selectProject(ID).findProjectWithID(activity).assignWorker(worker);
+			worker.addActivity(selectProject(ID).findProjectWithID(activity));
+		}
 	}
 	
 	public void /*List<Activity>*/ listActivities(Project project){

@@ -10,9 +10,14 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import app.App;
 import app.Worker;
+import app.Activity;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -69,7 +74,11 @@ public class WorkerSteps {
 	
 	@When("^I assign the worker \"([^\"]*)\" to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
 	public void iAssignTheWorkerToTheActivityInTheProjectWithID(String initials, String activity, int ID) throws Exception {
-		app.assign(worker, ID, activity);
+		try {
+			app.assign(worker, ID, activity);
+		} catch (Exception e) {
+			errorMessage.setErrorMessage(e.getMessage());
+		}
 	}
 
 	@Then("^the worker \"([^\"]*)\" is assigned to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
@@ -78,4 +87,33 @@ public class WorkerSteps {
 	    assertTrue(worker.getAssignedActivities().contains(app.selectProject(ID).findProjectWithID(activity)));
 	}
 	
+	@Then("^the worker \"([^\"]*)\" is not assigned to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
+	public void theWorkerIsNotAssignedToTheActivityInTheProjectWithID(String initials, String activity, int ID) throws Exception {
+		assertFalse(app.selectProject(ID).findProjectWithID(activity).listWorkers().contains(worker));
+	    assertFalse(worker.getAssignedActivities().contains(app.selectProject(ID).findProjectWithID(activity)));
+	}
+	
+	@Given("^the worker \"([^\"]*)\" is assigned to (\\d+) activities which start on week (\\d+) of (\\d+) and end on week (\\d+) of (\\d+)$")
+	public void theWorkerIsAssignedToActivitiesWhichStartOnWeekOfAndEndOnWeekOf(String initials, int n, int startWeek, int startYear, int endWeek, int endYear) throws Exception {
+	    List<Activity> exampleActivities = getExampleActivities(n, startWeek, endWeek, startYear, endYear);
+	    for (Activity a : exampleActivities) {
+	    	worker.addActivity(a);
+	    }
+	}
+	
+	private List<Activity> getExampleActivities(int n, int startWeek, int endWeek, int startYear, int endYear) throws Exception{
+		List<Activity> activities = new ArrayList<>();
+		for (int i = 1; i<= n; i++) {
+			Activity a = new Activity("name"+i);
+			a.setStart(startWeek, startYear);
+			a.setEnd(endWeek, endYear);
+			activities.add(a);
+		}
+		return activities;
+	}
+	
+	@Given("^the worker \"([^\"]*)\" is on vacation from week (\\d+) to week (\\d+) of (\\d+)$")
+	public void theWorkerIsOnVacationFromWeekToWeekOf(String initials, int startWeek, int endWeek, int year) throws Exception {
+	    
+	}
 }
