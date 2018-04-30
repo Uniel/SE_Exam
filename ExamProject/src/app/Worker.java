@@ -43,7 +43,7 @@ public class Worker {
 	}
 	
 	public void removeActivity(Activity activity) {
-		//Unfinished
+		assignedActivities.remove(activity);
 	}
 	
 	public boolean isAvailable(Activity activity) {

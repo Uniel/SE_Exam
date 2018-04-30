@@ -231,8 +231,17 @@ public class App {
 		//Unfinished
 	}
 	
-	public void removeFromActivity(Worker worker, Project project, Activity activity){
-		//Unfinished
+	public void removeFromActivity(Worker worker, int ID, String activity) throws Exception {
+		if (!workers.contains(worker)) {
+			throw new OperationNotAllowedException("This worker does not exist");
+		} else if (!selectProject(ID).activityExists(activity)) {
+			throw new OperationNotAllowedException("This activity does not exist in that project");
+		} else if (!selectProject(ID).findProjectWithID(activity).listWorkers().contains(worker)) {
+			throw new OperationNotAllowedException("This worker is not assigned to that activity");
+		} else {
+			selectProject(ID).findProjectWithID(activity).removeWorker(worker);
+			worker.removeActivity(selectProject(ID).findProjectWithID(activity));
+		}
 	}
 	
 	public void addActivity(Project project, String name) {

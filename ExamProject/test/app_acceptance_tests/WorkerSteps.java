@@ -162,4 +162,13 @@ public class WorkerSteps {
 	    	errorMessage.setErrorMessage(e.getMessage());
 	    }
 	}
+	
+	@When("^I remove the worker \"([^\"]*)\" from the activity \"([^\"]*)\" in the project with ID (\\d+)$")
+	public void iRemoveTheWorkerFromTheActivityInTheProjectWithID(String initials, String activity, int ID) throws Exception {
+	    try {
+	    	app.removeFromActivity(worker, ID, activity);
+	    } catch (Exception e) {
+	    	errorMessage.setErrorMessage(e.getMessage());
+	    }
+	}
 }

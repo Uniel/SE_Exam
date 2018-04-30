@@ -93,4 +93,8 @@ public class Activity {
 			throw new OperationNotAllowedException("This worker is unavailable during that time");
 		}
 	}
+	
+	public void removeWorker(Worker worker) {
+		assignedWorkers.remove(worker);
+	}
 } // class
