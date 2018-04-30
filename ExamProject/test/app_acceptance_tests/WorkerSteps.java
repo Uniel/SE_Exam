@@ -116,4 +116,27 @@ public class WorkerSteps {
 	public void theWorkerIsOnVacationFromWeekToWeekOf(String initials, int startWeek, int endWeek, int year) throws Exception {
 	    app.assignVacation(worker, startWeek, endWeek, year, year);
 	}
+	
+	@When("^I search for assigned workers of the activity \"([^\"]*)\" in the project with ID (\\d+)$")
+	public void iSearchForAssignedWorkersOfTheActivityInTheProjectWithID(String activity, int ID) throws Exception {
+	    try {
+	    	workers = app.assignedWorkers(ID, activity);
+	    } catch (Exception e) {
+	    	errorMessage.setErrorMessage(e.getMessage());
+	    }
+		
+	}
+	
+	@Then("^I get a list of length (\\d+) which contains the workers \"([^\"]*)\"$")
+	public void iGetAListOfLengthWhichContainsTheWorkers(int n, String initials) throws Exception {
+	    assertTrue(workers.size() == n);
+	    assertTrue(workers.contains(worker));
+	}
+	
+	@Then("^I get a list of length (\\d+) which contains the workers \"([^\"]*)\" and \"([^\"]*)\"$")
+	public void iGetAListOfLengthWhichContainsTheWorkersAnd(int n, String worker1, String worker2) throws Exception {
+		assertTrue(workers.size() == n);
+		assertTrue(workers.get(0).getInitials().equals(worker1) || workers.get(0).getInitials().equals(worker2));
+		assertTrue(workers.get(1).getInitials().equals(worker1) || workers.get(1).getInitials().equals(worker2));
+	}
 }

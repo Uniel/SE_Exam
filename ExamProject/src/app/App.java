@@ -161,8 +161,12 @@ public class App {
 		}
 	}
 	
-	public void /*List<Worker>*/ assignedWorkers(Project project, Activity activity) {
-		//Unfinished
+	public List<Worker> assignedWorkers(int ID, String activity) throws Exception {
+		if (!selectProject(ID).activityExists(activity)) {
+			throw new OperationNotAllowedException("This activity does not exist in that project");
+		} else {
+			return selectProject(ID).findProjectWithID(activity).listWorkers();
+		}
 	}
 	
 	public void assign(Worker worker, int ID, String activity) throws Exception {
