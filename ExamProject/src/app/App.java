@@ -7,7 +7,7 @@ import app.ProjectService;
 
 public class App {
 
-	private boolean TEST_MODE = true;
+	private boolean TEST_MODE = false;
 	
 	private Project project;
 	public ProjectService projectService = new ProjectService(this);
@@ -41,12 +41,44 @@ public class App {
 		projects.add(new Project(ID));
 	} // For testing purposes only
 	
+	public void createOngoingProject(int ID) {
+		projects.add(new OngoingProject(ID));
+	}
+	
 	public Project selectProject(int ID) throws OperationNotAllowedException{
 		if(findProjectWithID(ID) == null) {
 			throw new OperationNotAllowedException("A project with that ID does not exist");
 		} else {
 			return findProjectWithID(ID);
 		}
+	}
+	
+	/*
+	 * Returns of project info
+	 */
+	public String getNameOfProject(int ID) {
+		if(findProjectWithID(ID).getName() == null) {
+			return "";
+		} else {
+			return findProjectWithID(ID).getName();
+		}
+	}
+	public String getTypeOfProject(int ID) {
+		if(findProjectWithID(ID).getType() == null) {
+			return "";
+		} else {
+			return findProjectWithID(ID).getType();
+		}
+	}
+	public String getCustomerOfProject(int ID) {return findProjectWithID(ID).getCustomer();}
+	public int getIdOfProject(int ID) throws OperationNotAllowedException{return selectProject(ID).getProjectID();}
+	public Calendar getStartOfProject(int ID) {return findProjectWithID(ID).getStart();}
+	public Calendar getEndOfProject(int ID) {return findProjectWithID(ID).getEnd();}
+	
+	public String getInfoOfProject(int ID) {
+		String str = "Name: " + getNameOfProject(ID) + "\nType: " + getTypeOfProject(ID) + 
+				"\nCustomer: " + getCustomerOfProject(ID) + "\nStarts: " + getStartOfProject(ID).toString() + "\nEnds: " + getEndOfProject(ID).toString();
+		return str;
 	}
 	
 	public int indexOfProjectWithID(int ID) {
@@ -135,12 +167,28 @@ public class App {
 	
 	public void assign(Worker worker, int ID, String activity) throws Exception {
 		if (selectProject(ID).findActivityWithName(activity).listWorkers().contains(worker)) {
-			throw new OperationNotAllowedException("This worker is already assigned to that activity");
+			if (!workers.contains(worker)) {
+				throw new OperationNotAllowedException("This worker does not exist");
+			} else if (selectProject(ID).findActivityWithName(activity).listWorkers().contains(worker)) {
+				throw new OperationNotAllowedException("This worker is already assigned to that activity");
+			}
+		}
+	}
+	
+	public void assignVacation(Worker worker, int startWeek, int endWeek, int startYear, int endYear) throws Exception {
+		int ID = ((startYear%100) * 10000) + (0%10000);
+		if (!workers.contains(worker)) {
+			throw new OperationNotAllowedException("This worker does not exist");
 		} else {
-			// Moved to Project class
-			selectProject(ID).findActivityWithName(activity).assignWorker(worker);
-//			project.assign(worker, activity);
-			worker.addActivity(selectProject(ID).findActivityWithName(activity));
+			if (findProjectWithID(ID) == null) {
+				createOngoingProject(ID);
+			}
+			selectProject(ID).addActivity(worker.getInitials() + "Vacation");
+			String name = selectProject(ID).activities.get(selectProject(ID).activities.size() - 1).getName();
+			selectProject(ID).findActivityWithName(name).setStart(startWeek, startYear);
+			selectProject(ID).findActivityWithName(name).setEnd(endWeek, endYear);
+			selectProject(ID).findActivityWithName(name).setFulltime(true);
+			assign(worker, ID, name);
 		}
 	}
 	

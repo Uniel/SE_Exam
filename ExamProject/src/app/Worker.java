@@ -50,7 +50,7 @@ public class Worker {
 		int n = 0;
 		for (Activity a : assignedActivities) {
 			if (a.overlaps(activity)) {
-				if (a.getFulltime()) {
+				if (a.getFulltime() || activity.getFulltime()) {
 					return false;
 				} else {
 					n = ++n;
