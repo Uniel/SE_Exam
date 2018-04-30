@@ -131,7 +131,7 @@ public class Project {
 		} else if(activityExists(newName)) {
 			throw new OperationNotAllowedException("That activity name already exists");
 		} else {
-			findProjectWithID(activity).setName(newName);
+			findActivityWithName(activity).setName(newName);
 		}
 	}
 	
@@ -139,7 +139,7 @@ public class Project {
 		if(!activityExists(activity)){
 			throw new OperationNotAllowedException("That activity does not exist");
 		} else {
-			findProjectWithID(activity).setStart(week, year);
+			findActivityWithName(activity).setStart(week, year);
 		}
 	}
 	
@@ -147,7 +147,7 @@ public class Project {
 		if(!activityExists(activity)){
 			throw new OperationNotAllowedException("That activity does not exist");
 		} else {
-			findProjectWithID(activity).setEnd(week, year);
+			findActivityWithName(activity).setEnd(week, year);
 		}
 	}
 	
@@ -177,7 +177,7 @@ public class Project {
 		return (indexOfActivity(name) == -1 ? false : true);
 	}
 	
-	public Activity findProjectWithID(String name) {
+	public Activity findActivityWithName(String name) {
 		if(activities.isEmpty()) {return null;}
 		for(Activity a : activities) {
 			if(a.getName() == name) {return activities.get(activities.indexOf(a));}
@@ -186,7 +186,7 @@ public class Project {
 	}
 	
 	private int indexOfActivity(String name) {
-		return (findProjectWithID(name) == null ? -1 : activities.indexOf(findProjectWithID(name)));
+		return (findActivityWithName(name) == null ? -1 : activities.indexOf(findActivityWithName(name)));
 	}
 	
 	public int remainingBudgetTime() {

@@ -112,14 +112,14 @@ public class ActivitySteps {
 	
 	@Then("^the start of the activity \"([^\"]*)\" in the project with ID (\\d+) is week (\\d+) of (\\d+)$")
 	public void theStartOfTheActivityInTheProjectWithIDIsWeekOf(String activity, int ID, int week, int year) throws Exception {
-	    assertTrue(app.selectProject(ID).findProjectWithID(activity).getStart().get(Calendar.WEEK_OF_YEAR) == week);
-	    assertTrue(app.selectProject(ID).findProjectWithID(activity).getStart().get(Calendar.YEAR) == year);
+	    assertTrue(app.selectProject(ID).findActivityWithName(activity).getStart().get(Calendar.WEEK_OF_YEAR) == week);
+	    assertTrue(app.selectProject(ID).findActivityWithName(activity).getStart().get(Calendar.YEAR) == year);
 	}
 	
 	@Then("^the end of the activity \"([^\"]*)\" in the project with ID (\\d+) is week (\\d+) of (\\d+)$")
 	public void theEndOfTheActivityInTheProjectWithIDIsWeekOf(String activity, int ID, int week, int year) throws Exception {
-	    assertTrue(app.selectProject(ID).findProjectWithID(activity).getEnd().get(Calendar.WEEK_OF_YEAR) == week);
-	    assertTrue(app.selectProject(ID).findProjectWithID(activity).getEnd().get(Calendar.YEAR) == year);
+	    assertTrue(app.selectProject(ID).findActivityWithName(activity).getEnd().get(Calendar.WEEK_OF_YEAR) == week);
+	    assertTrue(app.selectProject(ID).findActivityWithName(activity).getEnd().get(Calendar.YEAR) == year);
 	}
 
 }
