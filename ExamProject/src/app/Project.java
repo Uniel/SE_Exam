@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
 
 public class Project {
 	
-	private List<Activity> activities = new ArrayList<Activity>();
+	protected List<Activity> activities = new ArrayList<Activity>();
 
 	private int projectID;
 	private Worker leader;

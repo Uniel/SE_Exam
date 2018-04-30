@@ -45,7 +45,7 @@ Scenario: User assigns worker to an activity , but the worker is on vacation at 
 	And I set the start of the activity "Kick ass and chew bubblegum" in the project with ID 180000 to week 5 of 2020
 	And I set the end of the activity "Kick ass and chew bubblegum" in the project with ID 180000 to week 7 of 2020
 	And I have the worker "BJBL"
-	And the worker "BJBL" exists
+	And I add the worker "BJBL"
 	And the worker "BJBL" is on vacation from week 5 to week 9 of 2020
 	When I assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180000
 	Then the worker "BJBL" is not assigned to the activity "Kick ass and chew bubblegum" in the project with ID 180000

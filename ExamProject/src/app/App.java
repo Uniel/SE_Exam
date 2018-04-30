@@ -41,6 +41,10 @@ public class App {
 		projects.add(new Project(ID));
 	} // For testing purposes only
 	
+	public void createOngoingProject(int ID) {
+		projects.add(new OngoingProject(ID));
+	}
+	
 	public Project selectProject(int ID) throws OperationNotAllowedException{
 		if(findProjectWithID(ID) == null) {
 			throw new OperationNotAllowedException("A project with that ID does not exist");
@@ -149,9 +153,15 @@ public class App {
 		if (!workers.contains(worker)) {
 			throw new OperationNotAllowedException("This worker does not exist");
 		} else {
-			if (!projects.contains(selectProject(ID))) {
-				createProject(ID);
+			if (findProjectWithID(ID) == null) {
+				createOngoingProject(ID);
 			}
+			selectProject(ID).addActivity(worker.getInitials() + "Vacation");
+			String name = selectProject(ID).activities.get(selectProject(ID).activities.size() - 1).getName();
+			selectProject(ID).findProjectWithID(name).setStart(startWeek, startYear);
+			selectProject(ID).findProjectWithID(name).setEnd(endWeek, endYear);
+			selectProject(ID).findProjectWithID(name).setFulltime(true);
+			assign(worker, ID, name);
 		}
 	}
 	
