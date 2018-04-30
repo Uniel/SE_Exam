@@ -8,8 +8,8 @@ public class ProjectService {
 	private App application;
 	private DateServer dateServer = new DateServer();
 	
-	private boolean TEST_MODE = true;
-	private int serialNumber = 0;
+	private boolean TEST_MODE = false;
+	private int serialNumber = 1;
 	private int thisYear = 1;
 
 	private int nextYear = -10;
