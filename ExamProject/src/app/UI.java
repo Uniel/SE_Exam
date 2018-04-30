@@ -129,11 +129,4 @@ public class UI {
 		println("b) Back");
 	}
 	
-//	getNameOfProject(int ID) {return findProjectWithID(ID).getName();}
-//	public String getTypeOfProject(int ID) {return findProjectWithID(ID).getType();}
-//	public String getCustomerOfProject(int ID) {return findProjectWithID(ID).getCustomer();}
-//	public int getIdOfProject(int ID) throws OperationNotAllowedException{return selectProject(ID).getProjectID();}
-//	public Calendar getStartOfProject(int ID) {return findProjectWithID(ID).getStart();}
-//	public Calendar getEndOfProject
-	
 }

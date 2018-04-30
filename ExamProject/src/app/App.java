@@ -70,14 +70,32 @@ public class App {
 			return findProjectWithID(ID).getType();
 		}
 	}
-	public String getCustomerOfProject(int ID) {return findProjectWithID(ID).getCustomer();}
+	public String getCustomerOfProject(int ID) {
+		if(findProjectWithID(ID).getCustomer() == null) {
+			return "";
+		} else {
+			return findProjectWithID(ID).getCustomer();
+		}
+	}
 	public int getIdOfProject(int ID) throws OperationNotAllowedException{return selectProject(ID).getProjectID();}
-	public Calendar getStartOfProject(int ID) {return findProjectWithID(ID).getStart();}
-	public Calendar getEndOfProject(int ID) {return findProjectWithID(ID).getEnd();}
+	public String getStartOfProject(int ID) {
+		if(findProjectWithID(ID).getStart() == null) {
+			return "";
+		} else {
+			return findProjectWithID(ID).getStart().toString();
+		}
+	}
+	public String getEndOfProject(int ID) {
+		if(findProjectWithID(ID).getEnd() == null) {
+			return "";
+		} else {
+			return findProjectWithID(ID).getEnd().toString();
+		}
+	}
 	
 	public String getInfoOfProject(int ID) {
 		String str = "Name: " + getNameOfProject(ID) + "\nType: " + getTypeOfProject(ID) + 
-				"\nCustomer: " + getCustomerOfProject(ID) + "\nStarts: " + getStartOfProject(ID).toString() + "\nEnds: " + getEndOfProject(ID).toString();
+				"\nCustomer: " + getCustomerOfProject(ID) + "\nStarts: " + getStartOfProject(ID) + "\nEnds: " + getEndOfProject(ID);
 		return str;
 	}
 	
