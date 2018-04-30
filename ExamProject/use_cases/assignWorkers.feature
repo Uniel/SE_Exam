@@ -39,47 +39,44 @@ Scenario: User assigns worker to an activity , but the worker already has 20 act
 	And I get the error message "This worker is unavailable during that time"
 	
 Scenario: User assigns worker to an activity , but the worker is on vacation at that time
-	Given I have the project with ID 180000
-	And the project with ID 180000 exists
-	And the activity "Kick ass and chew bubblegum" has already been added to the project with ID 180000
-	And I set the start of the activity "Kick ass and chew bubblegum" in the project with ID 180000 to week 5 of 2020
-	And I set the end of the activity "Kick ass and chew bubblegum" in the project with ID 180000 to week 7 of 2020
+	Given I have the project with ID 180001
+	And the project with ID 180001 exists
+	And the activity "Kick ass and chew bubblegum" has already been added to the project with ID 180001
+	And I set the start of the activity "Kick ass and chew bubblegum" in the project with ID 180001 to week 5 of 2020
+	And I set the end of the activity "Kick ass and chew bubblegum" in the project with ID 180001 to week 7 of 2020
 	And I have the worker "BJBL"
 	And I add the worker "BJBL"
 	And the worker "BJBL" is on vacation from week 5 to week 9 of 2020
-	When I assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180000
-	Then the worker "BJBL" is not assigned to the activity "Kick ass and chew bubblegum" in the project with ID 180000
+	When I assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180001
+	Then the worker "BJBL" is not assigned to the activity "Kick ass and chew bubblegum" in the project with ID 180001
 	And I get the error message "This worker is unavailable during that time"
 	
-#Scenario: User tries to assign worker to non-existing activity
-#	Given I have the worker "BJBL"
-#	And the worker "BJBL" exists
-#	And I have the worker "BJBL"
-#	And the project with ID 180000 exists
-#	And I have the activity "Kick ass and chew bubblegum"
-#	And the activity "Kick ass and chew bubblegum" does not exist in the project with ID 180000
-#	When I assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180000
-#	Then the worker "BJBL" is not assigned to the activity "Kick ass and chew bubblegum" in the project with ID 180000
-#	And I get the error message "This activity does not exist in that project"
-#	
-#Scenario: User tries to assign non-existing worker to activity
-#	Given I have the worker "BJBL"
-#	And the worker "BJBL" does not exist
-#	And I have the project with ID 180000
-#	And the project with ID 180000 exists
-#	And the activity "Kick ass and chew bubblegum" exists in the project with ID 180000
-#	When I assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180000
-#	Then the worker "BJBL" is not assigned to the activity "Kick ass and chew bubblegum" in the project with ID 180000
-#	And I get the error message "This worker does not exist"
-#	
-#Scenario: User tries to assign a worker to an activity in a non-existing project
-#	Given I have the worker "BJBL"
-#	And the worker "BJBL" exists
-#	And I have the project with the ID 180000
-#	And the project with ID 180000 exists
-#	And I have the project with the ID 180001
-#	And the project with ID 180001 does not exist
-#	And I have the activity "Kick ass and chew bubblegum"
-#	And the activity "Kick ass and chew bubblegum" exists in the project with ID 180000
-#	When I assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180001
-#	Then I get the error message "This project does not exist"
+Scenario: User tries to assign worker to non-existing activity
+	Given I have the worker "BJBL"
+	And I add the worker "BJBL"
+	And I have the project with ID 180001
+	And the project with ID 180001 exists
+	And the activity "Kick ass and chew bubblegum" does not exist in the project with ID 180001
+	When I assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180001
+	And I get the error message "This activity does not exist in that project"
+	
+Scenario: User tries to assign non-existing worker to activity
+	Given I have the worker "BJBL"
+	And the worker "BJBL" does not exist
+	And I have the project with ID 180001
+	And the project with ID 180001 exists
+	And the activity "Kick ass and chew bubblegum" has already been added to the project with ID 180001
+	When I assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180001
+	Then the worker "BJBL" is not assigned to the activity "Kick ass and chew bubblegum" in the project with ID 180001
+	And I get the error message "This worker does not exist"
+	
+Scenario: User tries to assign a worker to an activity in a non-existing project
+	Given I have the worker "BJBL"
+	And I add the worker "BJBL"
+	And I have the project with ID 180001
+	And the project with ID 180001 exists
+	And the project with ID 180002 does not exist
+	And the activity "Kick ass and chew bubblegum" has already been added to the project with ID 180001
+	And the activity "Kick ass and chew bubblegum" exists in the project with ID 180001
+	When I assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180002
+	Then I get the error message "A project with that ID does not exist"
