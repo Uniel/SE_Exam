@@ -25,8 +25,8 @@ Scenario: It is a new year
 	And the ID of the last project created does not start with 19
 	When it is the next year
 	And I create a project
-	Then the project with ID 190000 exists
-	And the serial number is now 0001
+	Then the project with ID 190001 exists
+	And the serial number is now 0002
 	
 Scenario: Remove a project
 	Given the project with ID 180001 has been created

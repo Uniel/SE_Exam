@@ -7,9 +7,11 @@ import java.util.Calendar;
 public class ProjectService {
 	private App application;
 	private DateServer dateServer = new DateServer();
-	private boolean TEST_MODE = false;
-	private int serialNumber = 1;
-	private int thisYear = 0;
+	
+	private boolean TEST_MODE = true;
+	private int serialNumber = 0;
+	private int thisYear = 1;
+
 	private int nextYear = -10;
 	
 	public ProjectService(App app){
@@ -60,7 +62,7 @@ public class ProjectService {
 		if(TEST_MODE){System.out.println("PS.updPno: Gets calendar with year: " + nextYear);}
 		if(nextYear != thisYear) {
 			thisYear = nextYear;
-			serialNumber = 0;
+			serialNumber = 1;
 		}
 	}
 		
