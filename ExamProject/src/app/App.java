@@ -141,8 +141,22 @@ public class App {
 	 * Worker functions
 	 */
 	
-	public void /*List<Worker>*/ findAvailableWorkers(Project project, Activity activity) {
-		//Unfinished
+	public List<Worker> findAvailableWorkers(int ID, String activity) throws Exception {
+		if (ID == 0) {
+			throw new OperationNotAllowedException("You have to specify a project ID");
+		} else if (activity.equals("")) {
+			throw new OperationNotAllowedException("You have to specify an activity");
+		} else if (!selectProject(ID).activityExists(activity)) {
+			throw new OperationNotAllowedException("This activity does not exist in that project");
+		} else {
+			List<Worker> availableWorkers = new ArrayList<Worker>(); 
+			for (Worker w : workers) {
+				if (w.isAvailable(selectProject(ID).findProjectWithID(activity))) {
+					availableWorkers.add(w);
+				}
+			}
+			return availableWorkers;
+		}
 	}
 	
 	public void createWorker(Worker worker) throws OperationNotAllowedException{

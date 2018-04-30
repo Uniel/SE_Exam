@@ -9,7 +9,7 @@ public class Activity {
 	private List<Worker> assignedWorkers = new ArrayList<Worker>();
 	
 	private String name;
-	private boolean fulltime;
+	private boolean fulltime = false;
 	private Calendar start;
 	private Calendar end;
 	private int budgetTime;

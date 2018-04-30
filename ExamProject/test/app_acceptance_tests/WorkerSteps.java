@@ -153,4 +153,13 @@ public class WorkerSteps {
 	    	errorMessage.setErrorMessage(e.getMessage());
 	    }
 	}
+	
+	@When("^I search for available workers for the activity \"([^\"]*)\" in the project with ID (\\d+)$")
+	public void iSearchForAvailableWorkersForTheActivityInTheProjectWithID(String activity, int ID) throws Exception {
+		try {
+			workers = app.findAvailableWorkers(ID, activity);
+	    } catch (Exception e) {
+	    	errorMessage.setErrorMessage(e.getMessage());
+	    }
+	}
 }
