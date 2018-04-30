@@ -162,8 +162,14 @@ public class App {
 	}
 	
 	public List<Worker> assignedWorkers(int ID, String activity) throws Exception {
-		if (!selectProject(ID).activityExists(activity)) {
+		if (ID == 0) {
+			throw new OperationNotAllowedException("You have to specify a project ID");
+		} else if (activity.equals("")) {
+			throw new OperationNotAllowedException("You have to specify an activity");
+		} else if (!selectProject(ID).activityExists(activity)) {
 			throw new OperationNotAllowedException("This activity does not exist in that project");
+		} else if (selectProject(ID).findProjectWithID(activity).listWorkers().isEmpty()) {
+			throw new OperationNotAllowedException("No workers assigned to the activity");
 		} else {
 			return selectProject(ID).findProjectWithID(activity).listWorkers();
 		}

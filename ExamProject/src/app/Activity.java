@@ -18,7 +18,7 @@ public class Activity {
 		this.name = newName;
 	} // constructor
 
-	public List<Worker> listWorkers() {
+	public List<Worker> listWorkers() throws Exception {
 		return assignedWorkers;
 	}
 	

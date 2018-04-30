@@ -124,7 +124,6 @@ public class WorkerSteps {
 	    } catch (Exception e) {
 	    	errorMessage.setErrorMessage(e.getMessage());
 	    }
-		
 	}
 	
 	@Then("^I get a list of length (\\d+) which contains the workers \"([^\"]*)\"$")
@@ -138,5 +137,20 @@ public class WorkerSteps {
 		assertTrue(workers.size() == n);
 		assertTrue(workers.get(0).getInitials().equals(worker1) || workers.get(0).getInitials().equals(worker2));
 		assertTrue(workers.get(1).getInitials().equals(worker1) || workers.get(1).getInitials().equals(worker2));
+	}
+	
+	@Given("^there are no assigned workers to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
+	public void thereAreNoAssignedWorkersToTheActivityInTheProjectWithID(String activity, int ID) throws Exception {
+	    assertTrue(app.selectProject(ID).findProjectWithID(activity).listWorkers().isEmpty());
+	}
+	
+	@When("^I search for assigned workers of the activity \"([^\"]*)\" without specifying project ID$")
+	public void iSearchForAssignedWorkersOfTheActivityWithoutSpecifyingProjectID(String activity) throws Exception {
+		try {
+			int ID = 0;
+	    	workers = app.assignedWorkers(ID, activity);
+	    } catch (Exception e) {
+	    	errorMessage.setErrorMessage(e.getMessage());
+	    }
 	}
 }
