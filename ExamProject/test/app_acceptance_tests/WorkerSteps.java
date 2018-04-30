@@ -114,6 +114,6 @@ public class WorkerSteps {
 	
 	@Given("^the worker \"([^\"]*)\" is on vacation from week (\\d+) to week (\\d+) of (\\d+)$")
 	public void theWorkerIsOnVacationFromWeekToWeekOf(String initials, int startWeek, int endWeek, int year) throws Exception {
-	    
+	    app.assignVacation(worker, startWeek, endWeek, year, year);
 	}
 }

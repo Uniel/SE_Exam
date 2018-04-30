@@ -134,11 +134,24 @@ public class App {
 	}
 	
 	public void assign(Worker worker, int ID, String activity) throws Exception {
-		if (selectProject(ID).findProjectWithID(activity).listWorkers().contains(worker)) {
+		if (!workers.contains(worker)) {
+			throw new OperationNotAllowedException("This worker does not exist");
+		} else if (selectProject(ID).findProjectWithID(activity).listWorkers().contains(worker)) {
 			throw new OperationNotAllowedException("This worker is already assigned to that activity");
 		} else {
 			selectProject(ID).findProjectWithID(activity).assignWorker(worker);
 			worker.addActivity(selectProject(ID).findProjectWithID(activity));
+		}
+	}
+	
+	public void assignVacation(Worker worker, int startWeek, int endWeek, int startYear, int endYear) throws Exception {
+		int ID = ((startYear%100) * 10000) + (0%10000);
+		if (!workers.contains(worker)) {
+			throw new OperationNotAllowedException("This worker does not exist");
+		} else {
+			if (!projects.contains(selectProject(ID))) {
+				createProject(ID);
+			}
 		}
 	}
 	
