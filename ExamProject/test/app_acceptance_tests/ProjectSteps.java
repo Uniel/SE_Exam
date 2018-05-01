@@ -66,7 +66,7 @@ public class ProjectSteps {
 	@Given("^the project with ID (\\d+) has been created$")
 	public void theProjectWithIDHasBeenCreated(int ID) throws Exception {
 	    app.createProject(ID);
-		assertTrue(app.selectProject(ID).getProjectID() == ID);
+		theProjectWithIDExists(ID);
 	}
 	
 	@Given("^the project with ID (\\d+) does not exist$")
@@ -104,7 +104,6 @@ public class ProjectSteps {
 	@Given("^these project IDs with names exist in the system$")
 	public void theseIDsWithNamesExistsInTheSystem(List<List<String>> projects) throws Exception {
 		for (List<String> projectInfo : projects) {
-//			libraryApp.addBook(new Book(bookInfo.get(0), bookInfo.get(1), bookInfo.get(2)));
 			app.createProject(Integer.parseInt(projectInfo.get(0)));
 			app.selectProject(Integer.parseInt(projectInfo.get(0))).setName(projectInfo.get(1));
 		}
@@ -132,7 +131,6 @@ public class ProjectSteps {
 
 	@Then("^I find projects with ID (\\d+)$")
 	public void iFindProjectsWithID(int ID) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
 	    assertTrue(projects.get(0).getProjectID() == ID);
 	}
 	
@@ -141,6 +139,10 @@ public class ProjectSteps {
 	    assertTrue(projects.get(0).getProjectID() == ID1);
 	    assertTrue(projects.get(1).getProjectID() == ID2);
 	}
+	
+	/*
+	 * Setting project variables
+	 */
 	
 	@When("^I set the project leader of the project with ID (\\d+) to worker \"([^\"]*)\"$")
 	public void iSetTheProjectLeaderOfTheProjectWithIDToWorker(int ID, String initials) throws Exception {

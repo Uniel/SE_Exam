@@ -7,9 +7,9 @@ import app.ProjectService;
 
 public class App {
 
-	private boolean TEST_MODE = false;
+	//private boolean TEST_MODE = false;
 	
-	private Project project;
+	//private Project project;
 	public ProjectService projectService = new ProjectService(this);
 	
 	private List<Project> projects = new ArrayList<>();

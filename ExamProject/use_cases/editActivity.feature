@@ -3,34 +3,30 @@ Feature: Activity editing for a project
 	Actors: User
 
 Scenario: Add a non existing activity to existing project
-	Given I have the project with ID 180001
+	Given the project with ID 180001 has been created
 	And the activity "Programming" does not exist in the project with ID 180001
 	When I add the activity "Programming" to the project with ID 180001
 	Then the activity "Programming" exists in the project with ID 180001
 
 Scenario: Add an activity with no name to existing project
-	Given I have the project with ID 180001
-	And the project with ID 180001 exists
+	Given the project with ID 180001 has been created
 	When I add the activity " " to the project with ID 180001
 	Then I get the error message "An activity must have a name"
 	
 Scenario: Add an already existing activity to existing project
-	Given I have the project with ID 180001
-	And the project with ID 180001 exists
+	Given the project with ID 180001 has been created
 	And the activity "Programming" has already been added to the project with ID 180001
 	When I add the activity "Programming" to the project with ID 180001
 	Then I get the error message "That activity already exists"
 	
 Scenario: Remove an existing activity from a project
-	Given I have the project with ID 180001
-	And the project with ID 180001 exists
+	Given the project with ID 180001 has been created
 	And the activity "Programming" has already been added to the project with ID 180001
 	When I remove the activity "Programming" from the project with ID 180001
 	Then the activity "Programming" does not exist in the project with ID 180001
 	
 Scenario: Remove an non existing activity from a project
-	Given I have the project with ID 180001
-	And the project with ID 180001 exists
+	Given the project with ID 180001 has been created
 	And the activity "Programming" does not exist in the project with ID 180001
 	When I remove the activity "Programming" from the project with ID 180001
 	Then I get the error message "That activity does not exist"
@@ -41,8 +37,7 @@ Scenario: Edit non-existing project
 	Then I get the error message "A project with that ID does not exist"
 
 Scenario: Rename activity to non existing name
-	Given I have the project with ID 180001
-	And the project with ID 180001 exists
+	Given the project with ID 180001 has been created
 	And the activity "Programming" has already been added to the project with ID 180001
 	And the activity "Coffee break" does not exist in the project with ID 180001
 	When I rename the activity "Programming" in the project with ID 180001 to "Coffee break"
@@ -50,23 +45,20 @@ Scenario: Rename activity to non existing name
 	And the activity "Programming" does not exist in the project with ID 180001
 
 Scenario: Rename activity to existing name
-	Given I have the project with ID 180001
-	And the project with ID 180001 exists
+	Given the project with ID 180001 has been created
 	And the activity "Programming" has already been added to the project with ID 180001
 	And the activity "Coffee break" has already been added to the project with ID 180001
 	When I rename the activity "Programming" in the project with ID 180001 to "Coffee break"
 	Then I get the error message "That activity name already exists"
 	
 Scenario: Rename non existing activity
-	Given I have the project with ID 180001
-	And the project with ID 180001 exists
+	Given the project with ID 180001 has been created
 	And the activity "Programming" does not exist in the project with ID 180001
 	When I rename the activity "Programming" in the project with ID 180001 to "Coffee break"
 	Then I get the error message "That activity does not exist"
 	
 Scenario: Set start and end time of activity
-	Given I have the project with ID 180001
-	And the project with ID 180001 exists
+	Given the project with ID 180001 has been created
 	And the activity "Programming" has already been added to the project with ID 180001
 	When I set the start of the activity "Programming" in the project with ID 180001 to week 4 of 2130
 	And I set the end of the activity "Programming" in the project with ID 180001 to week 7 of 2130
@@ -74,8 +66,7 @@ Scenario: Set start and end time of activity
 	And the end of the activity "Programming" in the project with ID 180001 is week 7 of 2130
 	
 Scenario: Set start time of activity after end time
-	Given I have the project with ID 180001
-	And the project with ID 180001 exists
+	Given the project with ID 180001 has been created
 	And the activity "Programming" has already been added to the project with ID 180001
 	And I set the end of the activity "Programming" in the project with ID 180001 to week 4 of 2130
 	When I set the start of the activity "Programming" in the project with ID 180001 to week 7 of 2130

@@ -5,8 +5,7 @@ Feature: Find available workers for given activity
 Scenario: User searches for available workers successfully (1 worker)
     Given I have the worker "HAT"
     And I add the worker "HAT"
-    And I have the project with ID 184444
-    And the project with ID 184444 exists
+    And the project with ID 184444 has been created
     And the activity "Free Tibet" has already been added to the project with ID 184444
 	And I set the end of the activity "Free Tibet" in the project with ID 184444 to week 7 of 2020
 	And I set the start of the activity "Free Tibet" in the project with ID 184444 to week 5 of 2020
@@ -22,8 +21,7 @@ Scenario: User searches for available workers successfully (1 worker among more 
 	And I add the worker "HAT"
     And I have the worker "FISK"
     And I add the worker "FISK"
-    And I have the project with ID 184444
-    And the project with ID 184444 exists
+    And the project with ID 184444 has been created
 	And the activity "Free Tibet" has already been added to the project with ID 184444
 	And I set the end of the activity "Free Tibet" in the project with ID 184444 to week 7 of 2020
 	And I set the start of the activity "Free Tibet" in the project with ID 184444 to week 5 of 2020
@@ -34,8 +32,7 @@ Scenario: User searches for available workers successfully (1 worker among more 
 Scenario: No workers are available
     Given I have the worker "HAT"
     And I add the worker "HAT"
-    And I have the project with ID 184444
-    And the project with ID 184444 exists
+    And the project with ID 184444 has been created
     And the activity "Free Tibet" has already been added to the project with ID 184444
 	And I set the end of the activity "Free Tibet" in the project with ID 184444 to week 7 of 2020
 	And I set the start of the activity "Free Tibet" in the project with ID 184444 to week 5 of 2020
@@ -46,8 +43,7 @@ Scenario: No workers are available
 Scenario: Worker is on vacation
     Given I have the worker "HAT"
 	And I add the worker "HAT"
-    And I have the project with ID 184444
-    And the project with ID 184444 exists
+    And the project with ID 184444 has been created
     And the activity "Free Tibet" has already been added to the project with ID 184444
 	And I set the end of the activity "Free Tibet" in the project with ID 184444 to week 7 of 2020
 	And I set the start of the activity "Free Tibet" in the project with ID 184444 to week 5 of 2020
@@ -56,8 +52,7 @@ Scenario: Worker is on vacation
     Then I get the error message "No workers available"
 
 Scenario: The activity for which available workers are being sought has no duration
-	Given I have the project with ID 184444
-	And the project with ID 184444 exists
+	Given the project with ID 184444 has been created
     And the activity "Free Tibet" has already been added to the project with ID 184444
     When I search for available workers for the activity "Free Tibet" in the project with ID 184444
     Then I get the error message "Must set activity duration before searching for available workers"

@@ -28,10 +28,10 @@ public class WorkerSteps {
 	private Worker worker;
 	private ErrorMessageHolder errorMessage;
 	private WorkerHelper workerHelper;
-		
+
 	private List<Worker> workers;
-	
-	
+
+
 	public WorkerSteps(App app, ErrorMessageHolder errorMessage, WorkerHelper workerHelper) {
 		this.app = app;
 		this.errorMessage = errorMessage;
@@ -39,7 +39,7 @@ public class WorkerSteps {
 	}
 
 	// First Create Worker Scenario
-	
+
 	@Given("^I have the worker \"([^\"]*)\"$")
 	public void iHaveTheWorker(String initials) throws Exception {
 		worker = new Worker(initials);
@@ -51,7 +51,7 @@ public class WorkerSteps {
 	public void theWorkerDoesNotExist(String initials) throws Exception {
 		assertFalse(app.getWorkers().contains(worker));
 	}
-	
+
 	@When("^I add the worker \"([^\"]*)\"$")
 	public void iAddTheWorker(String initials) throws Exception {
 		try {
@@ -60,12 +60,12 @@ public class WorkerSteps {
 			errorMessage.setErrorMessage(e.getMessage());
 		}
 	}
-	
+
 	@Then("^the worker \"([^\"]*)\" exists$")
 	public void theWorkerExists(String initials) throws Exception {
 		assertTrue(app.getWorkers().contains(worker));
 	}
-	
+
 	@When("^I assign the worker \"([^\"]*)\" to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
 	public void iAssignTheWorkerToTheActivityInTheProjectWithID(String initials, String activity, int ID) throws Exception {
 		try {
@@ -80,7 +80,7 @@ public class WorkerSteps {
 	    assertTrue(app.selectProject(ID).findActivityWithName(activity).listWorkers().contains(worker));
 	    assertTrue(worker.getAssignedActivities().contains(app.selectProject(ID).findActivityWithName(activity)));
 	}
-	
+
 	@Then("^the worker \"([^\"]*)\" is not assigned to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
 	public void theWorkerIsNotAssignedToTheActivityInTheProjectWithID(String initials, String activity, int ID) throws Exception {
 		assertFalse(app.selectProject(ID).findActivityWithName(activity).listWorkers().contains(worker));

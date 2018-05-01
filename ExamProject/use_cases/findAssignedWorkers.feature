@@ -3,8 +3,7 @@ Feature: Find assigned workers of a given activity
     Actors: User / project leader
     
 Scenario: User searches for assigned workers of the activity "G.O.A.T." successfully (1 worker)
-    Given I have the project with ID 180666
-    And the project with ID 180666 exists
+    Given the project with ID 180666 has been created
 	And the activity "G.O.A.T." has already been added to the project with ID 180666
 	And I set the end of the activity "G.O.A.T." in the project with ID 180666 to week 7 of 2020
 	And I set the start of the activity "G.O.A.T." in the project with ID 180666 to week 5 of 2020
@@ -15,10 +14,8 @@ Scenario: User searches for assigned workers of the activity "G.O.A.T." successf
     Then I get a list of length 1 which contains the workers "JONH"
     
 Scenario: User searches for assigned workers of the activity "G.O.A.T." successfully (>1 workers)
-    Given I have the project with ID 180666
-    And the project with ID 180666 exists
+    Given the project with ID 180666 has been created
     And the activity "G.O.A.T." has already been added to the project with ID 180666
-    
 	And I set the end of the activity "G.O.A.T." in the project with ID 180666 to week 7 of 2020
 	And I set the start of the activity "G.O.A.T." in the project with ID 180666 to week 5 of 2020
     And I have the worker "JONH"
@@ -31,15 +28,13 @@ Scenario: User searches for assigned workers of the activity "G.O.A.T." successf
     Then I get a list of length 2 which contains the workers "JONH" and "MICK"
         
 Scenario: Activity does not exist
-    Given I have the project with ID 180069
-    And the project with ID 180069 exists
+    Given the project with ID 180069 has been created
     And the activity "Sexual harassment" does not exist in the project with ID 180069
     When I search for assigned workers of the activity "Sexual harassment" in the project with ID 180069
     Then I get the error message "This activity does not exist in that project"
 
 Scenario: No workers assigned to the activity "G.O.A.T." 
-    Given I have the project with ID 180666
-    And the project with ID 180666 exists
+    Given the project with ID 180666 has been created
     And the activity "G.O.A.T." has already been added to the project with ID 180666
     And there are no assigned workers to the activity "G.O.A.T." in the project with ID 180666
     When I search for assigned workers of the activity "G.O.A.T." in the project with ID 180666

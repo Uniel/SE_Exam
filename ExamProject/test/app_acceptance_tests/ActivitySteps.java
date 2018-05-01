@@ -29,11 +29,6 @@ public class ActivitySteps {
 		this.errorMessage = errorMessage;
 	}
 	// First, second scenario
-	@Given("^I have the project with ID (\\d+)$")
-	public void iHaveTheProjectWithID(int ID) throws Exception {
-	    app.createProject(ID);
-		assertTrue(app.selectProject(ID).getProjectID() == ID);
-	}
 
 	@Given("^the activity \"([^\"]*)\" does not exist in the project with ID (\\d+)$")
 	public void theActivityDoesNotExistInTheProjectWithID(String act, int ID) throws Exception {

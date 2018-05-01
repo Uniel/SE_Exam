@@ -41,11 +41,11 @@ public class Worker {
 			throw new OperationNotAllowedException("This worker is unavailable during that time");
 		}
 	}
-	
+
 	public void removeActivity(Activity activity) {
 		assignedActivities.remove(activity);
 	}
-	
+
 	public boolean isAvailable(Activity activity) {
 		int n = 0;
 		for (Activity a : assignedActivities) {
