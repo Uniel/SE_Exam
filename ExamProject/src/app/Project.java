@@ -36,6 +36,17 @@ public class Project {
 		leader = worker;
 	}
 	
+	public String getInfo() {
+		String str = "";
+		str += "Name: " + (this.name != null ? this.name : "");
+		str += "\nType: " + (this.type != null ? this.type : "");
+		str += "\nCustomer: " + (this.customer != null ? this.customer : "");
+		str += "\nLeader: " + (this.leader != null ? this.leader.getInitials() : "");
+		str += "\nStart: Week " + (this.start != null ? this.start.get(Calendar.WEEK_OF_YEAR) + " Year: " + this.start.get(Calendar.YEAR) : "");
+		str += "\nEnd: Week " + (this.end != null ? this.end.get(Calendar.WEEK_OF_YEAR) + " Year:" + this.end.get(Calendar.YEAR) : "");
+		return str;
+	}
+	
 	public String getName() {
 		return name;
 	}

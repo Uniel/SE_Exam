@@ -16,6 +16,9 @@ public class UI {
 		this.app = application;
 	}
 	
+	/*
+	Main Menu
+	 */
 	
 	public void run() {
 		char choice = 0;
@@ -33,7 +36,6 @@ public class UI {
 		} while (choice == 0);
 		sc.close();
 	}
-	
 	public void printMenu() {
 		println("Welcome to the planner tool!");
 		println("What do you want to do now?");
@@ -47,7 +49,7 @@ public class UI {
 	private void println(String str) {System.out.println(str);}
 	
 	/*
-	 PROJECT MENU FUNCTIONS
+	PROJECT MENU FUNCTIONS
 	 */
 	
 	public void projectMenu() {
@@ -86,7 +88,7 @@ public class UI {
 	}
 	
 	/*
-	 SELECT PROJECT MENU
+	 EDIT PROJECT MENU
 	 */
 	
 	public void selectedProjectMenu() {
@@ -97,25 +99,34 @@ public class UI {
 			choice = getChar(sc);
 			switch(choice) {
 			case '1':
-				createProject(); break;
+				editProjectInfo(1, ID); break;
 			case '2':
-				printProjects(); break;
+				editProjectInfo(2, ID); break;
 			case '3':
-				selectProject(); break;
+				editProjectInfo(3, ID); break;
+			case '4':
+				editProjectInfo(4, ID); break;
+			case '5':
+				editProjectInfo(5, ID); break;
+			case '6':
+				editProjectInfo(6, ID); break;
+			case 'D':
+				deleteProject(ID); return;
 			case 'b':
 				return;
 			}
 			choice = 0;
 		} while (choice == 0);
 	}
+
 	private int selectProject() {
 		println("Which project ID?");
 		int IDchoice = 0;
 		do {
 			try {
 				IDchoice = app.getIdOfProject(sc.nextInt());
-			} catch (OperationNotAllowedException e1) {
-				System.out.println(e1);
+			} catch (OperationNotAllowedException e) {
+				System.out.println(e);
 			}
 		} while (IDchoice <= 0);
 		return IDchoice;
@@ -124,9 +135,52 @@ public class UI {
 		println("\nSelected Project menu");
 		println("You've selected project " + ID + ", what now?");
 		System.out.println(app.getInfoOfProject(ID));
-		println("1) ");
-		
+		println("Edit: 1) Name, 2) Type, 3) Customer");
+		println("Set new 4) Leader, 5) Start, 6) End");
+		println("7) Edit acitivities");
+		println("D) Delete");
 		println("b) Back");
 	}
+	private void editProjectInfo(int i, int ID) {
+		switch(i) {
+			case 1: // Name
+				println("What do you want to name the project?");
+				app.editProjectName(ID, getString(sc));
+				break;
+			case 2: // Type
+				println("Which type should it have? (internal / external)");
+				app.editProjectType(ID, getString(sc));
+				break;
+			case 3: // Customer
+				println("Which customer does this project belong to?");
+				app.editProjectCustomer(ID, getString(sc));
+				break;
+			case 4: // Leader
+				println("Who should be the leader?");
+				//app.editProjectName(ID, getString(sc));
+				break;
+			case 5: // Start
+				println("In which week, and year does this project start? (type week and year seperated by line breaks.)");
+				app.editProjectStart(ID, sc.nextInt(), sc.nextInt());
+				break;
+			case 6: // End
+				println("In which week, and year does this project end? (type week and year seperated by line breaks.)");
+				app.editProjectEnd(ID, sc.nextInt(), sc.nextInt());
+				break;
+			
+						
+		}
+	}
+	private void deleteProject(int ID) {
+		println("You sure?  (Y for confirm)");
+		if(getChar(sc) == 'Y') {
+			try {
+				app.removeProject(ID);
+			} catch (OperationNotAllowedException e) {
+				System.out.println(e);
+			}
+		}
+	}
+
 	
 }

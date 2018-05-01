@@ -54,50 +54,46 @@ public class App {
 	}
 	
 	/*
-	 * Returns of project info
+	 UI Interactions
 	 */
-	public String getNameOfProject(int ID) {
-		if(findProjectWithID(ID).getName() == null) {
-			return "";
-		} else {
-			return findProjectWithID(ID).getName();
+	public int getIdOfProject(int ID) throws OperationNotAllowedException{
+		return selectProject(ID).getProjectID();
+	}
+	public String getInfoOfProject(int ID) {
+		return findProjectWithID(ID).getInfo();
+	}
+	public void editProjectName(int ID, String name) {
+		findProjectWithID(ID).setName(name);
+	}
+	public void editProjectType(int ID, String type) {
+		try {
+			findProjectWithID(ID).setType(type);
+		} catch (Exception e) {
+			System.out.println(e);
 		}
 	}
-	public String getTypeOfProject(int ID) {
-		if(findProjectWithID(ID).getType() == null) {
-			return "";
-		} else {
-			return findProjectWithID(ID).getType();
+	public void editProjectCustomer(int ID, String customer) {
+		findProjectWithID(ID).setCustomer(customer);
+	}
+	public void editProjectStart(int ID, int week, int year) {
+		try {
+			findProjectWithID(ID).setStart(week, year);
+		} catch (Exception e) {
+			System.out.println(e);
 		}
 	}
-	public String getCustomerOfProject(int ID) {
-		if(findProjectWithID(ID).getCustomer() == null) {
-			return "";
-		} else {
-			return findProjectWithID(ID).getCustomer();
-		}
-	}
-	public int getIdOfProject(int ID) throws OperationNotAllowedException{return selectProject(ID).getProjectID();}
-	public String getStartOfProject(int ID) {
-		if(findProjectWithID(ID).getStart() == null) {
-			return "";
-		} else {
-			return findProjectWithID(ID).getStart().toString();
-		}
-	}
-	public String getEndOfProject(int ID) {
-		if(findProjectWithID(ID).getEnd() == null) {
-			return "";
-		} else {
-			return findProjectWithID(ID).getEnd().toString();
+	public void editProjectEnd(int ID, int week, int year) {
+		try {
+			findProjectWithID(ID).setEnd(week, year);
+		} catch (Exception e) {
+			System.out.println(e);
 		}
 	}
 	
-	public String getInfoOfProject(int ID) {
-		String str = "Name: " + getNameOfProject(ID) + "\nType: " + getTypeOfProject(ID) + 
-				"\nCustomer: " + getCustomerOfProject(ID) + "\nStarts: " + getStartOfProject(ID) + "\nEnds: " + getEndOfProject(ID);
-		return str;
-	}
+	
+	/*
+	 Business Logic
+	 */
 	
 	public int indexOfProjectWithID(int ID) {
 		return projects.indexOf(findProjectWithID(ID));
