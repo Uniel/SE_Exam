@@ -1,11 +1,6 @@
 package app;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 import java.util.Scanner;
-
-import cucumber.api.java.bs.A;
 
 public class UI {
 
@@ -110,6 +105,10 @@ public class UI {
 				editProjectInfo(5, ID); break;
 			case '6':
 				editProjectInfo(6, ID); break;
+			case '7':
+				createActivity(ID); break;
+			case '8':
+				selectedActivityMenu(ID); break;
 			case 'D':
 				deleteProject(ID); return;
 			case 'b':
@@ -119,15 +118,22 @@ public class UI {
 		} while (choice == 0);
 	}
 
+	private void createActivity(int iD) {
+		println("What should the activity be named?");
+		try {
+			app.createActivityInProject(iD, sc.next());
+		} catch (OperationNotAllowedException e) {
+			System.out.println(e);
+		}	
+	}
+
 	private int selectProject() {
 		println("Which project ID?");
 		int IDchoice = 0;
 		do {
 			try {
 				IDchoice = app.getIdOfProject(sc.nextInt());
-			} catch (OperationNotAllowedException e) {
-				System.out.println(e);
-			}
+			} catch (OperationNotAllowedException e) {System.out.println(e);}
 		} while (IDchoice <= 0);
 		return IDchoice;
 	}
@@ -135,12 +141,20 @@ public class UI {
 		println("\nSelected Project menu");
 		println("You've selected project " + ID + ", what now?");
 		System.out.println(app.getInfoOfProject(ID));
-		println("Edit: 1) Name, 2) Type, 3) Customer");
+		printActivitiesOfProject(ID);
+		println("\nEdit: 1) Name, 2) Type, 3) Customer");
 		println("Set new 4) Leader, 5) Start, 6) End");
-		println("7) Edit acitivities");
+		println("7) Create activity");
+		println("8) Edit acitivity");
 		println("D) Delete");
 		println("b) Back");
 	}
+	
+	private void printActivitiesOfProject(int iD) {
+		System.out.println(app.getProjectActivities(iD));
+	}
+	
+	
 	private void editProjectInfo(int i, int ID) {
 		switch(i) {
 			case 1: // Name
@@ -182,5 +196,48 @@ public class UI {
 		}
 	}
 
+	/*
+	 EDIT ACTIVITIES
+	 */
+	
+	public void selectedActivityMenu(int id) {
+		char choice = 0;
+		int ID = id;
+		String ACT = selectActivity(ID);
+		do {
+			printSelectedActivityMenu(ID, ACT);
+			choice = getChar(sc);
+			switch(choice) {
+			case '1':
+		
+			case 'D':
+				deleteProject(ID); return;
+			case 'b':
+				return;
+			}
+			choice = 0;
+		} while (choice == 0);
+	}
+	public void printSelectedActivityMenu(int ID, String ACT) {
+		println("\nSelected Project menu");
+		println("You've selected project " + ACT + ", what now?");
+		System.out.println(app.getInfoOfActivity(ID, ACT));
+		println("Edit: 1) Name, 2) Type, 3) Customer");
+		println("Set new 4) Leader, 5) Start, 6) End");
+		println("7) Edit acitivities");
+		println("D) Delete");
+		println("b) Back");
+	}
+	private String selectActivity(int ID) {
+		println("Which activity?");
+		String ACTchoice = "";
+		do {
+			try {
+				ACTchoice = app.getActivtyOfProject(ID, sc.next());
+			} catch (OperationNotAllowedException e) {System.out.println(e);}
+		} while (ACTchoice.trim().isEmpty());
+		return ACTchoice;
+	}
+	
 	
 }

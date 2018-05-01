@@ -83,14 +83,14 @@ public class WorkerSteps {
 
 	@Then("^the worker \"([^\"]*)\" is assigned to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
 	public void theWorkerIsAssignedToTheActivityInTheProjectWithID(String initials, String activity, int ID) throws Exception {
-	    assertTrue(app.selectProject(ID).findProjectWithID(activity).listWorkers().contains(worker));
-	    assertTrue(worker.getAssignedActivities().contains(app.selectProject(ID).findProjectWithID(activity)));
+	    assertTrue(app.selectProject(ID).findActivityWithName(activity).listWorkers().contains(worker));
+	    assertTrue(worker.getAssignedActivities().contains(app.selectProject(ID).findActivityWithName(activity)));
 	}
 	
 	@Then("^the worker \"([^\"]*)\" is not assigned to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
 	public void theWorkerIsNotAssignedToTheActivityInTheProjectWithID(String initials, String activity, int ID) throws Exception {
-		assertFalse(app.selectProject(ID).findProjectWithID(activity).listWorkers().contains(worker));
-	    assertFalse(worker.getAssignedActivities().contains(app.selectProject(ID).findProjectWithID(activity)));
+		assertFalse(app.selectProject(ID).findActivityWithName(activity).listWorkers().contains(worker));
+	    assertFalse(worker.getAssignedActivities().contains(app.selectProject(ID).findActivityWithName(activity)));
 	}
 	
 	@Given("^the worker \"([^\"]*)\" is assigned to (\\d+) activities which start on week (\\d+) of (\\d+) and end on week (\\d+) of (\\d+)$")
@@ -141,7 +141,7 @@ public class WorkerSteps {
 	
 	@Given("^there are no assigned workers to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
 	public void thereAreNoAssignedWorkersToTheActivityInTheProjectWithID(String activity, int ID) throws Exception {
-	    assertTrue(app.selectProject(ID).findProjectWithID(activity).listWorkers().isEmpty());
+	    assertTrue(app.selectProject(ID).findActivityWithName(activity).listWorkers().isEmpty());
 	}
 	
 	@When("^I search for assigned workers of the activity \"([^\"]*)\" without specifying project ID$")

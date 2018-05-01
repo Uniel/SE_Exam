@@ -12,12 +12,22 @@ public class Activity {
 	private boolean fulltime = false;
 	private Calendar start;
 	private Calendar end;
-	private int budgetTime;
+	private int budgetTime = -1;
 	
 	public Activity(String newName) {
 		this.name = newName;
 	} // constructor
 
+	public String getInfo(int ID) {
+		String str = "";
+		str += "Activity: " + (this.name != null ? this.name : "");
+		str += "\nOf Project: " + (ID);
+		str += "\nBudget Time: " + (this.budgetTime != -1 ? this.budgetTime : "");
+		str += "\nStart: " + (this.start != null ? "Week " + this.start.get(Calendar.WEEK_OF_YEAR) + " Year: " + this.start.get(Calendar.YEAR) : "");
+		str += "\nEnd: " + (this.end != null ? "Week " + this.end.get(Calendar.WEEK_OF_YEAR) + " Year:" + this.end.get(Calendar.YEAR) : "");
+		return str;
+	}
+	
 	public List<Worker> listWorkers() throws Exception {
 		return assignedWorkers;
 	}
@@ -97,4 +107,5 @@ public class Activity {
 	public void removeWorker(Worker worker) {
 		assignedWorkers.remove(worker);
 	}
+
 } // class

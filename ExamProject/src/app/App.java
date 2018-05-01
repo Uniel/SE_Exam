@@ -56,15 +56,9 @@ public class App {
 	/*
 	 UI Interactions
 	 */
-	public int getIdOfProject(int ID) throws OperationNotAllowedException{
-		return selectProject(ID).getProjectID();
-	}
-	public String getInfoOfProject(int ID) {
-		return findProjectWithID(ID).getInfo();
-	}
-	public void editProjectName(int ID, String name) {
-		findProjectWithID(ID).setName(name);
-	}
+	public int getIdOfProject(int ID) throws OperationNotAllowedException{return selectProject(ID).getProjectID();}
+	public String getInfoOfProject(int ID) {return findProjectWithID(ID).getInfo();}
+	public void editProjectName(int ID, String name) {findProjectWithID(ID).setName(name);}
 	public void editProjectType(int ID, String type) {
 		try {
 			findProjectWithID(ID).setType(type);
@@ -72,9 +66,7 @@ public class App {
 			System.out.println(e);
 		}
 	}
-	public void editProjectCustomer(int ID, String customer) {
-		findProjectWithID(ID).setCustomer(customer);
-	}
+	public void editProjectCustomer(int ID, String customer) {findProjectWithID(ID).setCustomer(customer);}
 	public void editProjectStart(int ID, int week, int year) {
 		try {
 			findProjectWithID(ID).setStart(week, year);
@@ -89,6 +81,26 @@ public class App {
 			System.out.println(e);
 		}
 	}
+	public String getInfoOfActivity(int ID, String ACT) {return findProjectWithID(ID).getActInfo(ACT);}
+	public String getProjectActivities(int iD) {
+		return "Activities in project:\n" + findProjectWithID(iD).getActivityList();
+	}
+	public String getActivtyOfProject(int ID, String name) throws OperationNotAllowedException{
+		if(!findProjectWithID(ID).activityExists(name)) {
+			throw new OperationNotAllowedException("That activity does not exist");
+		} else {
+			return findProjectWithID(ID).findActivityWithName(name).getName();
+		}
+	}
+	public void createActivityInProject(int ID, String name) throws OperationNotAllowedException{
+		try {
+			findProjectWithID(ID).addActivity(name);
+		} catch (Exception e) {
+			throw new OperationNotAllowedException(e.toString());
+		}
+	}
+	
+	
 	
 	
 	/*
@@ -162,12 +174,12 @@ public class App {
 			throw new OperationNotAllowedException("You have to specify an activity");
 		} else if (!selectProject(ID).activityExists(activity)) {
 			throw new OperationNotAllowedException("This activity does not exist in that project");
-		} else if (selectProject(ID).findProjectWithID(activity).getStart() == null || selectProject(ID).findProjectWithID(activity).getEnd() == null) {
+		} else if (selectProject(ID).findActivityWithName(activity).getStart() == null || selectProject(ID).findActivityWithName(activity).getEnd() == null) {
 			throw new OperationNotAllowedException("Must set activity duration before searching for available workers");
 		} else {
 			List<Worker> availableWorkers = new ArrayList<Worker>(); 
 			for (Worker w : workers) {
-				if (w.isAvailable(selectProject(ID).findProjectWithID(activity))) {
+				if (w.isAvailable(selectProject(ID).findActivityWithName(activity))) {
 					availableWorkers.add(w);
 				}
 			}
@@ -202,10 +214,10 @@ public class App {
 			throw new OperationNotAllowedException("You have to specify an activity");
 		} else if (!selectProject(ID).activityExists(activity)) {
 			throw new OperationNotAllowedException("This activity does not exist in that project");
-		} else if (selectProject(ID).findProjectWithID(activity).listWorkers().isEmpty()) {
+		} else if (selectProject(ID).findActivityWithName(activity).listWorkers().isEmpty()) {
 			throw new OperationNotAllowedException("No workers assigned to the activity");
 		} else {
-			return selectProject(ID).findProjectWithID(activity).listWorkers();
+			return selectProject(ID).findActivityWithName(activity).listWorkers();
 		}
 	}
 	
@@ -214,13 +226,13 @@ public class App {
 			throw new OperationNotAllowedException("This worker does not exist");
 		} else if (!selectProject(ID).activityExists(activity)) {
 			throw new OperationNotAllowedException("This activity does not exist in that project");
-		} else if (selectProject(ID).findProjectWithID(activity).listWorkers().contains(worker)) {
+		} else if (selectProject(ID).findActivityWithName(activity).listWorkers().contains(worker)) {
 			throw new OperationNotAllowedException("This worker is already assigned to that activity");
-		} else if (selectProject(ID).findProjectWithID(activity).getStart() == null || selectProject(ID).findProjectWithID(activity).getEnd() == null) {
+		} else if (selectProject(ID).findActivityWithName(activity).getStart() == null || selectProject(ID).findActivityWithName(activity).getEnd() == null) {
 			throw new OperationNotAllowedException("Must set activity duration assigning workers");
 		} else {
-			selectProject(ID).findProjectWithID(activity).assignWorker(worker);
-			worker.addActivity(selectProject(ID).findProjectWithID(activity));
+			selectProject(ID).findActivityWithName(activity).assignWorker(worker);
+			worker.addActivity(selectProject(ID).findActivityWithName(activity));
 		}
 	}
 	
@@ -234,9 +246,9 @@ public class App {
 			}
 			selectProject(ID).addActivity(worker.getInitials() + "Vacation");
 			String name = selectProject(ID).activities.get(selectProject(ID).activities.size() - 1).getName();
-			selectProject(ID).findProjectWithID(name).setStart(startWeek, startYear);
-			selectProject(ID).findProjectWithID(name).setEnd(endWeek, endYear);
-			selectProject(ID).findProjectWithID(name).setFulltime(true);
+			selectProject(ID).findActivityWithName(name).setStart(startWeek, startYear);
+			selectProject(ID).findActivityWithName(name).setEnd(endWeek, endYear);
+			selectProject(ID).findActivityWithName(name).setFulltime(true);
 			assign(worker, ID, name);
 		}
 	}
@@ -250,11 +262,11 @@ public class App {
 			throw new OperationNotAllowedException("This worker does not exist");
 		} else if (!selectProject(ID).activityExists(activity)) {
 			throw new OperationNotAllowedException("This activity does not exist in that project");
-		} else if (!selectProject(ID).findProjectWithID(activity).listWorkers().contains(worker)) {
+		} else if (!selectProject(ID).findActivityWithName(activity).listWorkers().contains(worker)) {
 			throw new OperationNotAllowedException("This worker is not assigned to that activity");
 		} else {
-			selectProject(ID).findProjectWithID(activity).removeWorker(worker);
-			worker.removeActivity(selectProject(ID).findProjectWithID(activity));
+			selectProject(ID).findActivityWithName(activity).removeWorker(worker);
+			worker.removeActivity(selectProject(ID).findActivityWithName(activity));
 		}
 	}
 	
@@ -269,4 +281,6 @@ public class App {
 	public void registerTime(Date date, Worker worker, Double hours, Project project, Activity activity) {
 		//Unfinished
 	}
+
+
 }

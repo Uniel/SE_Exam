@@ -42,9 +42,13 @@ public class Project {
 		str += "\nType: " + (this.type != null ? this.type : "");
 		str += "\nCustomer: " + (this.customer != null ? this.customer : "");
 		str += "\nLeader: " + (this.leader != null ? this.leader.getInitials() : "");
-		str += "\nStart: Week " + (this.start != null ? this.start.get(Calendar.WEEK_OF_YEAR) + " Year: " + this.start.get(Calendar.YEAR) : "");
-		str += "\nEnd: Week " + (this.end != null ? this.end.get(Calendar.WEEK_OF_YEAR) + " Year:" + this.end.get(Calendar.YEAR) : "");
+		str += "\nStart: " + (this.start != null ? "Week " + this.start.get(Calendar.WEEK_OF_YEAR) + " Year: " + this.start.get(Calendar.YEAR) : "");
+		str += "\nEnd: " + (this.end != null ? "Week " + this.end.get(Calendar.WEEK_OF_YEAR) + " Year:" + this.end.get(Calendar.YEAR) : "");
 		return str;
+	}
+	
+	public String getActInfo(String act) {
+		return findActivityWithName(act).getInfo(this.projectID);
 	}
 	
 	public String getName() {
@@ -142,7 +146,7 @@ public class Project {
 		} else if(activityExists(newName)) {
 			throw new OperationNotAllowedException("That activity name already exists");
 		} else {
-			findProjectWithID(activity).setName(newName);
+			findActivityWithName(activity).setName(newName);
 		}
 	}
 	
@@ -150,7 +154,7 @@ public class Project {
 		if(!activityExists(activity)){
 			throw new OperationNotAllowedException("That activity does not exist");
 		} else {
-			findProjectWithID(activity).setStart(week, year);
+			findActivityWithName(activity).setStart(week, year);
 		}
 	}
 	
@@ -158,7 +162,7 @@ public class Project {
 		if(!activityExists(activity)){
 			throw new OperationNotAllowedException("That activity does not exist");
 		} else {
-			findProjectWithID(activity).setEnd(week, year);
+			findActivityWithName(activity).setEnd(week, year);
 		}
 	}
 	
@@ -188,7 +192,7 @@ public class Project {
 		return (indexOfActivity(name) == -1 ? false : true);
 	}
 	
-	public Activity findProjectWithID(String name) {
+	public Activity findActivityWithName(String name) {
 		if(activities.isEmpty()) {return null;}
 		for(Activity a : activities) {
 			if(a.getName() == name) {return activities.get(activities.indexOf(a));}
@@ -197,7 +201,7 @@ public class Project {
 	}
 	
 	private int indexOfActivity(String name) {
-		return (findProjectWithID(name) == null ? -1 : activities.indexOf(findProjectWithID(name)));
+		return (findActivityWithName(name) == null ? -1 : activities.indexOf(findActivityWithName(name)));
 	}
 	
 	public int remainingBudgetTime() {
@@ -221,5 +225,14 @@ public class Project {
 	}
 	
 	public void findAvailableWorkers(Activity activity) {
+	}
+
+	public String getActivityList() {
+		String str = "";
+		for(Activity a : activities) {
+			int c = 1;
+			str += c + ") " + a.getName() + "\n";
+		}
+		return str;
 	}
 } // class
