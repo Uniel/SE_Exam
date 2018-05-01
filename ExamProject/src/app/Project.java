@@ -232,6 +232,7 @@ public class Project {
 		for(Activity a : activities) {
 			int c = 1;
 			str += c + ") " + a.getName() + "\n";
+			c++;
 		}
 		return str;
 	}

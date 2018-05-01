@@ -93,15 +93,37 @@ public class App {
 		}
 	}
 	public void createActivityInProject(int ID, String name) throws OperationNotAllowedException{
-		try {
-			findProjectWithID(ID).addActivity(name);
-		} catch (Exception e) {
-			throw new OperationNotAllowedException(e.toString());
+		if(findProjectWithID(ID).activityExists(name)) {
+			System.out.println("Activity "+ name+" exists!");
+		} else if (!findProjectWithID(ID).activityExists(name)) {
+			System.out.println("Activity "+ name+" does not exist");
 		}
+		
+		findProjectWithID(ID).addActivity(name);
 	}
-	
-	
-	
+	public String searchForProjects(String name) throws OperationNotAllowedException{
+		List<Project> results = projectSearch(name);
+		String str = "Projects found: \n";
+		if(!results.isEmpty()) {
+			for(Project p : results) {
+				str += p.getProjectID() + " - " + (p.getName() != null ? p.getName() : "") + "\n";
+			}
+		}
+		return str;
+	}
+	public String listWorkers() {
+		String str = "Workers found: \n";
+		for(Worker w : workers) {
+			int count = 1;
+			str += count + ") " + w.getInitials() +"\n";
+			count++;
+		}
+		return str;
+	}
+	public void addWorker(String initials) throws OperationNotAllowedException {
+		Worker newWorker = new Worker(initials);
+		createWorker(newWorker);
+	}
 	
 	/*
 	 Business Logic

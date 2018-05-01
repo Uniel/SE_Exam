@@ -6,26 +6,19 @@ public class UI {
 
 	private App app;
 	Scanner sc = new Scanner(System.in);
+	public UI(App application) {this.app = application;}
 	
-	public UI(App application) {
-		this.app = application;
-	}
 	
-	/*
-	Main Menu
-	 */
-	
+	/*Main Menu*/
 	public void run() {
 		char choice = 0;
 		do {
 			printMenu();
 			choice = getChar(sc);
 			switch(choice) {
-			case '1':
-				projectMenu(); break;
-			case 'q':
-				println("K. Bye!");
-				return;
+				case '1': projectMenu(); break;
+				case '2': workerMenu(); break;
+				case 'q': println("K. Bye!"); return;
 			}
 			choice = 0;
 		} while (choice == 0);
@@ -35,7 +28,7 @@ public class UI {
 		println("Welcome to the planner tool!");
 		println("What do you want to do now?");
 		println("1) Enter the project menu");
-		println("");
+		println("2) Manage workers");
 		println("q) Quit");
 	}
 	
@@ -43,27 +36,26 @@ public class UI {
 	private String getString(Scanner sc) {return sc.next();}
 	private void println(String str) {System.out.println(str);}
 	
-	/*
-	PROJECT MENU FUNCTIONS
-	 */
-	
+	/*PROJECT MENU FUNCTIONS*/
 	public void projectMenu() {
 		char choice = 0;
 		do {
 			printProjectMenu();
 			choice = getChar(sc);
 			switch(choice) {
-			case '1':
-				createProject(); break;
-			case '2':
-				printProjects(); break;
-			case '3':
-				selectedProjectMenu(); break;
-			case 'b':
-				return;
+				case '1': createProject(); break;
+				case '2': printProjects(); break;
+				case '3': selectedProjectMenu(); break;
+				case '4': projectSearch(); break;
+				case 'b': return;
 			}
 			choice = 0;
 		} while (choice == 0);
+	}
+	private void projectSearch() {
+		println("Type a seach term, can be entirety or parts of the project name or ID");
+		try {System.out.println(app.searchForProjects(sc.next()));} 
+		catch (OperationNotAllowedException e) {System.out.println(e);}
 	}
 	public void printProjectMenu() {
 		println("\nProject menu");
@@ -71,6 +63,7 @@ public class UI {
 		println("1) Create Project");
 		println("2) List projects");
 		println("3) Select/edit project");
+		println("4) Search for a project");
 		println("b) Back");
 	}
 	
@@ -82,10 +75,10 @@ public class UI {
 		}
 	}
 	
-	/*
-	 EDIT PROJECT MENU
-	 */
+	/*EDIT PROJECT MENU*/
 	
+	
+	/*EDIT PROJECT*/
 	public void selectedProjectMenu() {
 		char choice = 0;
 		int ID = selectProject();
@@ -93,47 +86,31 @@ public class UI {
 			printSelectedProjectMenu(ID);
 			choice = getChar(sc);
 			switch(choice) {
-			case '1':
-				editProjectInfo(1, ID); break;
-			case '2':
-				editProjectInfo(2, ID); break;
-			case '3':
-				editProjectInfo(3, ID); break;
-			case '4':
-				editProjectInfo(4, ID); break;
-			case '5':
-				editProjectInfo(5, ID); break;
-			case '6':
-				editProjectInfo(6, ID); break;
-			case '7':
-				createActivity(ID); break;
-			case '8':
-				selectedActivityMenu(ID); break;
-			case 'D':
-				deleteProject(ID); return;
-			case 'b':
-				return;
+			case '1': editProjectInfo(1, ID); break;
+			case '2': editProjectInfo(2, ID); break;
+			case '3': editProjectInfo(3, ID); break;
+			case '4': editProjectInfo(4, ID); break;
+			case '5': editProjectInfo(5, ID); break;
+			case '6': editProjectInfo(6, ID); break;
+			case '7': createActivity(ID); break;
+			case '8': selectedActivityMenu(ID); break;
+			case 'D': deleteProject(ID); return;
+			case 'b': return;
 			}
 			choice = 0;
 		} while (choice == 0);
 	}
-
 	private void createActivity(int iD) {
 		println("What should the activity be named?");
-		try {
-			app.createActivityInProject(iD, sc.next());
-		} catch (OperationNotAllowedException e) {
-			System.out.println(e);
-		}	
+		try {app.createActivityInProject(iD, sc.next());} 
+		catch (OperationNotAllowedException e) {System.out.println(e);}	
 	}
-
 	private int selectProject() {
 		println("Which project ID?");
 		int IDchoice = 0;
 		do {
-			try {
-				IDchoice = app.getIdOfProject(sc.nextInt());
-			} catch (OperationNotAllowedException e) {System.out.println(e);}
+			try {IDchoice = app.getIdOfProject(sc.nextInt());}
+			catch (OperationNotAllowedException e) {System.out.println(e);}
 		} while (IDchoice <= 0);
 		return IDchoice;
 	}
@@ -149,11 +126,9 @@ public class UI {
 		println("D) Delete");
 		println("b) Back");
 	}
-	
 	private void printActivitiesOfProject(int iD) {
 		System.out.println(app.getProjectActivities(iD));
 	}
-	
 	
 	private void editProjectInfo(int i, int ID) {
 		switch(i) {
@@ -196,10 +171,8 @@ public class UI {
 		}
 	}
 
-	/*
-	 EDIT ACTIVITIES
-	 */
 	
+	/*EDIT ACTIVITIES*/	
 	public void selectedActivityMenu(int id) {
 		char choice = 0;
 		int ID = id;
@@ -209,11 +182,8 @@ public class UI {
 			choice = getChar(sc);
 			switch(choice) {
 			case '1':
-		
-			case 'D':
-				deleteProject(ID); return;
-			case 'b':
-				return;
+			case 'D': deleteProject(ID); return;
+			case 'b': return;
 			}
 			choice = 0;
 		} while (choice == 0);
@@ -232,12 +202,61 @@ public class UI {
 		println("Which activity?");
 		String ACTchoice = "";
 		do {
-			try {
-				ACTchoice = app.getActivtyOfProject(ID, sc.next());
-			} catch (OperationNotAllowedException e) {System.out.println(e);}
+			try {ACTchoice = app.getActivtyOfProject(ID, sc.next());} 
+			catch (OperationNotAllowedException e) {System.out.println(e);}
 		} while (ACTchoice.trim().isEmpty());
 		return ACTchoice;
 	}
+	
+	
+	
+	/*WORKERS*/
+	private void workerMenu() {
+		char choice = 0;
+		do {
+			printWorkerMenu();
+			choice = getChar(sc);
+			switch(choice) {
+				case '1': listWorkers(); break;
+				case '2': printProjects(); break;
+				case '3': addWorker(); break;
+				//case '4': removeWorker(); break;
+				case 'b': return;
+			}
+			choice = 0;
+		} while (choice == 0);
+	}
+	public void printWorkerMenu() {
+		println("Manage your workers, what now?");
+		println("1) List Workers");
+		println("2) Search through workers");
+		println("3) Add Worker");
+		println("*4) Remove Worker");
+		println("b) Back");
+	}
+	
+	public void listWorkers() {System.out.println(app.listWorkers());}
+	public void addWorker() {
+		try {app.addWorker(sc.next());} 
+		catch (OperationNotAllowedException e) {System.out.println(e);}
+	}
+//	public void removeWorker() {
+//		try {app.addWorker(sc.next());} 
+//		catch (OperationNotAllowedException e) {System.out.println(e);}
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
