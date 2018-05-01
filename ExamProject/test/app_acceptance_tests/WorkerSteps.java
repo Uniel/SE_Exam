@@ -49,17 +49,11 @@ public class WorkerSteps {
 
 	@Given("^the worker \"([^\"]*)\" does not exist$")
 	public void theWorkerDoesNotExist(String initials) throws Exception {
-		if (worker.getInitials() != initials) {
-			worker = new Worker(initials);
-		}
 		assertFalse(app.getWorkers().contains(worker));
 	}
 	
 	@When("^I add the worker \"([^\"]*)\"$")
 	public void iAddTheWorker(String initials) throws Exception {
-		if (worker.getInitials() != initials) {
-			worker = new Worker(initials);
-		}
 		try {
 			app.createWorker(worker);
 		} catch (Exception e) {
