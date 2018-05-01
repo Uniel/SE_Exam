@@ -16,46 +16,14 @@ public class App {
 	private List<Worker> workers = new ArrayList<>();
 	private List<Date> dates = new ArrayList<>();	
 	
+	public List<Project> getProjects(){return projects;}
+	public List<Worker> getWorkers(){return workers;}
+	public List<Date> getDates(){return dates;}
 	
-	public List<Project> getProjects(){
-		return projects;
-	}
+
 	
-	public List<Worker> getWorkers(){
-		return workers;
-	}
+	/*	 UI Interactions	 */
 	
-	public List<Date> getDates(){
-		return dates;
-	}
-	
-	/*
-	 *  Project functions
-	 */
-	
-	public void createProject() {
-		projects.add(new Project(projectService));
-	}
-	
-	public void createProject(int ID) {
-		projects.add(new Project(ID));
-	} // For testing purposes only
-	
-	public void createOngoingProject(int ID) {
-		projects.add(new OngoingProject(ID));
-	}
-	
-	public Project selectProject(int ID) throws OperationNotAllowedException{
-		if(findProjectWithID(ID) == null) {
-			throw new OperationNotAllowedException("A project with that ID does not exist");
-		} else {
-			return findProjectWithID(ID);
-		}
-	}
-	
-	/*
-	 UI Interactions
-	 */
 	public int getIdOfProject(int ID) throws OperationNotAllowedException{return selectProject(ID).getProjectID();}
 	public String getInfoOfProject(int ID) {return findProjectWithID(ID).getInfo();}
 	public void editProjectName(int ID, String name) {findProjectWithID(ID).setName(name);}
@@ -129,6 +97,28 @@ public class App {
 	 Business Logic
 	 */
 	
+	/* Project functions */
+	
+	public void createProject() {
+		projects.add(new Project(projectService));
+	}
+	
+	public void createProject(int ID) {
+		projects.add(new Project(ID));
+	} // For testing purposes only
+	
+	public void createOngoingProject(int ID) {
+		projects.add(new OngoingProject(ID));
+	}
+	
+	public Project selectProject(int ID) throws OperationNotAllowedException{
+		if(findProjectWithID(ID) == null) {
+			throw new OperationNotAllowedException("A project with that ID does not exist");
+		} else {
+			return findProjectWithID(ID);
+		}
+	}
+	
 	public int indexOfProjectWithID(int ID) {
 		return projects.indexOf(findProjectWithID(ID));
 	}
@@ -185,9 +175,7 @@ public class App {
 		return (Integer.toString(p.getProjectID()).contains(search)) || p.getName().contains(search);		
 	}
 	
-	/*
-	 * Worker functions
-	 */
+	/*Worker functions*/
 	
 	public List<Worker> findAvailableWorkers(int ID, String activity) throws Exception {
 		if (ID == 0) {
@@ -275,10 +263,6 @@ public class App {
 		}
 	}
 	
-	public void /*List<Activity>*/ listActivities(Project project){
-		//Unfinished
-	}
-	
 	public void removeFromActivity(Worker worker, int ID, String activity) throws Exception {
 		if (!workers.contains(worker)) {
 			throw new OperationNotAllowedException("This worker does not exist");
@@ -290,6 +274,11 @@ public class App {
 			selectProject(ID).findActivityWithName(activity).removeWorker(worker);
 			worker.removeActivity(selectProject(ID).findActivityWithName(activity));
 		}
+	}
+	
+	
+	public void /*List<Activity>*/ listActivities(Project project){
+		//Unfinished
 	}
 	
 	public void addActivity(Project project, String name) {
