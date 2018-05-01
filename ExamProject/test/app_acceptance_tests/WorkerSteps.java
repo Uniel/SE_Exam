@@ -116,4 +116,59 @@ public class WorkerSteps {
 	public void theWorkerIsOnVacationFromWeekToWeekOf(String initials, int startWeek, int endWeek, int year) throws Exception {
 	    app.assignVacation(worker, startWeek, endWeek, year, year);
 	}
+	
+	@When("^I search for assigned workers of the activity \"([^\"]*)\" in the project with ID (\\d+)$")
+	public void iSearchForAssignedWorkersOfTheActivityInTheProjectWithID(String activity, int ID) throws Exception {
+	    try {
+	    	workers = app.assignedWorkers(ID, activity);
+	    } catch (Exception e) {
+	    	errorMessage.setErrorMessage(e.getMessage());
+	    }
+	}
+	
+	@Then("^I get a list of length (\\d+) which contains the workers \"([^\"]*)\"$")
+	public void iGetAListOfLengthWhichContainsTheWorkers(int n, String initials) throws Exception {
+	    assertTrue(workers.size() == n);
+	    assertTrue(workers.get(0).getInitials().equals(initials));
+	}
+	
+	@Then("^I get a list of length (\\d+) which contains the workers \"([^\"]*)\" and \"([^\"]*)\"$")
+	public void iGetAListOfLengthWhichContainsTheWorkersAnd(int n, String worker1, String worker2) throws Exception {
+		assertTrue(workers.size() == n);
+		assertTrue(workers.get(0).getInitials().equals(worker1) || workers.get(0).getInitials().equals(worker2));
+		assertTrue(workers.get(1).getInitials().equals(worker1) || workers.get(1).getInitials().equals(worker2));
+	}
+	
+	@Given("^there are no assigned workers to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
+	public void thereAreNoAssignedWorkersToTheActivityInTheProjectWithID(String activity, int ID) throws Exception {
+	    assertTrue(app.selectProject(ID).findProjectWithID(activity).listWorkers().isEmpty());
+	}
+	
+	@When("^I search for assigned workers of the activity \"([^\"]*)\" without specifying project ID$")
+	public void iSearchForAssignedWorkersOfTheActivityWithoutSpecifyingProjectID(String activity) throws Exception {
+		try {
+			int ID = 0;
+	    	workers = app.assignedWorkers(ID, activity);
+	    } catch (Exception e) {
+	    	errorMessage.setErrorMessage(e.getMessage());
+	    }
+	}
+	
+	@When("^I search for available workers for the activity \"([^\"]*)\" in the project with ID (\\d+)$")
+	public void iSearchForAvailableWorkersForTheActivityInTheProjectWithID(String activity, int ID) throws Exception {
+		try {
+			workers = app.findAvailableWorkers(ID, activity);
+	    } catch (Exception e) {
+	    	errorMessage.setErrorMessage(e.getMessage());
+	    }
+	}
+	
+	@When("^I remove the worker \"([^\"]*)\" from the activity \"([^\"]*)\" in the project with ID (\\d+)$")
+	public void iRemoveTheWorkerFromTheActivityInTheProjectWithID(String initials, String activity, int ID) throws Exception {
+	    try {
+	    	app.removeFromActivity(worker, ID, activity);
+	    } catch (Exception e) {
+	    	errorMessage.setErrorMessage(e.getMessage());
+	    }
+	}
 }

@@ -9,7 +9,7 @@ public class Activity {
 	private List<Worker> assignedWorkers = new ArrayList<Worker>();
 	
 	private String name;
-	private boolean fulltime;
+	private boolean fulltime = false;
 	private Calendar start;
 	private Calendar end;
 	private int budgetTime;
@@ -18,7 +18,7 @@ public class Activity {
 		this.name = newName;
 	} // constructor
 
-	public List<Worker> listWorkers() {
+	public List<Worker> listWorkers() throws Exception {
 		return assignedWorkers;
 	}
 	
@@ -92,5 +92,9 @@ public class Activity {
 		} else {
 			throw new OperationNotAllowedException("This worker is unavailable during that time");
 		}
+	}
+	
+	public void removeWorker(Worker worker) {
+		assignedWorkers.remove(worker);
 	}
 } // class
