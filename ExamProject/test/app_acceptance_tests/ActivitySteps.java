@@ -66,9 +66,6 @@ public class ActivitySteps {
 			errorMessage.setErrorMessage(e.getMessage());
 		}
 	}
-	
-	// Fifth scenario
-	
 
 	// Seventh scenario
 	@When("^I rename the activity \"([^\"]*)\" in the project with ID (\\d+) to \"([^\"]*)\"$")
