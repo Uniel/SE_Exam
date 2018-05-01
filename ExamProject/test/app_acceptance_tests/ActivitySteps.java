@@ -53,7 +53,8 @@ public class ActivitySteps {
 	// Third Scenario
 	@Given("^the activity \"([^\"]*)\" has already been added to the project with ID (\\d+)$")
 	public void theActivityHasAlreadyBeenCreatedInTheProjectWithID(String act, int ID) throws Exception {
-		app.selectProject(ID).addActivity(act);
+		iAddTheActivityToTheProjectWithID(act, ID);
+		theActivityExistsInTheProjectWithID(act, ID);
 	}
 
 	// Fourth scenario
@@ -67,14 +68,7 @@ public class ActivitySteps {
 	}
 	
 	// Fifth scenario
-	@When("^I select the project with ID (\\d+)$")
-	public void iSelectTheProjectWithID(int ID) throws Exception {
-	    try {
-			app.selectProject(ID);
-		} catch (Exception e) {
-			errorMessage.setErrorMessage(e.getMessage());
-		}
-	}
+	
 
 	// Seventh scenario
 	@When("^I rename the activity \"([^\"]*)\" in the project with ID (\\d+) to \"([^\"]*)\"$")

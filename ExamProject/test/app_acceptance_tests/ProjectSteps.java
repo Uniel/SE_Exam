@@ -97,6 +97,15 @@ public class ProjectSteps {
 		}
 	}
 	
+	@When("^I select the project with ID (\\d+)$")
+	public void iSelectTheProjectWithID(int ID) throws Exception {
+	    try {
+			app.selectProject(ID);
+		} catch (Exception e) {
+			errorMessage.setErrorMessage(e.getMessage());
+		}
+	}
+	
 	/*
 	 * Project searching
 	 */
