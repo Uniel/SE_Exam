@@ -57,7 +57,7 @@ public class App {
 		if(!findProjectWithID(ID).activityExists(name)) {
 			throw new OperationNotAllowedException("That activity does not exist");
 		} else {
-			return findProjectWithID(ID).findActivityWithName(name).getName();
+			return name;
 		}
 	}
 	public void createActivityInProject(int ID, String name) throws OperationNotAllowedException{
@@ -320,7 +320,6 @@ public class App {
 			throw new OperationNotAllowedException("Must set activity duration before assigning workers");
 		} 
 		  else {
-			//selectProject(ID).findActivityWithName(activity).assignWorker(worker);
 			selectProject(ID).assignWorker(worker, activity);
 			worker.addActivity(selectProject(ID).findActivityWithName(activity));
 		}
@@ -351,7 +350,6 @@ public class App {
 		} else if (!selectProject(ID).findActivityWithName(activity).listWorkers().contains(worker)) {
 			throw new OperationNotAllowedException("This worker is not assigned to that activity");
 		} else {
-			//selectProject(ID).findActivityWithName(activity).removeWorker(worker);
 			selectProject(ID).removeWorker(worker, activity);
 			worker.removeActivity(selectProject(ID).findActivityWithName(activity));
 		}
