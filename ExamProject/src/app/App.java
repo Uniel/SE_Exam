@@ -94,10 +94,10 @@ public class App {
 		createWorker(newWorker);
 	}
 	public void assignToActivity(int ID, String activity, String initials) throws OperationNotAllowedException {
-		assign(selectWorker(initials), ID, activity);
+		assign(selectWorker(initials.toUpperCase()), ID, activity);
 	}
 	public String listWorkerActivities(String initials) throws OperationNotAllowedException {
-		List<Activity> activities = selectWorker(initials).getAssignedActivities();
+		List<Activity> activities = selectWorker(initials.toUpperCase()).getAssignedActivities();
 		String str = "Activities found: \n";
 		for(Activity a : activities) {
 			int count = 1;

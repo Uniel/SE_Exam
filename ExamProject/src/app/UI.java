@@ -30,6 +30,7 @@ public class UI {
 		println("1) Enter the project menu");
 		println("2) Manage workers");
 		println("q) Quit");
+		println("At any input promt you can type cancel to cancel");
 	}
 	
 	private char getChar(Scanner sc) {return sc.next().charAt(0);}
@@ -67,6 +68,7 @@ public class UI {
 		println("3) Select/edit project");
 		println("4) Search for a project");
 		println("b) Back");
+		println("At any input promt you can type cancel to cancel");
 	}
 	
 	private void createProject() {
@@ -132,6 +134,7 @@ public class UI {
 		println("8) Edit acitivity");
 		println("D) Delete");
 		println("b) Back");
+		println("At any input promt you can type cancel to cancel");
 	}
 	private void printActivitiesOfProject(int iD) {
 		System.out.println(app.getProjectActivities(iD));
@@ -233,6 +236,7 @@ public class UI {
 		println("7) Show assigned workers");
 		println("D) Delete");
 		println("b) Back");
+		println("At any input promt you can type cancel to cancel");
 	}	
 	private void editActivity(int ID, String ACT, int i) {
 		String input;
@@ -357,6 +361,7 @@ public class UI {
 		println("3) Add Worker");
 		println("4) Select Worker");
 		println("b) Back");
+		println("At any input promt you can type cancel to cancel");
 	}
 	
 	public void listWorkers() {System.out.println(app.listWorkers());}
@@ -421,7 +426,7 @@ public class UI {
 			projectSearch();
 			println("Found what you where looking for? (Y/N).");
 			inp = sc.next().trim();
-			if(inp.equals("Y")) {cont = true;}
+			if(inp.equals("Y")) {cont = false;}
 		}
 		int ID = selectProject();
 		println("Want to list the activities contained in the project? (Y/N)");
