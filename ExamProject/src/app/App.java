@@ -64,9 +64,7 @@ public class App {
 	public String listWorkers() {
 		String str = "Workers found: \n";
 		for(Worker w : workers) {
-			int count = 1;
-			str += count + ") " + w.getInitials() +"\n";
-			count++;
+			str +=  "> " + w.getInitials() +"\n";
 		}
 		return str;
 	}
@@ -88,9 +86,7 @@ public class App {
 		List<Activity> activities = selectWorker(initials.toUpperCase()).getAssignedActivities();
 		String str = "Activities found: \n";
 		for(Activity a : activities) {
-			int count = 1;
-			str += count + ") " + a.getName() +"\n";
-			count++;
+			str += "> " + a.getName() +"\n";
 		}
 		return str;
 	}
@@ -136,9 +132,7 @@ public class App {
 	public String returnWorkerListString(List<Worker> WorkersIN) {
 		String str = "";
 		for (Worker w : WorkersIN) {
-			int count = 1;
-			str += count + ") " + w.getInitials() + "\n";
-			count++;
+			str += "> " + w.getInitials() + "\n";
 		}
 		return str;
 	}
