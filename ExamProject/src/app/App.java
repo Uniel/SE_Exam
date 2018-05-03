@@ -150,6 +150,25 @@ public class App {
 	public void deleteActivityInProject(int ID, String ACT) throws OperationNotAllowedException {
 		findProjectWithID(ID).removeActivity(ACT);
 	}
+	public void setProjectLeader(int ID, String worker) throws OperationNotAllowedException{
+		findProjectWithID(ID).setLeader(selectWorker(worker));
+	}
+	public String returnAvailableWorkers(int ID, String ACT) throws Exception{
+		return returnWorkerListString(findAvailableWorkers(ID,ACT));
+	}
+	public String returnWorkersOfActivity(int ID, String ACT) throws Exception {
+		 return returnWorkerListString(findProjectWithID(ID).findActivityWithName(ACT).listWorkers());
+	}	
+	public String returnWorkerListString(List<Worker> WorkersIN) {
+		String str = "";
+		for (Worker w : WorkersIN) {
+			int count = 1;
+			str += count + ") " + w.getInitials() + "\n";
+			count++;
+		}
+		return str;
+	}
+	
 	
 	/* Business Logic	 */
 	

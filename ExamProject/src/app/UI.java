@@ -145,7 +145,11 @@ public class UI {
 				break;
 			case 4: // Leader
 				println("Who should be the leader?");
-				//app.editProjectName(ID, getString(sc));
+				try {
+					app.setProjectLeader(ID, selectWorker());
+				} catch (OperationNotAllowedException e) {
+					System.out.println(e);
+				}
 				break;
 			case 5: // Start
 				println("In which week, and year does this project start? (type week and year seperated by line breaks.)");
@@ -183,6 +187,8 @@ public class UI {
 			case '3': editActivity(ID, ACT, 3); break;
 			case '4': editActivity(ID, ACT, 4); break;
 			case '5': editActivity(ID, ACT, 5); break;
+			case '6': editActivity(ID, ACT, 6); break;
+			case '7': listWorkers(ID, ACT);break;
 			case 'D': deleteActivity(ID, ACT); return;
 			case 'b': return;
 			}
@@ -195,7 +201,8 @@ public class UI {
 		System.out.println(app.getInfoOfActivity(ID, ACT));
 		println("Edit: 1) Name, 2) Budget Time, 3) Start, 4) End");
 		println("Toggle 5) Full time");
-		println("*6) Assign Worker");
+		println("6) Assign Worker");
+		println("7) Show assigned workers");
 		println("D) Delete");
 		println("b) Back");
 	}	
@@ -219,7 +226,7 @@ public class UI {
 		case 5: // Full time
 			System.out.println("The activity is now " + (app.toggleFullTimeForActOfProj(ID,ACT) == false ? "not" : "") + " a full time activity.");
 		case 6: // Assign worker
-	
+			workerAssignation(ID, ACT); break;
 		}
 	}
 	private String selectActivity(int ID) {
@@ -252,7 +259,38 @@ public class UI {
 			}
 		}
 	}
-	
+	private void workerAssignation(int ID, String act) {
+		println("Do you wish to (1) specify a worker or (2) search for one?\n");
+		int selection = sc.nextInt();
+		switch(selection) {
+			case 2:
+				try {System.out.println(app.returnAvailableWorkers(ID, act));} 
+				catch (Exception e) {System.out.println(e);break;}
+			case 1:
+				try {
+					app.assignToActivity(ID, act, selectWorker());
+					System.out.println("Worker added!");
+				} 
+				catch (Exception e) {System.out.println(e);}
+				break;
+		}
+	}
+	public void assignToActivity(int ID, String act, String initials) {
+		try {
+			app.assignToActivity(ID, act, initials);
+			System.out.println("Worker " + initials + " has been assigned to activity " + act + " in project " + ID);
+		} catch (Exception e) {
+			System.out.println(e);
+			}
+	}
+	private void listWorkers(int ID, String ACT) {
+		println("Workers assigned to this activity is: \n");
+		try {
+			System.out.println(app.returnWorkersOfActivity(ID, ACT));
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 	
 	/*WORKERS*/
 	private void workerMenu() {
