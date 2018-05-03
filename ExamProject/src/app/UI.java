@@ -79,9 +79,6 @@ public class UI {
 	}
 	
 	/*EDIT PROJECT MENU*/
-	
-	
-	/*EDIT PROJECT*/
 	public void selectedProjectMenu() {
 		char choice = 0;
 		int ID = selectProject();
@@ -132,7 +129,6 @@ public class UI {
 	private void printActivitiesOfProject(int iD) {
 		System.out.println(app.getProjectActivities(iD));
 	}
-	
 	private void editProjectInfo(int i, int ID) {
 		switch(i) {
 			case 1: // Name
@@ -158,9 +154,7 @@ public class UI {
 			case 6: // End
 				println("In which week, and year does this project end? (type week and year seperated by line breaks.)");
 				app.editProjectEnd(ID, sc.nextInt(), sc.nextInt());
-				break;
-			
-						
+				break;		
 		}
 	}
 	private void deleteProject(int ID) {
@@ -184,22 +178,49 @@ public class UI {
 			printSelectedActivityMenu(ID, ACT);
 			choice = getChar(sc);
 			switch(choice) {
-			case '1':
-			case 'D': deleteProject(ID); return;
+			case '1': ACT=renameActivity(ID, ACT); break;
+			case '2': editActivity(ID, ACT, 2); break;
+			case '3': editActivity(ID, ACT, 3); break;
+			case '4': editActivity(ID, ACT, 4); break;
+			case '5': editActivity(ID, ACT, 5); break;
+			case 'D': deleteActivity(ID, ACT); return;
 			case 'b': return;
 			}
 			choice = 0;
 		} while (choice == 0);
 	}
 	public void printSelectedActivityMenu(int ID, String ACT) {
-		println("\nSelected Project menu");
+		println("\nSelected activity menu");
 		println("You've selected project " + ACT + ", what now?");
 		System.out.println(app.getInfoOfActivity(ID, ACT));
-		println("Edit: 1) Name, 2) Type, 3) Customer");
-		println("Set new 4) Leader, 5) Start, 6) End");
-		println("7) Edit acitivities");
+		println("Edit: 1) Name, 2) Budget Time, 3) Start, 4) End");
+		println("Toggle 5) Full time");
+		println("*6) Assign Worker");
 		println("D) Delete");
 		println("b) Back");
+	}	
+	private void editActivity(int ID, String ACT, int i) {
+		switch(i) {
+		case 1:
+			break;
+		case 2: // Budget time
+			println("Set budget time, how many hours? (rounded to half hours, seperated by .)");
+			app.setBudgetTimeOfProjectActivity(ID, ACT, sc.nextDouble());
+			println("The activity " + ACT + " now has a budgetet time of " + app.getBudgetTimeOfProjectActivity(ID, ACT));
+			break;
+		case 3: // Start
+			println("In which week, and year does this activity start? (type week and year seperated by line breaks.)");
+			app.editActivityofProjectStart(ID, ACT, sc.nextInt(), sc.nextInt());
+			break;
+		case 4: // End
+			println("In which week, and year does this activity end? (type week and year seperated by line breaks.)");
+			app.editActivityofProjectEnd(ID, ACT, sc.nextInt(), sc.nextInt());
+			break;	
+		case 5: // Full time
+			System.out.println("The activity is now " + (app.toggleFullTimeForActOfProj(ID,ACT) == false ? "not" : "") + " a full time activity.");
+		case 6: // Assign worker
+	
+		}
 	}
 	private String selectActivity(int ID) {
 		println("Which activity?");
@@ -210,7 +231,27 @@ public class UI {
 		} while (ACTchoice.trim().isEmpty());
 		return ACTchoice;
 	}
-	
+	private String renameActivity(int ID, String ACT) {
+		println("What do you want to rename the activity to?");
+		String newName = "";
+		try {
+			newName = app.renameActivityOfProject(ID, ACT, getString(sc));
+			System.out.println(ACT + " renamed to: "+ newName);
+		} catch (OperationNotAllowedException e) {
+			System.out.println(e);
+		}
+		return newName;
+	}
+	private void deleteActivity(int ID, String ACT) {
+		println("You sure?  (Y to confirm)");
+		if(getChar(sc) == 'Y') {
+			try {
+				app.deleteActivityInProject(ID, ACT);
+			} catch (OperationNotAllowedException e) {
+				System.out.println(e);
+			}
+		}
+	}
 	
 	
 	/*WORKERS*/
@@ -221,7 +262,7 @@ public class UI {
 			choice = getChar(sc);
 			switch(choice) {
 				case '1': listWorkers(); break;
-				case '2': printProjects(); break;
+				case '2': ; break;
 				case '3': addWorker(); break;
 				//case '4': removeWorker(); break;
 				case 'b': return;

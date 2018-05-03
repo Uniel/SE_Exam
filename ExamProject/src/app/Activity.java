@@ -12,7 +12,7 @@ public class Activity {
 	private boolean fulltime = false;
 	private Calendar start;
 	private Calendar end;
-	private int budgetTime = -1;
+	private double budgetTime = -1;
 	
 	public Activity(String newName) {
 		this.name = newName;
@@ -25,6 +25,7 @@ public class Activity {
 		str += "\nBudget Time: " + (this.budgetTime != -1 ? this.budgetTime : "");
 		str += "\nStart: " + (this.start != null ? "Week " + this.start.get(Calendar.WEEK_OF_YEAR) + " Year: " + this.start.get(Calendar.YEAR) : "");
 		str += "\nEnd: " + (this.end != null ? "Week " + this.end.get(Calendar.WEEK_OF_YEAR) + " Year:" + this.end.get(Calendar.YEAR) : "");
+		str += "\nFull Time: " + (this.fulltime == true ? "true" : "false");
 		return str;
 	}
 	
@@ -78,12 +79,22 @@ public class Activity {
 		return end;
 	}
 	
-	public int getBudgetTime() {
+	public double getBudgetTime() {
 		return budgetTime;
 	}
 	
-	public void setBudgetTime(int hours) {
-		budgetTime = hours;
+	public void setBudgetTime(double hours) {
+		double time;
+		if(hours%1 < 0.5) {
+			time = ((int)hours/1);
+		} else if (hours%1 > 0.5) {
+			time = ((int)hours/1) + 0.5;			
+		} else if (hours%1 == 0.5) {
+			time = hours;
+		} else {
+			time = 0;
+		}
+		budgetTime = time;
 	}
 	
 	public boolean overlaps(Activity activity) {
