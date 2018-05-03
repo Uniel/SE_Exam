@@ -30,7 +30,7 @@ public class App {
 	public void editProjectType(int ID, String type) {
 		try {
 			findProjectWithID(ID).setType(type);
-		} catch (Exception e) {
+		} catch (OperationNotAllowedException e) {
 			System.out.println(e);
 		}
 	}
@@ -38,14 +38,14 @@ public class App {
 	public void editProjectStart(int ID, int week, int year) {
 		try {
 			findProjectWithID(ID).setStart(week, year);
-		} catch (Exception e) {
+		} catch (OperationNotAllowedException e) {
 			System.out.println(e);
 		}
 	}
 	public void editProjectEnd(int ID, int week, int year) {
 		try {
 			findProjectWithID(ID).setEnd(week, year);
-		} catch (Exception e) {
+		} catch (OperationNotAllowedException e) {
 			System.out.println(e);
 		}
 	}
@@ -61,12 +61,6 @@ public class App {
 		}
 	}
 	public void createActivityInProject(int ID, String name) throws OperationNotAllowedException{
-		if(findProjectWithID(ID).activityExists(name)) {
-			System.out.println("Activity "+ name+" exists!");
-		} else if (!findProjectWithID(ID).activityExists(name)) {
-			System.out.println("Activity "+ name+" does not exist");
-		}
-		
 		findProjectWithID(ID).addActivity(name);
 	}
 	public String searchForProjects(String name) throws OperationNotAllowedException{
@@ -99,10 +93,10 @@ public class App {
 		Worker newWorker = new Worker(initials);
 		createWorker(newWorker);
 	}
-	public void assignToActivity(int ID, String activity, String initials) throws Exception {
+	public void assignToActivity(int ID, String activity, String initials) throws OperationNotAllowedException {
 		assign(selectWorker(initials), ID, activity);
 	}
-	public String listWorkerActivities(String initials) throws Exception {
+	public String listWorkerActivities(String initials) throws OperationNotAllowedException {
 		List<Activity> activities = selectWorker(initials).getAssignedActivities();
 		String str = "Activities found: \n";
 		for(Activity a : activities) {
@@ -112,7 +106,7 @@ public class App {
 		}
 		return str;
 	}
-	public void vacationAssign(String initials, int startWeek, int endWeek, int startYear, int endYear) throws Exception {
+	public void vacationAssign(String initials, int startWeek, int endWeek, int startYear, int endYear) throws OperationNotAllowedException {
 		assignVacation(selectWorker(initials), startWeek, endWeek, startYear, endYear);
 	}
 	public int createNewProject() {
@@ -132,14 +126,14 @@ public class App {
 	public void editActivityofProjectStart(int ID, String ACT, int week, int year) {
 		try {
 			findProjectWithID(ID).findActivityWithName(ACT).setStart(week, year);
-		} catch (Exception e) {
+		} catch (OperationNotAllowedException e) {
 			System.out.println(e);
 		}
 	}
 	public void editActivityofProjectEnd(int ID, String ACT, int week, int year) {
 		try {
 			findProjectWithID(ID).findActivityWithName(ACT).setEnd(week, year);
-		} catch (Exception e) {
+		} catch (OperationNotAllowedException e) {
 			System.out.println(e);
 		}
 	}
@@ -153,10 +147,10 @@ public class App {
 	public void setProjectLeader(int ID, String worker) throws OperationNotAllowedException{
 		findProjectWithID(ID).setLeader(selectWorker(worker));
 	}
-	public String returnAvailableWorkers(int ID, String ACT) throws Exception{
+	public String returnAvailableWorkers(int ID, String ACT) throws OperationNotAllowedException{
 		return returnWorkerListString(findAvailableWorkers(ID,ACT));
 	}
-	public String returnWorkersOfActivity(int ID, String ACT) throws Exception {
+	public String returnWorkersOfActivity(int ID, String ACT) throws OperationNotAllowedException {
 		 return returnWorkerListString(findProjectWithID(ID).findActivityWithName(ACT).listWorkers());
 	}	
 	public String returnWorkerListString(List<Worker> WorkersIN) {
@@ -252,7 +246,7 @@ public class App {
 	
 	/*Worker functions*/
 	
-	public List<Worker> findAvailableWorkers(int ID, String activity) throws Exception {
+	public List<Worker> findAvailableWorkers(int ID, String activity) throws OperationNotAllowedException {
 		if (ID == 0) {
 			throw new OperationNotAllowedException("You have to specify a project ID");
 		} else if (activity.equals("")) {
@@ -294,14 +288,14 @@ public class App {
 	
 	private boolean workerExists(String initials) {
 		for(Worker w : workers) {
-			if(w.getInitials().equals(initials) ) {
+			if(w.getInitials().equals(initials.toUpperCase()) ) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public List<Worker> assignedWorkers(int ID, String activity) throws Exception {
+	public List<Worker> assignedWorkers(int ID, String activity) throws OperationNotAllowedException {
 		if (ID == 0) {
 			throw new OperationNotAllowedException("You have to specify a project ID");
 		} else if (activity.equals("")) {
@@ -315,7 +309,7 @@ public class App {
 		}
 	}
 	
-	public void assign(Worker worker, int ID, String activity) throws Exception {
+	public void assign(Worker worker, int ID, String activity) throws OperationNotAllowedException {
 		if (!workers.contains(worker)) {
 			throw new OperationNotAllowedException("This worker does not exist");
 		} else if (!selectProject(ID).activityExists(activity)) {
@@ -330,7 +324,7 @@ public class App {
 		}
 	}
 	
-	public void assignVacation(Worker worker, int startWeek, int endWeek, int startYear, int endYear) throws Exception {
+	public void assignVacation(Worker worker, int startWeek, int endWeek, int startYear, int endYear) throws OperationNotAllowedException {
 		int ID = ((startYear%100) * 10000) + (0%10000);
 		if (!workers.contains(worker)) {
 			throw new OperationNotAllowedException("This worker does not exist");
@@ -347,7 +341,7 @@ public class App {
 		}
 	}
 	
-	public void removeFromActivity(Worker worker, int ID, String activity) throws Exception {
+	public void removeFromActivity(Worker worker, int ID, String activity) throws OperationNotAllowedException {
 		if (!workers.contains(worker)) {
 			throw new OperationNotAllowedException("This worker does not exist");
 		} else if (!selectProject(ID).activityExists(activity)) {

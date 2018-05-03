@@ -4,10 +4,19 @@ import java.util.Scanner;
 
 public class UI {
 
+	public static final String ANSI_RED = "\u001B[31m";
 	private App app;
 	Scanner sc = new Scanner(System.in);
 	public UI(App application) {this.app = application;}
 	
+	private String cancelCheck(String input) {
+		if(input.equals("cancel")) {
+			return "cancel";
+		}
+		return input;
+	}
+	
+	// cancelCheck.equals(cancel) ? return : ;
 	
 	/*Main Menu*/
 	public void run() {
@@ -55,7 +64,7 @@ public class UI {
 	private void projectSearch() {
 		println("Type a seach term, can be entirety or parts of the project name or ID");
 		try {System.out.println(app.searchForProjects(sc.next()));} 
-		catch (OperationNotAllowedException e) {System.out.println(e);}
+		catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 	}
 	public void printProjectMenu() {
 		println("\nProject menu");
@@ -103,15 +112,15 @@ public class UI {
 	private void createActivity(int iD) {
 		println("What should the activity be named?");
 		try {app.createActivityInProject(iD, sc.next());} 
-		catch (OperationNotAllowedException e) {System.out.println(e);}	
+		catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}	
 	}
 	private int selectProject() {
 		println("Which project ID?");
-		int IDchoice = 0;
+		int IDchoice = -1;
 		do {
 			try {IDchoice = app.getIdOfProject(sc.nextInt());}
-			catch (OperationNotAllowedException e) {System.out.println(e);}
-		} while (IDchoice <= 0);
+			catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
+		} while (IDchoice < 0);
 		return IDchoice;
 	}
 	public void printSelectedProjectMenu(int ID) {
@@ -148,7 +157,7 @@ public class UI {
 				try {
 					app.setProjectLeader(ID, selectWorker());
 				} catch (OperationNotAllowedException e) {
-					System.out.println(e);
+					System.out.println(e.getMessage());
 				}
 				break;
 			case 5: // Start
@@ -167,7 +176,7 @@ public class UI {
 			try {
 				app.removeProject(ID);
 			} catch (OperationNotAllowedException e) {
-				System.out.println(e);
+				System.out.println(e.getMessage());
 			}
 		}
 	}
@@ -234,7 +243,7 @@ public class UI {
 		String ACTchoice = "";
 		do {
 			try {ACTchoice = app.getActivtyOfProject(ID, sc.next());} 
-			catch (OperationNotAllowedException e) {System.out.println(e);}
+			catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 		} while (ACTchoice.trim().isEmpty());
 		return ACTchoice;
 	}
@@ -245,7 +254,7 @@ public class UI {
 			newName = app.renameActivityOfProject(ID, ACT, getString(sc));
 			System.out.println(ACT + " renamed to: "+ newName);
 		} catch (OperationNotAllowedException e) {
-			System.out.println(e);
+			System.out.println(e.getMessage());
 		}
 		return newName;
 	}
@@ -255,7 +264,7 @@ public class UI {
 			try {
 				app.deleteActivityInProject(ID, ACT);
 			} catch (OperationNotAllowedException e) {
-				System.out.println(e);
+				System.out.println(e.getMessage());
 			}
 		}
 	}
@@ -265,13 +274,13 @@ public class UI {
 		switch(selection) {
 			case 2:
 				try {System.out.println(app.returnAvailableWorkers(ID, act));} 
-				catch (Exception e) {System.out.println(e);break;}
+				catch (OperationNotAllowedException e) {System.out.println(e.getMessage());break;}
 			case 1:
 				try {
 					app.assignToActivity(ID, act, selectWorker());
 					System.out.println("Worker added!");
 				} 
-				catch (Exception e) {System.out.println(e);}
+				catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 				break;
 		}
 	}
@@ -279,16 +288,16 @@ public class UI {
 		try {
 			app.assignToActivity(ID, act, initials);
 			System.out.println("Worker " + initials + " has been assigned to activity " + act + " in project " + ID);
-		} catch (Exception e) {
-			System.out.println(e);
+		} catch (OperationNotAllowedException e) {
+			System.out.println(e.getMessage());
 			}
 	}
 	private void listWorkers(int ID, String ACT) {
 		println("Workers assigned to this activity is: \n");
 		try {
 			System.out.println(app.returnWorkersOfActivity(ID, ACT));
-		} catch (Exception e) {
-			System.out.println(e);
+		} catch (OperationNotAllowedException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -321,7 +330,7 @@ public class UI {
 	public void addWorker() {
 		println("What are the initials for the new worker? (max 4)");
 		try {app.addWorker(sc.next());} 
-		catch (OperationNotAllowedException e) {System.out.println(e);}
+		catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 	}
 	
 	/* Edit Worker */
@@ -358,7 +367,7 @@ public class UI {
 		String workerChoice = null;
 		do {
 			try {workerChoice = app.findWorker(sc.next());}
-			catch (OperationNotAllowedException e) {System.out.println(e);}
+			catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 		} while (workerChoice == null);
 		return workerChoice;
 	}
@@ -369,16 +378,16 @@ public class UI {
 		try {
 			app.assignToActivity(ID, act, initials);
 			System.out.println("Worker " + initials + " has been assigned to activity " + act + " in project " + ID);
-		} catch (Exception e) {
-			System.out.println(e);
+		} catch (OperationNotAllowedException e) {
+			System.out.println(e.getMessage());
 			}
 	}
 	
 	public void seeActivities(String initials) {
 		try {
 		System.out.println(app.listWorkerActivities(initials));
-		} catch (Exception e) {
-			System.out.println(e);
+		} catch (OperationNotAllowedException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -389,8 +398,8 @@ public class UI {
 		println("In which week, and year does the vacation end? (type week and year seperated by line breaks.)");
 		try {
 			app.vacationAssign(initials, startWeek, sc.nextInt(), startYear, sc.nextInt());
-		} catch (Exception e) {
-			System.out.println(e);
+		} catch (OperationNotAllowedException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	

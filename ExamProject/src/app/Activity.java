@@ -29,7 +29,7 @@ public class Activity {
 		return str;
 	}
 	
-	public List<Worker> listWorkers() throws Exception {
+	public List<Worker> listWorkers() throws OperationNotAllowedException {
 		return assignedWorkers;
 	}
 	
@@ -49,7 +49,7 @@ public class Activity {
 		fulltime = f;
 	}
 	
-	public void setStart(int week, int year) throws Exception {
+	public void setStart(int week, int year) throws OperationNotAllowedException {
 		Calendar calendar = new GregorianCalendar();
 		calendar.set(Calendar.WEEK_OF_YEAR, week);
 		calendar.set(Calendar.YEAR, year);
@@ -64,7 +64,7 @@ public class Activity {
 		return start;
 	}
 	
-	public void setEnd(int week, int year) throws Exception {
+	public void setEnd(int week, int year) throws OperationNotAllowedException {
 		Calendar calendar = new GregorianCalendar();
 		calendar.set(Calendar.WEEK_OF_YEAR, week);
 		calendar.set(Calendar.YEAR, year);
@@ -105,7 +105,7 @@ public class Activity {
 		}
 	}
 	
-	public void assignWorker(Worker worker) throws Exception {
+	public void assignWorker(Worker worker) throws OperationNotAllowedException {
 		//This method should NOT be called directly!
 		//Use the assign method in App instead.
 		if (worker.isAvailable(this)) {

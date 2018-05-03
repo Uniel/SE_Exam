@@ -29,7 +29,7 @@ public class Worker {
 		return assignedActivities;
 	}
 	
-	public void addActivity(Activity activity) throws Exception {
+	public void addActivity(Activity activity) throws OperationNotAllowedException {
 		//This method should NOT be called directly unless it is for testing purposes!
 		//Use the method assign in App instead.
 		if (activity.getStart() == null || activity.getEnd() == null) {

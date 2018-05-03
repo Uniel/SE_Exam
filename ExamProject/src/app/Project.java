@@ -63,7 +63,7 @@ public class Project {
 		return type;
 	}
 	
-	public void setType(String t) throws Exception{
+	public void setType(String t) throws OperationNotAllowedException{
 		if (t.toLowerCase().equals("internal")) {
 			type = "Internal";
 		}
@@ -83,7 +83,7 @@ public class Project {
 		customer = c;
 	}
 	
-	public void setStart(int week, int year) throws Exception {
+	public void setStart(int week, int year) throws OperationNotAllowedException {
 		Calendar calendar = new GregorianCalendar();
 		calendar.set(Calendar.WEEK_OF_YEAR, week);
 		calendar.set(Calendar.YEAR, year);
@@ -108,7 +108,7 @@ public class Project {
 		return start;
 	}
 	
-	public void setEnd(int week, int year) throws Exception {
+	public void setEnd(int week, int year) throws OperationNotAllowedException {
 		Calendar calendar = new GregorianCalendar();
 		calendar.set(Calendar.WEEK_OF_YEAR, week);
 		calendar.set(Calendar.YEAR, year);
@@ -150,7 +150,7 @@ public class Project {
 		}
 	}
 	
-	public void setActivityStart(String activity, int week, int year) throws Exception {
+	public void setActivityStart(String activity, int week, int year) throws OperationNotAllowedException {
 		if(!activityExists(activity)){
 			throw new OperationNotAllowedException("That activity does not exist");
 		} else {
@@ -158,7 +158,7 @@ public class Project {
 		}
 	}
 	
-	public void setActivityEnd(String activity, int week, int year) throws Exception {
+	public void setActivityEnd(String activity, int week, int year) throws OperationNotAllowedException {
 		if(!activityExists(activity)){
 			throw new OperationNotAllowedException("That activity does not exist");
 		} else {
