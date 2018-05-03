@@ -124,6 +124,7 @@ public class UI {
 				println("Write a number please.");
 			} while(input.trim().isEmpty()) ;
 			try {IDchoice = app.getIdOfProject(Integer.parseInt(input));}
+			catch (NumberFormatException e) {System.out.println("Please write numbers");}
 			catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 		} while (IDchoice < 0);
 		return IDchoice;
@@ -290,8 +291,6 @@ public class UI {
 			if (cancelCheck(input)) {return;}
 			input2 = sc.next();
 			if (cancelCheck(input2)) {return;}
-			input = input.replaceAll("[^0-9.]", "");
-			input = input.replace(".", "");
 			try {
 				app.editActivityofProjectEnd(ID, ACT, Integer.parseInt(input), Integer.parseInt(input2));
 			} catch (NumberFormatException e) {
@@ -498,7 +497,9 @@ public class UI {
 		if (cancelCheck(input4)) {return;}
 		try {
 			app.vacationAssign(initials, Integer.parseInt(input), Integer.parseInt(input3), Integer.parseInt(input2), Integer.parseInt(input4));
-		} catch (Exception e) {
+		} catch (NumberFormatException e) {
+			System.out.println("Please write numbers");
+		} catch (OperationNotAllowedException e) {
 			System.out.println(e.getMessage());
 		}
 	}
