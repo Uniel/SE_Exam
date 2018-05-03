@@ -9,15 +9,6 @@ public class UI {
 	Scanner sc = new Scanner(System.in);
 	public UI(App application) {this.app = application;}
 	
-	private String cancelCheck(String input) {
-		if(input.equals("cancel")) {
-			return "cancel";
-		}
-		return input;
-	}
-	
-	// cancelCheck.equals(cancel) ? return : ;
-	
 	/*Main Menu*/
 	public void run() {
 		char choice = 0;
@@ -27,7 +18,7 @@ public class UI {
 			switch(choice) {
 				case '1': projectMenu(); break;
 				case '2': workerMenu(); break;
-				case 'q': println("K. Bye!"); return;
+				case 'q': println("K. Thanks Bye!"); return;
 			}
 			choice = 0;
 		} while (choice == 0);
@@ -42,8 +33,8 @@ public class UI {
 	}
 	
 	private char getChar(Scanner sc) {return sc.next().charAt(0);}
-	private String getString(Scanner sc) {return sc.next();}
 	private void println(String str) {System.out.println(str);}
+	private boolean cancelCheck(String str) {return str.trim().toLowerCase().equals("cancel");}
 	
 	/*PROJECT MENU FUNCTIONS*/
 	public void projectMenu() {
@@ -63,7 +54,9 @@ public class UI {
 	}
 	private void projectSearch() {
 		println("Type a seach term, can be entirety or parts of the project name or ID");
-		try {System.out.println(app.searchForProjects(sc.next()));} 
+		String input = sc.next();
+		if (cancelCheck(input)) {return;}
+		try {System.out.println(app.searchForProjects(input));} 
 		catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 	}
 	public void printProjectMenu() {
@@ -91,6 +84,7 @@ public class UI {
 	public void selectedProjectMenu() {
 		char choice = 0;
 		int ID = selectProject();
+		if (ID == -1) {return;}
 		do {
 			printSelectedProjectMenu(ID);
 			choice = getChar(sc);
@@ -111,14 +105,18 @@ public class UI {
 	}
 	private void createActivity(int iD) {
 		println("What should the activity be named?");
-		try {app.createActivityInProject(iD, sc.next());} 
-		catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}	
+		String input = sc.next();
+		if (cancelCheck(input)) {return;}
+		try {app.createActivityInProject(iD, input);} 
+		catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 	}
 	private int selectProject() {
 		println("Which project ID?");
+		String input = sc.next();
+		if (cancelCheck(input)) {return -1;}
 		int IDchoice = -1;
 		do {
-			try {IDchoice = app.getIdOfProject(sc.nextInt());}
+			try {IDchoice = app.getIdOfProject(Integer.parseInt(input));}
 			catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 		} while (IDchoice < 0);
 		return IDchoice;
@@ -139,18 +137,26 @@ public class UI {
 		System.out.println(app.getProjectActivities(iD));
 	}
 	private void editProjectInfo(int i, int ID) {
+		String input;
+		String input2;
 		switch(i) {
 			case 1: // Name
 				println("What do you want to name the project?");
-				app.editProjectName(ID, getString(sc));
+				input = sc.next();
+				if (cancelCheck(input)) {return;}
+				app.editProjectName(ID, input);
 				break;
 			case 2: // Type
 				println("Which type should it have? (internal / external)");
-				app.editProjectType(ID, getString(sc));
+				input = sc.next();
+				if (cancelCheck(input)) {return;}
+				app.editProjectType(ID, input);
 				break;
 			case 3: // Customer
 				println("Which customer does this project belong to?");
-				app.editProjectCustomer(ID, getString(sc));
+				input = sc.next();
+				if (cancelCheck(input)) {return;}
+				app.editProjectCustomer(ID, input);
 				break;
 			case 4: // Leader
 				println("Who should be the leader?");
@@ -162,12 +168,20 @@ public class UI {
 				break;
 			case 5: // Start
 				println("In which week, and year does this project start? (type week and year seperated by line breaks.)");
-				app.editProjectStart(ID, sc.nextInt(), sc.nextInt());
+				input = sc.next();
+				if (cancelCheck(input)) {return;}
+				input2 = sc.next();
+				if (cancelCheck(input2)) {return;}
+				app.editProjectStart(ID, Integer.parseInt(input), Integer.parseInt(input2));
 				break;
 			case 6: // End
 				println("In which week, and year does this project end? (type week and year seperated by line breaks.)");
-				app.editProjectEnd(ID, sc.nextInt(), sc.nextInt());
-				break;		
+				input = sc.next();
+				if (cancelCheck(input)) {return;}
+				input2 = sc.next();
+				if (cancelCheck(input2)) {return;}
+				app.editProjectEnd(ID, Integer.parseInt(input), Integer.parseInt(input2));
+				break;
 		}
 	}
 	private void deleteProject(int ID) {
@@ -187,11 +201,16 @@ public class UI {
 		char choice = 0;
 		int ID = id;
 		String ACT = selectActivity(ID);
+		String newACT;
+		if (cancelCheck(ACT)) {return;}
 		do {
 			printSelectedActivityMenu(ID, ACT);
 			choice = getChar(sc);
 			switch(choice) {
-			case '1': ACT=renameActivity(ID, ACT); break;
+			case '1': 
+				newACT=renameActivity(ID, ACT);
+				if (!cancelCheck(newACT)) {ACT = newACT;}
+				break;
 			case '2': editActivity(ID, ACT, 2); break;
 			case '3': editActivity(ID, ACT, 3); break;
 			case '4': editActivity(ID, ACT, 4); break;
@@ -216,22 +235,32 @@ public class UI {
 		println("b) Back");
 	}	
 	private void editActivity(int ID, String ACT, int i) {
+		String input;
+		String input2;
 		switch(i) {
-		case 1:
-			break;
 		case 2: // Budget time
 			println("Set budget time, how many hours? (rounded to half hours, seperated by .)");
-			app.setBudgetTimeOfProjectActivity(ID, ACT, sc.nextDouble());
+			input = sc.next();
+			if (cancelCheck(input)) {return;}
+			app.setBudgetTimeOfProjectActivity(ID, ACT, Double.parseDouble(input));
 			println("The activity " + ACT + " now has a budgetet time of " + app.getBudgetTimeOfProjectActivity(ID, ACT));
 			break;
 		case 3: // Start
 			println("In which week, and year does this activity start? (type week and year seperated by line breaks.)");
-			app.editActivityofProjectStart(ID, ACT, sc.nextInt(), sc.nextInt());
+			input = sc.next();
+			if (cancelCheck(input)) {return;}
+			input2 = sc.next();
+			if (cancelCheck(input2)) {return;}
+			app.editActivityofProjectStart(ID, ACT, Integer.parseInt(input), Integer.parseInt(input2));
 			break;
 		case 4: // End
 			println("In which week, and year does this activity end? (type week and year seperated by line breaks.)");
-			app.editActivityofProjectEnd(ID, ACT, sc.nextInt(), sc.nextInt());
-			break;	
+			input = sc.next();
+			if (cancelCheck(input)) {return;}
+			input2 = sc.next();
+			if (cancelCheck(input2)) {return;}
+			app.editActivityofProjectEnd(ID, ACT, Integer.parseInt(input), Integer.parseInt(input2));
+			break;
 		case 5: // Full time
 			System.out.println("The activity is now " + (app.toggleFullTimeForActOfProj(ID,ACT) == false ? "not" : "") + " a full time activity.");
 		case 6: // Assign worker
@@ -242,7 +271,9 @@ public class UI {
 		println("Which activity?");
 		String ACTchoice = "";
 		do {
-			try {ACTchoice = app.getActivtyOfProject(ID, sc.next());} 
+			String input = sc.next();
+			if (cancelCheck(input)) {return "cancel";}
+			try {ACTchoice = app.getActivtyOfProject(ID, input);} 
 			catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 		} while (ACTchoice.trim().isEmpty());
 		return ACTchoice;
@@ -250,8 +281,10 @@ public class UI {
 	private String renameActivity(int ID, String ACT) {
 		println("What do you want to rename the activity to?");
 		String newName = "";
+		String input = sc.next();
+		if (cancelCheck(input)) {return "cancel";}
 		try {
-			newName = app.renameActivityOfProject(ID, ACT, getString(sc));
+			newName = app.renameActivityOfProject(ID, ACT, input);
 			System.out.println(ACT + " renamed to: "+ newName);
 		} catch (OperationNotAllowedException e) {
 			System.out.println(e.getMessage());
@@ -329,7 +362,9 @@ public class UI {
 	public void listWorkers() {System.out.println(app.listWorkers());}
 	public void addWorker() {
 		println("What are the initials for the new worker? (max 4)");
-		try {app.addWorker(sc.next());} 
+		String input = sc.next();
+		if (cancelCheck(input)) {return;}
+		try {app.addWorker(input);} 
 		catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 	}
 	
@@ -338,6 +373,7 @@ public class UI {
 	public void selectedWorkerMenu() {
 		char choice = 0;
 		String initials = selectWorker();
+		if (cancelCheck(initials)) {return;}
 		do {
 			printSelectedWorkerMenu(initials);
 			choice = getChar(sc);
@@ -366,7 +402,9 @@ public class UI {
 		println("Worker initials?");
 		String workerChoice = null;
 		do {
-			try {workerChoice = app.findWorker(sc.next());}
+			String input = sc.next();
+			if (cancelCheck(input)) {return "cancel";}
+			try {workerChoice = app.findWorker(input);}
 			catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 		} while (workerChoice == null);
 		return workerChoice;
@@ -409,12 +447,18 @@ public class UI {
 	
 	public void assignVacation(String initials) {
 		println("In which week, and year does the vacation start? (type week and year seperated by line breaks.)");
-		int startWeek = sc.nextInt();
-		int startYear = sc.nextInt();
+		String input = sc.next();
+		if (cancelCheck(input)) {return;}
+		String input2 = sc.next();
+		if (cancelCheck(input2)) {return;}
 		println("In which week, and year does the vacation end? (type week and year seperated by line breaks.)");
+		String input3 = sc.next();
+		if (cancelCheck(input3)) {return;}
+		String input4 = sc.next();
+		if (cancelCheck(input4)) {return;}
 		try {
-			app.vacationAssign(initials, startWeek, sc.nextInt(), startYear, sc.nextInt());
-		} catch (OperationNotAllowedException e) {
+			app.vacationAssign(initials, Integer.parseInt(input), Integer.parseInt(input3), Integer.parseInt(input2), Integer.parseInt(input4));
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
