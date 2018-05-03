@@ -92,7 +92,10 @@ public class App {
 		Worker newWorker = new Worker(initials);
 		createWorker(newWorker);
 	}
-	
+	public int createNewProject() {
+		createProject();
+		return lastIdGenerated();
+	}
 	/*
 	 Business Logic
 	 */

@@ -195,7 +195,7 @@ public class Project {
 	public Activity findActivityWithName(String name) {
 		if(activities.isEmpty()) {return null;}
 		for(Activity a : activities) {
-			if(a.getName() == name) {return activities.get(activities.indexOf(a));}
+			if(a.getName().trim().equals(name.trim())) {return activities.get(activities.indexOf(a));}
 		}
 		return null;
 	}
