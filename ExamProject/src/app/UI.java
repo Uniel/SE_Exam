@@ -446,7 +446,7 @@ public class UI {
 			try {workerChoice = app.findWorker(input);}
 			catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 		} while (workerChoice == null);
-		return workerChoice;
+		return workerChoice.toUpperCase();
 	}
 	
 	public void assignToActivity(String initials) {
