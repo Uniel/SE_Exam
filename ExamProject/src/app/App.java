@@ -349,7 +349,8 @@ public class App {
 		} else if (!selectProject(ID).findActivityWithName(activity).listWorkers().contains(worker)) {
 			throw new OperationNotAllowedException("This worker is not assigned to that activity");
 		} else {
-			selectProject(ID).findActivityWithName(activity).removeWorker(worker);
+			//selectProject(ID).findActivityWithName(activity).removeWorker(worker);
+			selectProject(ID).removeWorker(worker, activity);
 			worker.removeActivity(selectProject(ID).findActivityWithName(activity));
 		}
 	}

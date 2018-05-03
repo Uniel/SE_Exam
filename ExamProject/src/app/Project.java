@@ -227,7 +227,8 @@ public class Project {
 	public void assignedWorkers(Activity activity) {
 	}
 	
-	public void removeWorker(Worker worker, Activity activity) {
+	public void removeWorker(Worker worker, String activity) {
+		findActivityWithName(activity).removeWorker(worker);
 	}
 	
 	public void findAvailableWorkers(Activity activity) {
