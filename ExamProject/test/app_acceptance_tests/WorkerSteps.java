@@ -114,7 +114,7 @@ public class WorkerSteps {
 	@When("^I search for assigned workers of the activity \"([^\"]*)\" in the project with ID (\\d+)$")
 	public void iSearchForAssignedWorkersOfTheActivityInTheProjectWithID(String activity, int ID) throws Exception {
 	    try {
-	    	workers = app.assignedWorkers(ID, activity);
+	    	workers = app.getAssignedWorkers(ID, activity);
 	    } catch (Exception e) {
 	    	errorMessage.setErrorMessage(e.getMessage());
 	    }
@@ -142,7 +142,7 @@ public class WorkerSteps {
 	public void iSearchForAssignedWorkersOfTheActivityWithoutSpecifyingProjectID(String activity) throws Exception {
 		try {
 			int ID = 0;
-	    	workers = app.assignedWorkers(ID, activity);
+	    	workers = app.getAssignedWorkers(ID, activity);
 	    } catch (Exception e) {
 	    	errorMessage.setErrorMessage(e.getMessage());
 	    }

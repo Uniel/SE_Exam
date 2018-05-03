@@ -86,7 +86,7 @@ public class App {
 		List<Activity> activities = selectWorker(initials.toUpperCase()).getAssignedActivities();
 		String str = "Activities found: \n";
 		for(Activity a : activities) {
-			str += "> " + a.getName() +"\n";
+			str += "> " + a.getName() + " in project " + a.getParent() + "\n";
 		}
 		return str;
 	}
@@ -136,7 +136,9 @@ public class App {
 		}
 		return str;
 	}
-	
+	public void deleteWorker(String initials) throws OperationNotAllowedException {
+		deleteWorker(selectWorker(initials));
+	}
 	
 	/* Business Logic	 */
 	
@@ -267,7 +269,7 @@ public class App {
 		return false;
 	}
 	
-	public List<Worker> assignedWorkers(int ID, String activity) throws OperationNotAllowedException {
+	public List<Worker> getAssignedWorkers(int ID, String activity) throws OperationNotAllowedException {
 		if (ID == 0) {
 			throw new OperationNotAllowedException("You have to specify a project ID");
 		} else if (activity.equals("")) {
@@ -349,7 +351,7 @@ public class App {
 		//Unfinished
 	}
 	
-	public void deleteWorker(Worker worker) throws Exception{
+	public void deleteWorker(Worker worker) throws OperationNotAllowedException{
 		if (!workers.contains(worker)) {
 			throw new OperationNotAllowedException("This worker does not exist");
 		}

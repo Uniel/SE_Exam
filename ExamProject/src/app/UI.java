@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class UI {
 
-	public static final String ANSI_RED = "\u001B[31m";
 	private App app;
 	Scanner sc = new Scanner(System.in);
 	public UI(App application) {this.app = application;}
@@ -340,7 +339,7 @@ public class UI {
 		}
 	}
 	private void workerAssignation(int ID, String act) {
-		println("Do you wish to (1) specify a worker or (2) search for one?\n");
+		println("Do you wish to (1) specify a worker or (2) see a list of available workers?\n");
 		int selection = sc.nextInt();
 		switch(selection) {
 			case 2:
@@ -380,9 +379,8 @@ public class UI {
 			choice = getChar(sc);
 			switch(choice) {
 				case '1': listWorkers(); break;
-				case '2': ; break;
-				case '3': addWorker(); break;
-				case '4': selectedWorkerMenu(); break;
+				case '2': addWorker(); break;
+				case '3': selectedWorkerMenu(); break;
 				case 'b': return;
 			}
 			choice = 0;
@@ -391,9 +389,8 @@ public class UI {
 	public void printWorkerMenu() {
 		println("Manage your workers, what now?");
 		println("1) List Workers");
-		println("2) Search through workers");
-		println("3) Add Worker");
-		println("4) Select Worker");
+		println("2) Add Worker");
+		println("3) Select Worker");
 		println("b) Back");
 		println("At any input promt you can type cancel to cancel");
 	}
@@ -420,7 +417,7 @@ public class UI {
 			case '1': assignToActivity(initials); break;
 			case '2': seeActivities(initials); break;
 			case '3': assignVacation(initials); break;
-			//case 'D': deleteWorker(initials); return;
+			case 'D': deleteWorker(initials); return;
 			case 'b': return;
 			}
 			choice = 0;
@@ -433,7 +430,7 @@ public class UI {
 		println("1) Assign to activity");
 		println("2) See assigned activities");
 		println("3) Assign vacation");
-		println("*D) Delete");
+		println("D) Delete");
 		println("b) Back");
 	}
 	
@@ -444,7 +441,9 @@ public class UI {
 			String input = sc.next();
 			if (cancelCheck(input)) {return "cancel";}
 			try {workerChoice = app.findWorker(input);}
-			catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
+			catch (OperationNotAllowedException e) {
+				System.out.println(e.getMessage());
+				return "cancel";}
 		} while (workerChoice == null);
 		return workerChoice.toUpperCase();
 	}
@@ -504,7 +503,15 @@ public class UI {
 		}
 	}
 	
-	//public void deleteWorker(String initials) {
-		
-	//}
+	public void deleteWorker(String initials) {
+		println("You sure?  (Y to confirm)");
+		if(getChar(sc) == 'Y') {
+			try {
+				app.deleteWorker(initials);
+			} catch (OperationNotAllowedException e) {
+				System.out.println(e.getMessage());
+			}
+			System.out.println("The worker " + initials + " has been removed");
+		}
+	}
 }

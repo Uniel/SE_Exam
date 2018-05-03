@@ -4,6 +4,7 @@ Feature: Delete Workers
 
 Scenario: User deletes a worker
     Given I have the worker "DANK"
+    And I add the worker "DANK"
 	When I delete the worker "DANK"
 	Then the worker "DANK" does not exist
 	
