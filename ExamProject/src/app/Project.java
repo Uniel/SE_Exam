@@ -240,9 +240,7 @@ public class Project {
 	public String getActivityList() {
 		String str = "";
 		for(Activity a : activities) {
-			int c = 1;
-			str += c + ") " + a.getName() + "\n";
-			c++;
+			str += "> " + a.getName() + "\n";
 		}
 		return str;
 	}

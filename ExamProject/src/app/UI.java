@@ -120,7 +120,6 @@ public class UI {
 				input = sc.next();
 				if (cancelCheck(input)) {return -1;}
 				input = input.replaceAll("[^0-9]", "");
-				println("Write a number please.");
 			} while(input.trim().isEmpty()) ;
 			try {IDchoice = app.getIdOfProject(Integer.parseInt(input));}
 			catch (NumberFormatException e) {System.out.println("Please write numbers");}
