@@ -248,4 +248,8 @@ public class Project {
 		}
 		return str;
 	}
+
+	public boolean activityContainsWorker(String activity, Worker worker) throws OperationNotAllowedException {
+		return findActivityWithName(activity).listWorkers().contains(worker);
+	}
 } // class

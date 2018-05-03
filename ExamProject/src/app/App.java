@@ -314,7 +314,7 @@ public class App {
 			throw new OperationNotAllowedException("This worker does not exist");
 		} else if (!selectProject(ID).activityExists(activity)) {
 			throw new OperationNotAllowedException("This activity does not exist in that project");
-		} else if (selectProject(ID).findActivityWithName(activity).listWorkers().contains(worker)) {
+		} else if (selectProject(ID).activityContainsWorker(activity, worker)) {
 			throw new OperationNotAllowedException("This worker is already assigned to that activity");
 		} else if (!selectProject(ID).activityDuration(activity)) {
 			throw new OperationNotAllowedException("Must set activity duration before assigning workers");
