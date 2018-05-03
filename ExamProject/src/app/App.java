@@ -241,7 +241,7 @@ public class App {
 	}
 
 	private boolean nameOrIDMatch(String search, Project p) {
-		return (Integer.toString(p.getProjectID()).toLowerCase().contains(search.toLowerCase())) || p.getName().toLowerCase().contains(search.toLowerCase());		
+		return (Integer.toString(p.getProjectID()).toLowerCase().contains(search.toLowerCase())) || (p.getName()== null ? false : p.getName().toLowerCase().contains(search.toLowerCase()));		
 	}
 	
 	/*Worker functions*/

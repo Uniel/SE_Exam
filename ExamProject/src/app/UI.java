@@ -373,7 +373,23 @@ public class UI {
 	}
 	
 	public void assignToActivity(String initials) {
+		String inp = "";
+		boolean cont = false;
+		println("Want to search for a project? (Y/N)");
+		inp = sc.next().trim();
+		if(inp.equals("Y")){cont = true;}
+		else if(cancelCheck(inp)) {return;}
+		while (cont) {
+			projectSearch();
+			println("Found what you where looking for? (Y/N).");
+			inp = sc.next().trim();
+			if(inp.equals("Y")) {cont = true;}
+		}
 		int ID = selectProject();
+		println("Want to list the activities contained in the project? (Y/N)");
+		if(sc.next().trim().equals("Y")) {
+			printActivitiesOfProject(ID);
+		}
 		String act = selectActivity(ID);
 		try {
 			app.assignToActivity(ID, act, initials);
