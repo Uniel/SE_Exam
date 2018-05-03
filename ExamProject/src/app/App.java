@@ -127,7 +127,7 @@ public class App {
 		return returnWorkerListString(findAvailableWorkers(ID,ACT));
 	}
 	public String returnWorkersOfActivity(int ID, String ACT) throws OperationNotAllowedException {
-		 return returnWorkerListString(findProjectWithID(ID).findActivityWithName(ACT).listWorkers());
+		 return returnWorkerListString(findProjectWithID(ID).getWorkersOfActivity(ACT));
 	}	
 	public String returnWorkerListString(List<Worker> WorkersIN) {
 		String str = "";
@@ -227,7 +227,7 @@ public class App {
 			throw new OperationNotAllowedException("You have to specify an activity");
 		} else if (!selectProject(ID).activityExists(activity)) {
 			throw new OperationNotAllowedException("This activity does not exist in that project");
-		} else if (selectProject(ID).findActivityWithName(activity).getStart() == null || selectProject(ID).findActivityWithName(activity).getEnd() == null) {
+		} else if (!selectProject(ID).activityDuration(activity)) {
 			throw new OperationNotAllowedException("Must set activity duration before searching for available workers");
 		} else {
 			List<Worker> availableWorkers = new ArrayList<Worker>(); 
@@ -251,11 +251,9 @@ public class App {
 			throw new OperationNotAllowedException("Too many initials");
 		} else if (worker.getInitials().length() < 1) {
 			throw new OperationNotAllowedException("Worker must have initials");
-		}
-		else if (workerExists(initials)) {
+		} else if (workerExists(initials)) {
 			throw new OperationNotAllowedException("This worker already exists");
-		}
-		else {
+		} else {
 			workers.add(worker);
 		}
 	}
@@ -276,10 +274,10 @@ public class App {
 			throw new OperationNotAllowedException("You have to specify an activity");
 		} else if (!selectProject(ID).activityExists(activity)) {
 			throw new OperationNotAllowedException("This activity does not exist in that project");
-		} else if (selectProject(ID).findActivityWithName(activity).listWorkers().isEmpty()) {
+		} else if (selectProject(ID).activityHaveNoWorkers(activity)) {
 			throw new OperationNotAllowedException("No workers assigned to the activity");
 		} else {
-			return selectProject(ID).findActivityWithName(activity).listWorkers();
+			return selectProject(ID).getWorkersOfActivity(activity);
 		}
 	}
 	
@@ -308,10 +306,8 @@ public class App {
 				createOngoingProject(ID);
 			}
 			selectProject(ID).addActivity(worker.getInitials() + " Vacation");
-			String name = selectProject(ID).activities.get(selectProject(ID).activities.size() - 1).getName();
-			selectProject(ID).findActivityWithName(name).setStart(startWeek, startYear);
-			selectProject(ID).findActivityWithName(name).setEnd(endWeek, endYear);
-			selectProject(ID).findActivityWithName(name).setFulltime(true);
+			String name = selectProject(ID).getLastActivity(); 
+			selectProject(ID).setDurationOfActivity(name, startWeek, startYear, endWeek, endYear);
 			assignWorker(worker, ID, name);
 		}
 	}
@@ -321,7 +317,7 @@ public class App {
 			throw new OperationNotAllowedException("This worker does not exist");
 		} else if (!selectProject(ID).activityExists(activity)) {
 			throw new OperationNotAllowedException("This activity does not exist in that project");
-		} else if (!selectProject(ID).findActivityWithName(activity).listWorkers().contains(worker)) {
+		} else if (!selectProject(ID).activityContainsWorker(activity, worker)) {
 			throw new OperationNotAllowedException("This worker is not assigned to that activity");
 		} else {
 			selectProject(ID).removeWorker(worker, activity);

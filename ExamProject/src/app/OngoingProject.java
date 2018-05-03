@@ -20,4 +20,11 @@ public class OngoingProject extends Project {
 			}
 		}
 	}
+	
+	@Override
+	public void setDurationOfActivity(String name, int startWeek, int startYear, int endWeek, int endYear) throws OperationNotAllowedException {
+		findActivityWithName(name).setStart(startWeek, startYear);
+		findActivityWithName(name).setEnd(endWeek, endYear);
+		findActivityWithName(name).setFulltime(true);	
+	}
 }

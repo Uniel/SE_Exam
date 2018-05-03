@@ -1,8 +1,6 @@
 package app;
 
 import java.util.*;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class Project {
 	
@@ -249,7 +247,25 @@ public class Project {
 		return str;
 	}
 
+	
 	public boolean activityContainsWorker(String activity, Worker worker) throws OperationNotAllowedException {
 		return findActivityWithName(activity).listWorkers().contains(worker);
+	}
+
+	public List<Worker> getWorkersOfActivity(String ACT) throws OperationNotAllowedException {
+		return findActivityWithName(ACT).listWorkers();
+	}
+
+	public boolean activityHaveNoWorkers(String activity) throws OperationNotAllowedException {
+		return findActivityWithName(activity).listWorkers().isEmpty();
+	}
+	
+	public String getLastActivity() {
+		return activities.get(activities.size() - 1).getName();
+	}
+
+	public void setDurationOfActivity(String name, int startWeek, int startYear, int endWeek, int endYear) throws OperationNotAllowedException {
+		findActivityWithName(name).setStart(startWeek, startYear);
+		findActivityWithName(name).setEnd(endWeek, endYear);
 	}
 } // class
