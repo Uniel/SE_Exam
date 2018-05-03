@@ -167,17 +167,23 @@ public class Project {
 	}
 	
 	public void addActivity(String name) throws OperationNotAllowedException{
-		if(inValidName(name)) {
+		if(emptyName(name)) {
 			throw new OperationNotAllowedException("An activity must have a name");
 		} else if(activityExists(name)) {
 			throw new OperationNotAllowedException("That activity already exists");
+		} else if (invalidName(name)){
+			throw new OperationNotAllowedException("That's an invalid or protected name");
 		} else {
 			activities.add(new Activity(name));
 		}
 	}
 
-	private boolean inValidName(String name) {
+	private boolean emptyName(String name) {
 		return name.trim() == null || name.trim().isEmpty() || name.trim() == "";
+	}
+	
+	private boolean invalidName(String name) {
+		return (name.trim().toLowerCase().equals("cancel"));
 	}
 	
 	public void removeActivity(String name) throws OperationNotAllowedException{
