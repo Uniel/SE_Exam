@@ -223,7 +223,7 @@ public class UI {
 				case '1': listWorkers(); break;
 				case '2': printProjects(); break;
 				case '3': addWorker(); break;
-				//case '4': removeWorker(); break;
+				case '4': selectedWorkerMenu(); break;
 				case 'b': return;
 			}
 			choice = 0;
@@ -234,7 +234,7 @@ public class UI {
 		println("1) List Workers");
 		println("2) Search through workers");
 		println("3) Add Worker");
-		println("*4) Remove Worker");
+		println("4) Select Worker");
 		println("b) Back");
 	}
 	
@@ -244,23 +244,63 @@ public class UI {
 		try {app.addWorker(sc.next());} 
 		catch (OperationNotAllowedException e) {System.out.println(e);}
 	}
-//	public void removeWorker() {
-//		try {app.addWorker(sc.next());} 
-//		catch (OperationNotAllowedException e) {System.out.println(e);}
-//	}
 	
+	/* Edit Worker */
 	
+	public void selectedWorkerMenu() {
+		char choice = 0;
+		String initials = selectWorker();
+		do {
+			printSelectedWorkerMenu(initials);
+			choice = getChar(sc);
+			switch(choice) {
+			case '1': assignToActivity(initials); break;
+			case '2': seeActivities(initials); break;
+			//case 'D': deleteWorker(initials); return;
+			case 'b': return;
+			}
+			choice = 0;
+		} while (choice == 0);
+	}
 	
+	public void printSelectedWorkerMenu(String initials) {
+		println("\nSelected Worker menu");
+		println("You've selected worker " + initials + ", what now?");
+		println("1) Assign to activity");
+		println("2) See assigned activities");
+		println("*D) Delete");
+		println("b) Back");
+	}
 	
+	public String selectWorker() {
+		println("Worker initials?");
+		String workerChoice = null;
+		do {
+			try {workerChoice = app.findWorker(sc.next());}
+			catch (OperationNotAllowedException e) {System.out.println(e);}
+		} while (workerChoice == null);
+		return workerChoice;
+	}
 	
+	public void assignToActivity(String initials) {
+		int ID = selectProject();
+		String act = selectActivity(ID);
+		try {
+			app.assignToActivity(ID, act, initials);
+		} catch (Exception e) {
+			System.out.println(e);
+			}
+	}
 	
+	public void seeActivities(String initials) {
+		try {
+		System.out.println(app.listWorkerActivities(initials));
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	//public void deleteWorker(String initials) {
+		
+	//}
 }

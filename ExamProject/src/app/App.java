@@ -88,9 +88,29 @@ public class App {
 		}
 		return str;
 	}
+	public String findWorker(String initials) throws OperationNotAllowedException {
+		if (workerExists(initials)) {
+			return initials;
+		} else {
+			throw new OperationNotAllowedException("This worker does not exist");
+		}
+	}
 	public void addWorker(String initials) throws OperationNotAllowedException {
 		Worker newWorker = new Worker(initials);
 		createWorker(newWorker);
+	}
+	public void assignToActivity(int ID, String activity, String initials) throws Exception {
+		assign(selectWorker(initials), ID, activity);
+	}
+	public String listWorkerActivities(String initials) throws Exception {
+		List<Activity> activities = selectWorker(initials).getAssignedActivities();
+		String str = "Workers found: \n";
+		for(Activity a : activities) {
+			int count = 1;
+			str += count + ") " + a.getName() +"\n";
+			count++;
+		}
+		return str;
 	}
 	public int createNewProject() {
 		createProject();
@@ -212,7 +232,7 @@ public class App {
 		} else if (worker.getInitials().length() < 1) {
 			throw new OperationNotAllowedException("Worker must have initials");
 		}
-		else if (workerExists(worker)) {
+		else if (workerExists(initials)) {
 			throw new OperationNotAllowedException("This worker already exists");
 		}
 		else {
@@ -220,9 +240,9 @@ public class App {
 		}
 	}
 	
-	private boolean workerExists(Worker worker) {
+	private boolean workerExists(String initials) {
 		for(Worker w : workers) {
-			if(w.getInitials().equals(worker.getInitials()) ) {
+			if(w.getInitials().equals(initials) ) {
 				return true;
 			}
 		}
@@ -288,6 +308,13 @@ public class App {
 		}
 	}
 	
+	public Worker selectWorker(String initials) throws OperationNotAllowedException {
+		workerExists(initials);
+		for(Worker w : workers) {
+			if(w.getInitials().equals(initials)) {return workers.get(workers.indexOf(w));}
+		}
+		return null;
+	}
 	
 	public void /*List<Activity>*/ listActivities(Project project){
 		//Unfinished
@@ -304,6 +331,5 @@ public class App {
 	public void registerTime(Date date, Worker worker, Double hours, Project project, Activity activity) {
 		//Unfinished
 	}
-
 
 }
