@@ -18,7 +18,7 @@ public class UI {
 			switch(choice) {
 				case '1': projectMenu(); break;
 				case '2': workerMenu(); break;
-				case 'q': println("K. Bye!"); return;
+				case 'q': println("K. Thanks Bye!"); return;
 			}
 			choice = 0;
 		} while (choice == 0);

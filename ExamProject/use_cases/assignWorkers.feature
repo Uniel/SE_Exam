@@ -80,4 +80,4 @@ Scenario: User tries to assign a worker to an activity which has no duration
 	And the project with ID 180001 has been created
 	And the activity "Kick ass and chew bubblegum" has already been added to the project with ID 180001
 	When I assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180001
-	Then I get the error message "Must set activity duration assigning workers"
+	Then I get the error message "Must set activity duration before assigning workers"
