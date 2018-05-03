@@ -165,4 +165,13 @@ public class WorkerSteps {
 	    	errorMessage.setErrorMessage(e.getMessage());
 	    }
 	}
+	
+	@When("^I delete the worker \"([^\"]*)\"")
+	public void iDeleteTheWorker(String initials) throws Exception {
+	    try {
+	    	app.deleteWorker(worker);
+	    } catch (Exception e) {
+	    	errorMessage.setErrorMessage(e.getMessage());
+	    }
+	}
 }
