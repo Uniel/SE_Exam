@@ -69,7 +69,7 @@ public class WorkerSteps {
 	@When("^I assign the worker \"([^\"]*)\" to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
 	public void iAssignTheWorkerToTheActivityInTheProjectWithID(String initials, String activity, int ID) throws Exception {
 		try {
-			app.assign(worker, ID, activity);
+			app.assignWorker(worker, ID, activity);
 		} catch (Exception e) {
 			errorMessage.setErrorMessage(e.getMessage());
 		}

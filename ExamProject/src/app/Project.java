@@ -221,7 +221,8 @@ public class Project {
 	public void generateReport() {	
 	}
 	
-	public void assign(Worker worker, Activity activity) {
+	public void assignWorker(Worker worker, String activity) throws OperationNotAllowedException {
+		findActivityWithName(activity).assignWorker(worker);
 	}
 	
 	public void assignedWorkers(Activity activity) {

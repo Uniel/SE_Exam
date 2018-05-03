@@ -94,7 +94,7 @@ public class App {
 		createWorker(newWorker);
 	}
 	public void assignToActivity(int ID, String activity, String initials) throws OperationNotAllowedException {
-		assign(selectWorker(initials.toUpperCase()), ID, activity);
+		assignWorker(selectWorker(initials.toUpperCase()), ID, activity);
 	}
 	public String listWorkerActivities(String initials) throws OperationNotAllowedException {
 		List<Activity> activities = selectWorker(initials.toUpperCase()).getAssignedActivities();
@@ -309,7 +309,7 @@ public class App {
 		}
 	}
 	
-	public void assign(Worker worker, int ID, String activity) throws OperationNotAllowedException {
+	public void assignWorker(Worker worker, int ID, String activity) throws OperationNotAllowedException {
 		if (!workers.contains(worker)) {
 			throw new OperationNotAllowedException("This worker does not exist");
 		} else if (!selectProject(ID).activityExists(activity)) {
@@ -318,8 +318,10 @@ public class App {
 			throw new OperationNotAllowedException("This worker is already assigned to that activity");
 		} else if (!selectProject(ID).activityDuration(activity)) {
 			throw new OperationNotAllowedException("Must set activity duration before assigning workers");
-		} else {
-			selectProject(ID).findActivityWithName(activity).assignWorker(worker);
+		} 
+		  else {
+			//selectProject(ID).findActivityWithName(activity).assignWorker(worker);
+			selectProject(ID).assignWorker(worker, activity);
 			worker.addActivity(selectProject(ID).findActivityWithName(activity));
 		}
 	}
@@ -337,7 +339,7 @@ public class App {
 			selectProject(ID).findActivityWithName(name).setStart(startWeek, startYear);
 			selectProject(ID).findActivityWithName(name).setEnd(endWeek, endYear);
 			selectProject(ID).findActivityWithName(name).setFulltime(true);
-			assign(worker, ID, name);
+			assignWorker(worker, ID, name);
 		}
 	}
 	
