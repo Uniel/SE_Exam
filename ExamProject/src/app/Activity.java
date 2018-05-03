@@ -105,7 +105,7 @@ public class Activity {
 		}
 	}
 	
-	public void assignWorker(Worker worker) throws OperationNotAllowedException {
+	public void assignWorker(Worker worker) throws OperationNotAllowedException{
 		//This method should NOT be called directly!
 		//Use the assign method in App instead.
 		if (worker.isAvailable(this)) {
