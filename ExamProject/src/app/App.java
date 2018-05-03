@@ -104,7 +104,7 @@ public class App {
 	}
 	public String listWorkerActivities(String initials) throws Exception {
 		List<Activity> activities = selectWorker(initials).getAssignedActivities();
-		String str = "Workers found: \n";
+		String str = "Activities found: \n";
 		for(Activity a : activities) {
 			int count = 1;
 			str += count + ") " + a.getName() +"\n";

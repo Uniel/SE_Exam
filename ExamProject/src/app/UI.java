@@ -191,7 +191,7 @@ public class UI {
 	}
 	public void printSelectedActivityMenu(int ID, String ACT) {
 		println("\nSelected activity menu");
-		println("You've selected project " + ACT + ", what now?");
+		println("You've selected activity " + ACT + ", what now?");
 		System.out.println(app.getInfoOfActivity(ID, ACT));
 		println("Edit: 1) Name, 2) Budget Time, 3) Start, 4) End");
 		println("Toggle 5) Full time");
@@ -281,7 +281,7 @@ public class UI {
 	
 	public void listWorkers() {System.out.println(app.listWorkers());}
 	public void addWorker() {
-		println("What are the initials for the new worker? (max 4");
+		println("What are the initials for the new worker? (max 4)");
 		try {app.addWorker(sc.next());} 
 		catch (OperationNotAllowedException e) {System.out.println(e);}
 	}
@@ -328,6 +328,7 @@ public class UI {
 		String act = selectActivity(ID);
 		try {
 			app.assignToActivity(ID, act, initials);
+			System.out.println("Worker " + initials + " has been assigned to activity " + act + " in project " + ID);
 		} catch (Exception e) {
 			System.out.println(e);
 			}

@@ -24,7 +24,7 @@ public class Activity {
 		str += "\nOf Project: " + (ID);
 		str += "\nBudget Time: " + (this.budgetTime != -1 ? this.budgetTime : "");
 		str += "\nStart: " + (this.start != null ? "Week " + this.start.get(Calendar.WEEK_OF_YEAR) + " Year: " + this.start.get(Calendar.YEAR) : "");
-		str += "\nEnd: " + (this.end != null ? "Week " + this.end.get(Calendar.WEEK_OF_YEAR) + " Year:" + this.end.get(Calendar.YEAR) : "");
+		str += "\nEnd: " + (this.end != null ? "Week " + this.end.get(Calendar.WEEK_OF_YEAR) + " Year: " + this.end.get(Calendar.YEAR) : "");
 		str += "\nFull Time: " + (this.fulltime == true ? "true" : "false");
 		return str;
 	}
