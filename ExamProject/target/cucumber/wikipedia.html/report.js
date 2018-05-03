@@ -675,7 +675,7 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "I get the error message \"Must set activity duration assigning workers\"",
+  "name": "I get the error message \"Must set activity duration before assigning workers\"",
   "keyword": "Then "
 });
 formatter.match({
@@ -1288,6 +1288,92 @@ formatter.result({
 });
 formatter.step({
   "name": "I get the error message \"Worker must have initials\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "MiscSteps.iGetTheErrorMessage(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.uri("use_cases/deleteWorker.feature");
+formatter.feature({
+  "name": "Delete Workers",
+  "description": "\tDescription: The user removes workers from an activity\n\tActors: User",
+  "keyword": "Feature"
+});
+formatter.scenario({
+  "name": "User deletes a worker",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "I have the worker \"DANK\"",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "WorkerSteps.iHaveTheWorker(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I delete the worker \"DANK\"",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "WorkerSteps.iDeleteTheWorker(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the worker \"DANK\" does not exist",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "WorkerSteps.theWorkerDoesNotExist(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "User delete a worker which does not exist",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "I have the worker \"DANK\"",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "WorkerSteps.iHaveTheWorker(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the worker \"DANK\" does not exist",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "WorkerSteps.theWorkerDoesNotExist(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I delete the worker \"DANK\"",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "WorkerSteps.iDeleteTheWorker(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I get the error message \"This worker does not exist\"",
   "keyword": "Then "
 });
 formatter.match({

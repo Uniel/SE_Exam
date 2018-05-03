@@ -113,12 +113,18 @@ public class UI {
 		catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 	}
 	private int selectProject() {
-		println("Which project ID?");
-		String input = sc.next();
-		if (cancelCheck(input)) {return -1;}
 		int IDchoice = -1;
+		String input ;
 		do {
+			do {
+				println("Which project ID?");
+				input = sc.next();
+				if (cancelCheck(input)) {return -1;}
+				input = input.replaceAll("[^0-9]", "");
+				println("Write a number please.");
+			} while(input.trim().isEmpty()) ;
 			try {IDchoice = app.getIdOfProject(Integer.parseInt(input));}
+			catch (NumberFormatException e) {System.out.println("Please write numbers");}
 			catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 		} while (IDchoice < 0);
 		return IDchoice;
@@ -153,7 +159,11 @@ public class UI {
 				println("Which type should it have? (internal / external)");
 				input = sc.next();
 				if (cancelCheck(input)) {return;}
+			try {
 				app.editProjectType(ID, input);
+			} catch (OperationNotAllowedException e1) {
+				System.out.println(e1.getMessage());
+			}
 				break;
 			case 3: // Customer
 				println("Which customer does this project belong to?");
@@ -175,7 +185,13 @@ public class UI {
 				if (cancelCheck(input)) {return;}
 				input2 = sc.next();
 				if (cancelCheck(input2)) {return;}
-				app.editProjectStart(ID, Integer.parseInt(input), Integer.parseInt(input2));
+				try {
+					app.editProjectStart(ID, Integer.parseInt(input), Integer.parseInt(input2));
+				} catch (NumberFormatException e) {
+					System.out.println("Please input numbers");
+				} catch (OperationNotAllowedException e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 			case 6: // End
 				println("In which week, and year does this project end? (type week and year seperated by line breaks.)");
@@ -183,7 +199,13 @@ public class UI {
 				if (cancelCheck(input)) {return;}
 				input2 = sc.next();
 				if (cancelCheck(input2)) {return;}
-				app.editProjectEnd(ID, Integer.parseInt(input), Integer.parseInt(input2));
+				try {
+					app.editProjectEnd(ID, Integer.parseInt(input), Integer.parseInt(input2));
+				} catch (NumberFormatException e) {
+					System.out.println("Please input numbers");
+				} catch (OperationNotAllowedException e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 		}
 	}
@@ -255,7 +277,13 @@ public class UI {
 			if (cancelCheck(input)) {return;}
 			input2 = sc.next();
 			if (cancelCheck(input2)) {return;}
-			app.editActivityofProjectStart(ID, ACT, Integer.parseInt(input), Integer.parseInt(input2));
+			try {
+				app.editActivityofProjectStart(ID, ACT, Integer.parseInt(input), Integer.parseInt(input2));
+			} catch (NumberFormatException e) {
+				System.out.println("Please input numbers");
+			} catch (OperationNotAllowedException e) {
+				System.out.println(e.getMessage());
+			}
 			break;
 		case 4: // End
 			println("In which week, and year does this activity end? (type week and year seperated by line breaks.)");
@@ -263,7 +291,13 @@ public class UI {
 			if (cancelCheck(input)) {return;}
 			input2 = sc.next();
 			if (cancelCheck(input2)) {return;}
-			app.editActivityofProjectEnd(ID, ACT, Integer.parseInt(input), Integer.parseInt(input2));
+			try {
+				app.editActivityofProjectEnd(ID, ACT, Integer.parseInt(input), Integer.parseInt(input2));
+			} catch (NumberFormatException e) {
+				System.out.println("Please input numbers");
+			} catch (OperationNotAllowedException e) {
+				System.out.println(e.getMessage());
+			}
 			break;
 		case 5: // Full time
 			System.out.println("The activity is now " + (app.toggleFullTimeForActOfProj(ID,ACT) == false ? "not" : "") + " a full time activity.");
@@ -463,7 +497,9 @@ public class UI {
 		if (cancelCheck(input4)) {return;}
 		try {
 			app.vacationAssign(initials, Integer.parseInt(input), Integer.parseInt(input3), Integer.parseInt(input2), Integer.parseInt(input4));
-		} catch (Exception e) {
+		} catch (NumberFormatException e) {
+			System.out.println("Please write numbers");
+		} catch (OperationNotAllowedException e) {
 			System.out.println(e.getMessage());
 		}
 	}
