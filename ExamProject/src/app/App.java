@@ -104,7 +104,7 @@ public class App {
 	}
 	public String listWorkerActivities(String initials) throws Exception {
 		List<Activity> activities = selectWorker(initials).getAssignedActivities();
-		String str = "Workers found: \n";
+		String str = "Activities found: \n";
 		for(Activity a : activities) {
 			int count = 1;
 			str += count + ") " + a.getName() +"\n";
@@ -116,9 +116,39 @@ public class App {
 		createProject();
 		return lastIdGenerated();
 	}
-	/*
-	 Business Logic
-	 */
+	public String renameActivityOfProject(int ID, String ACT, String newName) throws OperationNotAllowedException {
+		findProjectWithID(ID).renameActivity(ACT, newName);
+		return newName;
+	}
+	public void setBudgetTimeOfProjectActivity(int ID, String ACT, double time) {
+		findProjectWithID(ID).findActivityWithName(ACT).setBudgetTime(time);
+	}
+	public double getBudgetTimeOfProjectActivity(int ID, String ACT) {
+		return findProjectWithID(ID).findActivityWithName(ACT).getBudgetTime();
+	}
+	public void editActivityofProjectStart(int ID, String ACT, int week, int year) {
+		try {
+			findProjectWithID(ID).findActivityWithName(ACT).setStart(week, year);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	public void editActivityofProjectEnd(int ID, String ACT, int week, int year) {
+		try {
+			findProjectWithID(ID).findActivityWithName(ACT).setEnd(week, year);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	public boolean toggleFullTimeForActOfProj(int ID, String ACT) {
+		findProjectWithID(ID).findActivityWithName(ACT).setFulltime(!findProjectWithID(ID).findActivityWithName(ACT).getFulltime());
+		return findProjectWithID(ID).findActivityWithName(ACT).getFulltime();
+	}
+	public void deleteActivityInProject(int ID, String ACT) throws OperationNotAllowedException {
+		findProjectWithID(ID).removeActivity(ACT);
+	}
+	
+	/* Business Logic	 */
 	
 	/* Project functions */
 	
@@ -195,7 +225,7 @@ public class App {
 	}
 
 	private boolean nameOrIDMatch(String search, Project p) {
-		return (Integer.toString(p.getProjectID()).contains(search)) || p.getName().contains(search);		
+		return (Integer.toString(p.getProjectID()).toLowerCase().contains(search.toLowerCase())) || p.getName().toLowerCase().contains(search.toLowerCase());		
 	}
 	
 	/*Worker functions*/
