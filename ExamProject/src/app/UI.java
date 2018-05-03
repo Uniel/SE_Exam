@@ -345,7 +345,15 @@ public class UI {
 	}
 	
 	public void assignVacation(String initials) {
-		
+		println("In which week, and year does the vacation start? (type week and year seperated by line breaks.)");
+		int startWeek = sc.nextInt();
+		int startYear = sc.nextInt();
+		println("In which week, and year does the vacation end? (type week and year seperated by line breaks.)");
+		try {
+			app.vacationAssign(initials, startWeek, sc.nextInt(), startYear, sc.nextInt());
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 	
 	//public void deleteWorker(String initials) {

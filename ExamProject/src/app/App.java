@@ -112,6 +112,9 @@ public class App {
 		}
 		return str;
 	}
+	public void vacationAssign(String initials, int startWeek, int endWeek, int startYear, int endYear) throws Exception {
+		assignVacation(selectWorker(initials), startWeek, endWeek, startYear, endYear);
+	}
 	public int createNewProject() {
 		createProject();
 		return lastIdGenerated();
@@ -316,7 +319,7 @@ public class App {
 			if (findProjectWithID(ID) == null) {
 				createOngoingProject(ID);
 			}
-			selectProject(ID).addActivity(worker.getInitials() + "Vacation");
+			selectProject(ID).addActivity(worker.getInitials() + " Vacation");
 			String name = selectProject(ID).activities.get(selectProject(ID).activities.size() - 1).getName();
 			selectProject(ID).findActivityWithName(name).setStart(startWeek, startYear);
 			selectProject(ID).findActivityWithName(name).setEnd(endWeek, endYear);

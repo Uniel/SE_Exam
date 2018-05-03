@@ -13,7 +13,7 @@ public class OngoingProject extends Project {
 		boolean flag = true;
 		while(flag) {
 			if (activityExists(name)) {
-				name = initials + n++;
+				name = initials + " " + n++;
 			} else {
 				this.activities.add(new Activity(name));
 				flag = false;
