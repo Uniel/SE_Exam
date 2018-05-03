@@ -212,12 +212,21 @@ public class App {
 		} else if (worker.getInitials().length() < 1) {
 			throw new OperationNotAllowedException("Worker must have initials");
 		}
-		else if (workers.contains(worker)) {
+		else if (workerExists(worker)) {
 			throw new OperationNotAllowedException("This worker already exists");
 		}
 		else {
 			workers.add(worker);
 		}
+	}
+	
+	private boolean workerExists(Worker worker) {
+		for(Worker w : workers) {
+			if(w.getInitials().equals(worker.getInitials()) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public List<Worker> assignedWorkers(int ID, String activity) throws Exception {

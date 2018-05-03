@@ -240,6 +240,7 @@ public class UI {
 	
 	public void listWorkers() {System.out.println(app.listWorkers());}
 	public void addWorker() {
+		println("What are the initials for the new worker? (max 4");
 		try {app.addWorker(sc.next());} 
 		catch (OperationNotAllowedException e) {System.out.println(e);}
 	}

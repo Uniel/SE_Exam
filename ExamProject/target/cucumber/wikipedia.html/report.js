@@ -10,21 +10,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180000",
+  "name": "the project with ID 180000 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180000 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -105,21 +95,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180000",
+  "name": "the project with ID 180000 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180000 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -210,21 +190,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180000",
+  "name": "the project with ID 180000 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180000 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -325,21 +295,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180001",
+  "name": "the project with ID 180001 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180001 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -460,21 +420,11 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "I have the project with ID 180001",
+  "name": "the project with ID 180001 has been created",
   "keyword": "And "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180001 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -535,21 +485,11 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "I have the project with ID 180001",
+  "name": "the project with ID 180001 has been created",
   "keyword": "And "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180001 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -620,21 +560,11 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "I have the project with ID 180001",
+  "name": "the project with ID 180001 has been created",
   "keyword": "And "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180001 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -715,11 +645,11 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "I have the project with ID 180001",
+  "name": "the project with ID 180001 has been created",
   "keyword": "And "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -1378,11 +1308,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180001",
+  "name": "the project with ID 180001 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -1423,21 +1353,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180001",
+  "name": "the project with ID 180001 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180001 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -1468,21 +1388,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180001",
+  "name": "the project with ID 180001 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180001 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -1523,21 +1433,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180001",
+  "name": "the project with ID 180001 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180001 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -1578,21 +1478,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180001",
+  "name": "the project with ID 180001 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180001 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -1647,7 +1537,7 @@ formatter.step({
   "keyword": "When "
 });
 formatter.match({
-  "location": "ActivitySteps.iSelectTheProjectWithID(int)"
+  "location": "ProjectSteps.iSelectTheProjectWithID(int)"
 });
 formatter.result({
   "status": "passed"
@@ -1668,21 +1558,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180001",
+  "name": "the project with ID 180001 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180001 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -1743,21 +1623,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180001",
+  "name": "the project with ID 180001 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180001 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -1808,21 +1678,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180001",
+  "name": "the project with ID 180001 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180001 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -1863,21 +1723,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180001",
+  "name": "the project with ID 180001 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180001 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -1938,21 +1788,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180001",
+  "name": "the project with ID 180001 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180001 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -2009,21 +1849,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180666",
+  "name": "the project with ID 180666 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180666 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -2114,21 +1944,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180666",
+  "name": "the project with ID 180666 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180666 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -2249,21 +2069,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180069",
+  "name": "the project with ID 180069 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180069 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -2304,21 +2114,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180666",
+  "name": "the project with ID 180666 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180666 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -2480,21 +2280,11 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "I have the project with ID 184444",
+  "name": "the project with ID 184444 has been created",
   "keyword": "And "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 184444 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -2635,21 +2425,11 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "I have the project with ID 184444",
+  "name": "the project with ID 184444 has been created",
   "keyword": "And "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 184444 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -2740,21 +2520,11 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "I have the project with ID 184444",
+  "name": "the project with ID 184444 has been created",
   "keyword": "And "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 184444 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -2845,21 +2615,11 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "I have the project with ID 184444",
+  "name": "the project with ID 184444 has been created",
   "keyword": "And "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 184444 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -2930,21 +2690,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 184444",
+  "name": "the project with ID 184444 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 184444 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -3459,21 +3209,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 184321",
+  "name": "the project with ID 184321 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 184321 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -3534,21 +3274,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 184321",
+  "name": "the project with ID 184321 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 184321 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -3579,21 +3309,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 184321",
+  "name": "the project with ID 184321 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 184321 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -3624,21 +3344,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 184321",
+  "name": "the project with ID 184321 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 184321 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -3669,21 +3379,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 184321",
+  "name": "the project with ID 184321 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 184321 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -3714,21 +3414,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 184321",
+  "name": "the project with ID 184321 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 184321 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -3759,21 +3449,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 184321",
+  "name": "the project with ID 184321 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 184321 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -3804,21 +3484,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 184321",
+  "name": "the project with ID 184321 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 184321 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -3859,21 +3529,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 184321",
+  "name": "the project with ID 184321 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 184321 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -3940,21 +3600,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180420",
+  "name": "the project with ID 180420 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180420 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -4045,21 +3695,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180420",
+  "name": "the project with ID 180420 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180420 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -4165,21 +3805,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180420",
+  "name": "the project with ID 180420 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180420 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
@@ -4240,21 +3870,11 @@ formatter.scenario({
   "keyword": "Scenario"
 });
 formatter.step({
-  "name": "I have the project with ID 180420",
+  "name": "the project with ID 180420 has been created",
   "keyword": "Given "
 });
 formatter.match({
-  "location": "ActivitySteps.iHaveTheProjectWithID(int)"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "the project with ID 180420 exists",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "ProjectSteps.theProjectWithIDExists(int)"
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
 });
 formatter.result({
   "status": "passed"
