@@ -377,5 +377,15 @@ public class App {
 	public void registerTime(Date date, Worker worker, Double hours, Project project, Activity activity) {
 		//Unfinished
 	}
+	
+	public void deleteWorker(Worker worker) throws Exception{
+		if (!workers.contains(worker)) {
+			throw new OperationNotAllowedException("This worker does not exist");
+		}
+		for(Activity aa : worker.getAssignedActivities()) {
+			aa.removeWorker(worker);
+		}
+		workers.remove(worker);
+	}
 
 }
