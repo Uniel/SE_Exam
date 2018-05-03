@@ -27,27 +27,15 @@ public class App {
 	public int getIdOfProject(int ID) throws OperationNotAllowedException{return selectProject(ID).getProjectID();}
 	public String getInfoOfProject(int ID) {return findProjectWithID(ID).getInfo();}
 	public void editProjectName(int ID, String name) {findProjectWithID(ID).setName(name);}
-	public void editProjectType(int ID, String type) {
-		try {
-			findProjectWithID(ID).setType(type);
-		} catch (OperationNotAllowedException e) {
-			System.out.println(e);
-		}
+	public void editProjectType(int ID, String type) throws OperationNotAllowedException{
+		findProjectWithID(ID).setType(type);
 	}
 	public void editProjectCustomer(int ID, String customer) {findProjectWithID(ID).setCustomer(customer);}
-	public void editProjectStart(int ID, int week, int year) {
-		try {
-			findProjectWithID(ID).setStart(week, year);
-		} catch (OperationNotAllowedException e) {
-			System.out.println(e);
-		}
+	public void editProjectStart(int ID, int week, int year) throws OperationNotAllowedException {
+		findProjectWithID(ID).setStart(week, year);
 	}
-	public void editProjectEnd(int ID, int week, int year) {
-		try {
-			findProjectWithID(ID).setEnd(week, year);
-		} catch (OperationNotAllowedException e) {
-			System.out.println(e);
-		}
+	public void editProjectEnd(int ID, int week, int year) throws OperationNotAllowedException{
+		findProjectWithID(ID).setEnd(week, year);
 	}
 	public String getInfoOfActivity(int ID, String ACT) {return findProjectWithID(ID).getActInfo(ACT);}
 	public String getProjectActivities(int iD) {
@@ -123,19 +111,11 @@ public class App {
 	public double getBudgetTimeOfProjectActivity(int ID, String ACT) {
 		return findProjectWithID(ID).findActivityWithName(ACT).getBudgetTime();
 	}
-	public void editActivityofProjectStart(int ID, String ACT, int week, int year) {
-		try {
-			findProjectWithID(ID).findActivityWithName(ACT).setStart(week, year);
-		} catch (OperationNotAllowedException e) {
-			System.out.println(e);
-		}
+	public void editActivityofProjectStart(int ID, String ACT, int week, int year) throws OperationNotAllowedException {
+		findProjectWithID(ID).findActivityWithName(ACT).setStart(week, year);
 	}
-	public void editActivityofProjectEnd(int ID, String ACT, int week, int year) {
-		try {
-			findProjectWithID(ID).findActivityWithName(ACT).setEnd(week, year);
-		} catch (OperationNotAllowedException e) {
-			System.out.println(e);
-		}
+	public void editActivityofProjectEnd(int ID, String ACT, int week, int year) throws OperationNotAllowedException {
+		findProjectWithID(ID).findActivityWithName(ACT).setEnd(week, year);
 	}
 	public boolean toggleFullTimeForActOfProj(int ID, String ACT) {
 		findProjectWithID(ID).findActivityWithName(ACT).setFulltime(!findProjectWithID(ID).findActivityWithName(ACT).getFulltime());
