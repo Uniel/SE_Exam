@@ -106,7 +106,8 @@ public class UI {
 	}
 	private void createActivity(int iD) {
 		println("What should the activity be named?");
-		String input = sc.next();
+		sc.nextLine();
+		String input = sc.nextLine();
 		if (cancelCheck(input)) {return;}
 		try {app.createActivityInProject(iD, input);} 
 		catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
@@ -307,7 +308,8 @@ public class UI {
 		println("Which activity?");
 		String ACTchoice = "";
 		do {
-			String input = sc.next();
+			sc.nextLine();
+			String input = sc.nextLine();
 			if (cancelCheck(input)) {return "cancel";}
 			try {ACTchoice = app.getActivtyOfProject(ID, input);} 
 			catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
