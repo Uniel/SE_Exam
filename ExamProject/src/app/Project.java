@@ -6,7 +6,7 @@ public class Project {
 	
 	protected List<Activity> activities = new ArrayList<Activity>();
 
-	private int projectID;
+	protected int projectID;
 	private Worker leader;
 	private String name;
 	private String type;
@@ -172,7 +172,7 @@ public class Project {
 		} else if (invalidName(name)){
 			throw new OperationNotAllowedException("That's an invalid or protected name");
 		} else {
-			activities.add(new Activity(name));
+			activities.add(new Activity(name, this.projectID));
 		}
 	}
 

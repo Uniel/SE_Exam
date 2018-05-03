@@ -13,11 +13,17 @@ public class Activity {
 	private Calendar start;
 	private Calendar end;
 	private double budgetTime = -1;
+	private int belongsToProject;
 	
-	public Activity(String newName) {
+	public Activity(String newName, int ID) {
 		this.name = newName;
+		this.belongsToProject = ID;
 	} // constructor
 
+	public int getParent() {
+		return this.belongsToProject;
+	}
+	
 	public String getInfo(int ID) {
 		String str = "";
 		str += "Activity: " + (this.name != null ? this.name : "");

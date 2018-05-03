@@ -98,7 +98,7 @@ public class WorkerSteps {
 	private List<Activity> getExampleActivities(int n, int startWeek, int endWeek, int startYear, int endYear) throws Exception{
 		List<Activity> activities = new ArrayList<>();
 		for (int i = 1; i<= n; i++) {
-			Activity a = new Activity("name"+i);
+			Activity a = new Activity("name"+i, 0);
 			a.setStart(startWeek, startYear);
 			a.setEnd(endWeek, endYear);
 			activities.add(a);

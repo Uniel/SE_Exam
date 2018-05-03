@@ -15,7 +15,7 @@ public class OngoingProject extends Project {
 			if (activityExists(name)) {
 				name = initials + " " + n++;
 			} else {
-				this.activities.add(new Activity(name));
+				this.activities.add(new Activity(name, this.projectID));
 				flag = false;
 			}
 		}
