@@ -234,6 +234,10 @@ public class Project {
 	public void findAvailableWorkers(Activity activity) {
 	}
 
+	public boolean activityDuration(String activity) {
+		return (findActivityWithName(activity).getStart() != null || findActivityWithName(activity).getStart() != null);
+	}
+	
 	public String getActivityList() {
 		String str = "";
 		for(Activity a : activities) {
