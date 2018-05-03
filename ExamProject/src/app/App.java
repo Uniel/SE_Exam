@@ -39,6 +39,7 @@ public class App {
 	
 	public void createProject(int ID) {
 		projects.add(new Project(ID));
+		
 	} // For testing purposes only
 	
 	public void createOngoingProject(int ID) {
@@ -124,7 +125,10 @@ public class App {
 		Worker newWorker = new Worker(initials);
 		createWorker(newWorker);
 	}
-	
+	public int createNewProject() {
+		createProject();
+		return lastIdGenerated();
+	}
 	/*
 	 Business Logic
 	 */

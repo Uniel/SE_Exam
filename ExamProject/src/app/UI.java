@@ -67,11 +67,14 @@ public class UI {
 		println("b) Back");
 	}
 	
-	private void createProject() {app.createProject();}
+	private void createProject() {
+		int newProj = app.createNewProject();
+		System.out.println("Project with ID " + newProj + " has been created!");
+	}
 	public void printProjects() {
 		println("\nContained projects:");
 		for(Project p : app.getProjects()) {
-			System.out.println("Project: " + p.getProjectID() + " - " + p.getName() );
+			System.out.println("Project: " + p.getProjectID() + " - " + (p.getName() == null ? "" : p.getName()) );
 		}
 	}
 	
