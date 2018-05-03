@@ -53,7 +53,7 @@ Scenario: User tries to assign worker to non-existing activity
 	And the project with ID 180001 has been created
 	And the activity "Kick ass and chew bubblegum" does not exist in the project with ID 180001
 	When I assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180001
-	And I get the error message "This activity does not exist in that project"
+	Then I get the error message "This activity does not exist in that project"
 	
 Scenario: User tries to assign non-existing worker to activity
 	Given I have the worker "BJBL"
