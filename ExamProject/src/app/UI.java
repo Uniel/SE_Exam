@@ -256,6 +256,7 @@ public class UI {
 			switch(choice) {
 			case '1': assignToActivity(initials); break;
 			case '2': seeActivities(initials); break;
+			case '3': assignVacation(initials); break;
 			//case 'D': deleteWorker(initials); return;
 			case 'b': return;
 			}
@@ -268,6 +269,7 @@ public class UI {
 		println("You've selected worker " + initials + ", what now?");
 		println("1) Assign to activity");
 		println("2) See assigned activities");
+		println("3) Assign vacation");
 		println("*D) Delete");
 		println("b) Back");
 	}
@@ -298,6 +300,10 @@ public class UI {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+	}
+	
+	public void assignVacation(String initials) {
+		
 	}
 	
 	//public void deleteWorker(String initials) {
