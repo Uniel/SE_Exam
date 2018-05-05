@@ -181,11 +181,11 @@ public class App {
 	}
 	
 	public int lastIdGenerated(){
-		int lstID = 0;
+		int lastID = 0;
 		for(Project p : projects) {
-			if(p.getProjectID() > lstID) {lstID = p.getProjectID();}
+			if(p.getProjectID() > lastID) {lastID = p.getProjectID();}
 		}
-		return lstID;
+		return lastID;
 	}
 	
 	public void removeProject(int projectID) throws OperationNotAllowedException{
@@ -223,22 +223,22 @@ public class App {
 	/*Worker functions*/
 	
 	public List<Worker> findAvailableWorkers(int ID, String activity) throws OperationNotAllowedException {
-		if (ID == 0) {
+		if (ID == 0) {																						// 1
 			throw new OperationNotAllowedException("You have to specify a project ID");
-		} else if (activity.equals("")) {
+		} else if (activity.equals("")) {																	// 2
 			throw new OperationNotAllowedException("You have to specify an activity");
-		} else if (!selectProject(ID).activityExists(activity)) {
+		} else if (!selectProject(ID).activityExists(activity)) {											// 3
 			throw new OperationNotAllowedException("This activity does not exist in that project");
-		} else if (!selectProject(ID).activityDuration(activity)) {
+		} else if (!selectProject(ID).activityDuration(activity)) {											// 4
 			throw new OperationNotAllowedException("Must set activity duration before searching for available workers");
-		} else {
+		} else {																							
 			List<Worker> availableWorkers = new ArrayList<Worker>(); 
-			for (Worker w : workers) {
-				if (w.isAvailable(selectProject(ID).findActivityWithName(activity))) {
+			for (Worker w : workers) {																		// 5
+				if (w.isAvailable(selectProject(ID).findActivityWithName(activity))) {						// 6
 					availableWorkers.add(w);
 				}
 			}
-			if (availableWorkers.isEmpty()) {
+			if (availableWorkers.isEmpty()) {																// 7
 				throw new OperationNotAllowedException("No workers available");
 			} else {
 				return availableWorkers;
@@ -333,22 +333,6 @@ public class App {
 			if(w.getInitials().equals(initials)) {return workers.get(workers.indexOf(w));}
 		}
 		return null;
-	}
-	
-	public void /*List<Activity>*/ listActivities(Project project){
-		//Unfinished
-	}
-	
-	public void addActivity(Project project, String name) {
-		//Unfinished
-	}
-	
-	public void renameActivity(Project project, Activity activity, String newName) {
-		//Unfinished
-	}
-	
-	public void registerTime(Date date, Worker worker, Double hours, Project project, Activity activity) {
-		//Unfinished
 	}
 	
 	public void deleteWorker(Worker worker) throws OperationNotAllowedException{

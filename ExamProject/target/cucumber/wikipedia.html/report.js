@@ -1318,6 +1318,16 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
+  "name": "I add the worker \"DANK\"",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "WorkerSteps.iAddTheWorker(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
   "name": "I delete the worker \"DANK\"",
   "keyword": "When "
 });

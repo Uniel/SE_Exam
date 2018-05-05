@@ -124,5 +124,4 @@ public class Activity {
 	public void removeWorker(Worker worker) {
 		assignedWorkers.remove(worker);
 	}
-
-} // class
+}

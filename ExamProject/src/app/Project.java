@@ -208,31 +208,15 @@ public class Project {
 		return (findActivityWithName(name) == null ? -1 : activities.indexOf(findActivityWithName(name)));
 	}
 	
-	public int remainingBudgetTime() {
-		//Unfinished
-		return 0;
-	}
-	
-	public void showTimeUse() {
-	}
-	
-	public void generateReport() {	
-	}
-	
 	public void assignWorker(Worker worker, String activity) throws OperationNotAllowedException {
 		findActivityWithName(activity).assignWorker(worker);
 	}
 	
-	public void assignedWorkers(Activity activity) {
-	}
 	
 	public void removeWorker(Worker worker, String activity) {
 		findActivityWithName(activity).removeWorker(worker);
 	}
 	
-	public void findAvailableWorkers(Activity activity) {
-	}
-
 	public boolean activityDuration(String activity) {
 		return (findActivityWithName(activity).getStart() != null || findActivityWithName(activity).getStart() != null);
 	}

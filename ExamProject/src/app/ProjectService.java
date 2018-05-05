@@ -22,10 +22,6 @@ public class ProjectService {
 		this.dateServer = dateServer;
 	}
 	
-	public void setYear(int newYear) {
-		nextYear = newYear;
-	}
-	
 	public int getYear() {
 		updateProjectNumber();
 		return thisYear;
