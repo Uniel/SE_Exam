@@ -157,6 +157,16 @@ public class WorkerSteps {
 	    }
 	}
 	
+	@Given("^I search for available workers for the activity \"([^\"]*)\" without specifying project ID$")
+	public void iSearchForAvailableWorkersForTheActivityWithoutSpecifyingProjectID(String activity) throws Exception {
+		try {
+			workers = app.findAvailableWorkers(0, activity);
+	    } catch (Exception e) {
+	    	errorMessage.setErrorMessage(e.getMessage());
+	    }
+	}
+
+	
 	@When("^I remove the worker \"([^\"]*)\" from the activity \"([^\"]*)\" in the project with ID (\\d+)$")
 	public void iRemoveTheWorkerFromTheActivityInTheProjectWithID(String initials, String activity, int ID) throws Exception {
 	    try {

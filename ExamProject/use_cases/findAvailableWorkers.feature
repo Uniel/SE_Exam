@@ -56,3 +56,16 @@ Scenario: The activity for which available workers are being sought has no durat
     And the activity "Free Tibet" has already been added to the project with ID 184444
     When I search for available workers for the activity "Free Tibet" in the project with ID 184444
     Then I get the error message "Must set activity duration before searching for available workers"
+    
+Scenario: Searching for available workers for an activity which does not exist
+	Given the project with ID 184444 has been created
+	When I search for available workers for the activity "Free Tibet" in the project with ID 184444
+	Then I get the error message "This activity does not exist in that project"
+
+Scenario: Searching for available workers with a blank project
+	Given I search for available workers for the activity "Free Tibet" without specifying project ID
+	Then I get the error message "You have to specify a project ID"
+	
+Scenario: Searching for available workers for blank activity
+	Given I search for available workers for the activity "" in the project with ID 184444
+	Then I get the error message "You have to specify an activity"
