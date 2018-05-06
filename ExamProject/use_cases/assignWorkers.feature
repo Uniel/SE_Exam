@@ -47,6 +47,13 @@ Scenario: User assigns worker to an activity , but the worker is on vacation at 
 	Then the worker "BJBL" is not assigned to the activity "Kick ass and chew bubblegum" in the project with ID 180001
 	And I get the error message "This worker is unavailable during that time"
 	
+Scenario: Worker is assigned vacation 2 times in a year
+	Given I have the worker "BJBL"
+	And I add the worker "BJBL"
+	And the worker "BJBL" is on vacation from week 5 to week 9 of 2020
+	When the worker "BJBL" is on vacation from week 20 to week 21 of 2020
+	Then the activity "BJBL Vacation 1" exists in the project with ID 200000
+
 Scenario: User tries to assign worker to non-existing activity
 	Given I have the worker "BJBL"
 	And I add the worker "BJBL"
@@ -81,3 +88,24 @@ Scenario: User tries to assign a worker to an activity which has no duration
 	And the activity "Kick ass and chew bubblegum" has already been added to the project with ID 180001
 	When I assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180001
 	Then I get the error message "Must set activity duration before assigning workers"
+	
+#The next two scenarios are only for code coverage of some defensive programming checks
+Scenario: Sneaky assign activity to worker - No duration
+	Given I have the worker "BJBL"
+	And I add the worker "BJBL"
+	And the project with ID 180001 has been created
+	And the activity "Kick ass and chew bubblegum" has already been added to the project with ID 180001
+	When I sneaky assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180001
+	Then I get the error message "Must set activity duration before assigning workers"
+	
+Scenario: Sneaky assign activity to worker - Worker unavailable
+	Given I have the worker "BJBL"
+	And I add the worker "BJBL"
+	And the project with ID 180001 has been created
+	And the activity "Kick ass and chew bubblegum" has already been added to the project with ID 180001
+	And I set the start of the activity "Kick ass and chew bubblegum" in the project with ID 180001 to week 5 of 2020
+	And I set the end of the activity "Kick ass and chew bubblegum" in the project with ID 180001 to week 7 of 2020
+	And the worker "BJBL" is on vacation from week 5 to week 9 of 2020
+	When I sneaky assign the worker "BJBL" to the activity "Kick ass and chew bubblegum" in the project with ID 180001
+	Then I get the error message "This worker is unavailable during that time"
+	

@@ -184,4 +184,13 @@ public class WorkerSteps {
 	    	errorMessage.setErrorMessage(e.getMessage());
 	    }
 	}
+	
+	@When("^I sneaky assign the worker \"([^\"]*)\" to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
+	public void iSneakyAssignTheWorkerToTheActivityInTheProjectWithID(String initials, String activity, int ID) throws Exception {
+	    try {
+	    	app.selectWorker(initials).addActivity(app.selectProject(ID).findActivityWithName(activity));
+	    } catch (Exception e) {
+	    	errorMessage.setErrorMessage(e.getMessage());
+	    }
+	}
 }

@@ -21,10 +21,6 @@ public class Worker {
 		initials = i;
 	}
 	
-	public int getMaxActivities() {
-		return maxActivities;
-	}
-	
 	public List<Activity> getAssignedActivities(){
 		return assignedActivities;
 	}
@@ -33,7 +29,7 @@ public class Worker {
 		//This method should NOT be called directly unless it is for testing purposes!
 		//Use the method assign in App instead.
 		if (activity.getStart() == null || activity.getEnd() == null) {
-			throw new OperationNotAllowedException("Cannot assign workers to an activity before setting duration of activity");
+			throw new OperationNotAllowedException("Must set activity duration before assigning workers");
 		}
 		if (isAvailable(activity)) {
 		assignedActivities.add(activity);
