@@ -11,6 +11,7 @@ import java.util.Calendar;
 
 import app.Activity;
 import app.App;
+import app.OperationNotAllowedException;
 import app.Project;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -48,7 +49,11 @@ public class ProjectSteps {
 	
 	@When("^I create a project$")
 	public void iCreateAProject() throws Exception {
-		app.createProject();
+		try {
+			app.createProject();
+		} catch (Exception e) {
+			errorMessage.setErrorMessage(e.getMessage());
+		}
 	}
 
 	@Then("^the project with ID (\\d+) exists$")
@@ -237,5 +242,16 @@ public class ProjectSteps {
 	public void iGetAListOfActivitiesOfLengthContainingTheActivity(int n, String activity) throws Exception {
 	    assertTrue(activities.size() == n);
 	    assertTrue(activities.get(0).getName().equals(activity));
+	}
+	
+	@Given("^there have been created (\\d+) projects this year$")
+	public void thereHaveBeenCreatedProjectsThisYear(int amount) throws Exception {
+		for(int i = 0; i < amount; i++) {
+			try {
+				app.createProject();
+			} catch (Exception e) {
+				errorMessage.setErrorMessage(e.getMessage());
+			}
+		}
 	}
 }

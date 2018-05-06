@@ -100,7 +100,7 @@ public class App {
 	public void vacationAssign(String initials, int startWeek, int endWeek, int startYear, int endYear) throws OperationNotAllowedException {
 		assignVacation(selectWorker(initials), startWeek, endWeek, startYear, endYear);
 	}
-	public int createNewProject() {
+	public int createNewProject() throws OperationNotAllowedException {
 		createProject();
 		return lastIdGenerated();
 	}
@@ -144,13 +144,13 @@ public class App {
 	
 	/* Project functions */
 	
-	public void createProject() {
+	public void createProject() throws OperationNotAllowedException {
 		projects.add(new Project(projectService));
 	}
 	
 	public void createProject(int ID) {
 		projects.add(new Project(ID));
-	} // For testing purposes only
+	}
 	
 	public void createOngoingProject(int ID) {
 		projects.add(new OngoingProject(ID));

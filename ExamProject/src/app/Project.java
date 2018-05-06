@@ -18,7 +18,7 @@ public class Project {
 		projectID = ID;
 	}
 	
-	public Project(ProjectService projServ) {
+	public Project(ProjectService projServ) throws OperationNotAllowedException{
 		projectID = projServ.getId();
 	} // constructor
 	

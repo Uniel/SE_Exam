@@ -80,8 +80,13 @@ public class UI {
 	}
 	
 	private void createProject() {
-		int newProj = app.createNewProject();
-		System.out.println("Project with ID " + newProj + " has been created!");
+		int newProj;
+		try {
+			newProj = app.createNewProject();
+			System.out.println("Project with ID " + newProj + " has been created!");
+		} catch (OperationNotAllowedException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	public void printProjects() {
 		println("\nContained projects:");

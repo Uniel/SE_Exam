@@ -36,11 +36,14 @@ public class ProjectService {
 	}
 
 	
-	private int calcProjectID() {
+	private int calcProjectID() throws OperationNotAllowedException {
 		while(true) {
 			//if(TEST_MODE) {System.out.println("PS: Generating ID from year and serial "+ thisYear + " : " + serialNumber);}
 			int ID = ((thisYear%100) * 10000) + (serialNumber%10000);
 			updateSerialNumber();
+			if(serialNumber > 9999) {
+				throw new OperationNotAllowedException("The amount of projects generated this year is too damn high!");
+			}
 			if(!application.idExists(ID)) {
 				return ID;				
 			}
@@ -62,7 +65,7 @@ public class ProjectService {
 		}
 	}
 		
-	public int getId() {
+	public int getId() throws OperationNotAllowedException {
 		updateProjectNumber();
 		return calcProjectID();
 	}

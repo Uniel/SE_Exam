@@ -37,3 +37,8 @@ Scenario: Remove a non existing activity
 	Given the project with ID 180001 does not exist
 	When I remove the project with ID 180001
 	Then I get the error message "A project with that ID does not exist"
+	
+Scenario: No more available IDs
+	Given there have been created 9999 projects this year
+	When I create a project
+	Then I get the error message "The amount of projects generated this year is too damn high!"
