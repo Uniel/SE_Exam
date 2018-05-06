@@ -24,22 +24,32 @@ public class App {
 	
 	/*	 UI Interactions	 */
 	
-	public int getIdOfProject(int ID) throws OperationNotAllowedException{return selectProject(ID).getProjectID();}
-	public String getInfoOfProject(int ID) {return findProjectWithID(ID).getInfo();}
-	public void editProjectName(int ID, String name) {findProjectWithID(ID).setName(name);}
+	public int getIdOfProject(int ID) throws OperationNotAllowedException{
+		return selectProject(ID).getProjectID();
+	}
+	public String[] getInfoOfProject(int ID) {
+		return findProjectWithID(ID).getInfo();
+	}
+	public void editProjectName(int ID, String name) {
+		findProjectWithID(ID).setName(name);
+	}
 	public void editProjectType(int ID, String type) throws OperationNotAllowedException{
 		findProjectWithID(ID).setType(type);
 	}
-	public void editProjectCustomer(int ID, String customer) {findProjectWithID(ID).setCustomer(customer);}
+	public void editProjectCustomer(int ID, String customer) {
+		findProjectWithID(ID).setCustomer(customer);
+	}
 	public void editProjectStart(int ID, int week, int year) throws OperationNotAllowedException {
 		findProjectWithID(ID).setStart(week, year);
 	}
 	public void editProjectEnd(int ID, int week, int year) throws OperationNotAllowedException{
 		findProjectWithID(ID).setEnd(week, year);
 	}
-	public String getInfoOfActivity(int ID, String ACT) {return findProjectWithID(ID).getActInfo(ACT);}
+	public String[] getInfoOfActivity(int ID, String ACT) {
+		return findProjectWithID(ID).getActInfo(ACT);
+	}
 	public String getProjectActivities(int iD) {
-		return "Activities in project:\n" + findProjectWithID(iD).getActivityList();
+		return findProjectWithID(iD).getActivityList();
 	}
 	public String getActivtyOfProject(int ID, String name) throws OperationNotAllowedException{
 		if(!findProjectWithID(ID).activityExists(name)) {
@@ -51,22 +61,21 @@ public class App {
 	public void createActivityInProject(int ID, String name) throws OperationNotAllowedException{
 		findProjectWithID(ID).addActivity(name);
 	}
-	public String searchForProjects(String name) throws OperationNotAllowedException{
+	public String[][] searchForProjects(String name) throws OperationNotAllowedException{
 		List<Project> results = projectSearch(name);
-		String str = "Projects found: \n";
+		String[][] str = new String[results.size()][2];
 		if(!results.isEmpty()) {
 			for(Project p : results) {
-				str += p.getProjectID() + " - " + (p.getName() != null ? p.getName() : "") + "\n";
+				int i = 0;
+				str[i][0] = String.valueOf(p.getProjectID());
+				str[i][1] = (p.getName() != null ? p.getName() : "");
+				i++;
 			}
 		}
 		return str;
 	}
-	public String listWorkers() {
-		String str = "Workers found: \n";
-		for(Worker w : workers) {
-			str +=  "> " + w.getInitials() +"\n";
-		}
-		return str;
+	public List<Worker> listWorkers() {
+		return workers;
 	}
 	public String findWorker(String initials) throws OperationNotAllowedException {
 		if (workerExists(initials)) {
@@ -82,11 +91,14 @@ public class App {
 	public void assignToActivity(int ID, String activity, String initials) throws OperationNotAllowedException {
 		assignWorker(selectWorker(initials.toUpperCase()), ID, activity);
 	}
-	public String listWorkerActivities(String initials) throws OperationNotAllowedException {
+	public String[][] listWorkerActivities(String initials) throws OperationNotAllowedException {
 		List<Activity> activities = selectWorker(initials.toUpperCase()).getAssignedActivities();
-		String str = "Activities found: \n";
+		String[][] str = new String[activities.size()][2];
 		for(Activity a : activities) {
-			str += "> " + a.getName() + " in project " + a.getParent() + "\n";
+			int i = 0;
+			str[i][0] = a.getName();
+			str[i][1] = String.valueOf(a.getParent());
+			i++;
 		}
 		return str;
 	}
@@ -123,19 +135,19 @@ public class App {
 	public void setProjectLeader(int ID, String worker) throws OperationNotAllowedException{
 		findProjectWithID(ID).setLeader(selectWorker(worker));
 	}
-	public String returnAvailableWorkers(int ID, String ACT) throws OperationNotAllowedException{
-		return returnWorkerListString(findAvailableWorkers(ID,ACT));
+	public List<Worker> returnAvailableWorkers(int ID, String ACT) throws OperationNotAllowedException{
+		return findAvailableWorkers(ID,ACT);
 	}
-	public String returnWorkersOfActivity(int ID, String ACT) throws OperationNotAllowedException {
-		 return returnWorkerListString(findProjectWithID(ID).getWorkersOfActivity(ACT));
+	public List<Worker> returnWorkersOfActivity(int ID, String ACT) throws OperationNotAllowedException {
+		 return findProjectWithID(ID).getWorkersOfActivity(ACT);
 	}	
-	public String returnWorkerListString(List<Worker> WorkersIN) {
-		String str = "";
-		for (Worker w : WorkersIN) {
-			str += "> " + w.getInitials() + "\n";
-		}
-		return str;
-	}
+//	public String returnWorkerListString(List<Worker> WorkersIN) {
+//		String str = "";
+//		for (Worker w : WorkersIN) {
+//			str += "> " + w.getInitials() + "\n";
+//		}
+//		return str;
+//	}
 	public void deleteWorker(String initials) throws OperationNotAllowedException {
 		deleteWorker(selectWorker(initials));
 	}

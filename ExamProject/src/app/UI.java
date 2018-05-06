@@ -1,5 +1,6 @@
 package app;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class UI {
@@ -56,7 +57,15 @@ public class UI {
 		println("Type a seach term, can be entirety or parts of the project name or ID");
 		String input = sc.next();
 		if (cancelCheck(input)) {return;}
-		try {System.out.println(app.searchForProjects(input));} 
+		try {
+			String[][] str = app.searchForProjects(input);
+			System.out.println("Projects found: \n");
+			if(!(str.length == 0)) {
+				for(int i=0; i<=str.length-1; i++) {
+					System.out.println(str[i][0] + " - " + str[i][1]);
+				}
+			}
+		} 	
 		catch (OperationNotAllowedException e) {System.out.println(e.getMessage());}
 	}
 	public void printProjectMenu() {
@@ -131,7 +140,10 @@ public class UI {
 	public void printSelectedProjectMenu(int ID) {
 		println("\nSelected Project menu");
 		println("You've selected project " + ID + ", what now?");
-		System.out.println(app.getInfoOfProject(ID));
+		String[] projInfo = app.getInfoOfProject(ID);
+		for(int i=0; i<= projInfo.length-1; i++) {
+			System.out.println(projInfo[i]);
+		}
 		printActivitiesOfProject(ID);
 		println("\nEdit: 1) Name, 2) Type, 3) Customer");
 		println("Set new 4) Leader, 5) Start, 6) End");
@@ -142,7 +154,7 @@ public class UI {
 		println("At any input promt you can type cancel to cancel");
 	}
 	private void printActivitiesOfProject(int iD) {
-		System.out.println(app.getProjectActivities(iD));
+		System.out.println("Activities in project:\n" + app.getProjectActivities(iD));
 	}
 	private void editProjectInfo(int i, int ID) {
 		String input;
@@ -250,7 +262,10 @@ public class UI {
 	public void printSelectedActivityMenu(int ID, String ACT) {
 		println("\nSelected activity menu");
 		println("You've selected activity " + ACT + ", what now?");
-		System.out.println(app.getInfoOfActivity(ID, ACT));
+		String[] actInfo = app.getInfoOfActivity(ID, ACT);
+		for(int i = 0; i <= actInfo.length-1; i++) {
+			System.out.println(actInfo[i]);
+		}
 		println("Edit: 1) Name, 2) Budget Time, 3) Start, 4) End");
 		println("Toggle 5) Full time");
 		println("6) Assign Worker");
@@ -307,8 +322,8 @@ public class UI {
 	private String selectActivity(int ID) {
 		println("Which activity?");
 		String ACTchoice = "";
+		sc.nextLine();
 		do {
-			sc.nextLine();
 			String input = sc.nextLine();
 			if (cancelCheck(input)) {return "cancel";}
 			try {ACTchoice = app.getActivtyOfProject(ID, input);} 
@@ -344,7 +359,9 @@ public class UI {
 		int selection = sc.nextInt();
 		switch(selection) {
 			case 2:
-				try {System.out.println(app.returnAvailableWorkers(ID, act));} 
+				try {
+					System.out.println(returnWorkerListString(app.returnAvailableWorkers(ID, act)));
+				} 
 				catch (OperationNotAllowedException e) {System.out.println(e.getMessage());break;}
 			case 1:
 				try {
@@ -366,7 +383,7 @@ public class UI {
 	private void listWorkers(int ID, String ACT) {
 		println("Workers assigned to this activity is: \n");
 		try {
-			System.out.println(app.returnWorkersOfActivity(ID, ACT));
+			System.out.println(returnWorkerListString(app.returnWorkersOfActivity(ID, ACT)));
 		} catch (OperationNotAllowedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -396,7 +413,10 @@ public class UI {
 		println("At any input promt you can type cancel to cancel");
 	}
 	
-	public void listWorkers() {System.out.println(app.listWorkers());}
+	public void listWorkers() {
+		System.out.println("Workers found: \n");
+		System.out.println(returnWorkerListString(app.listWorkers()));
+	}
 	public void addWorker() {
 		println("What are the initials for the new worker? (max 4)");
 		String input = sc.next();
@@ -478,7 +498,11 @@ public class UI {
 	
 	public void seeActivities(String initials) {
 		try {
-		System.out.println(app.listWorkerActivities(initials));
+			String str[][] = app.listWorkerActivities(initials);
+			System.out.println("Activities found: \n");
+			for(int i=0; i<str.length; i++) {
+				System.out.println("> " + str[i][0] + " in project " + str[i][1]);
+			}
 		} catch (OperationNotAllowedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -514,5 +538,13 @@ public class UI {
 			}
 			System.out.println("The worker " + initials + " has been removed");
 		}
+	}
+	
+	public String returnWorkerListString(List<Worker> WorkersIN) {
+		String str = "";
+		for (Worker w : WorkersIN) {
+			str += "> " + w.getInitials() + "\n";
+		}
+		return str;
 	}
 }

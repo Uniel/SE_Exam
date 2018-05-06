@@ -24,14 +24,14 @@ public class Activity {
 		return this.belongsToProject;
 	}
 	
-	public String getInfo(int ID) {
-		String str = "";
-		str += "Activity: " + (this.name != null ? this.name : "");
-		str += "\nOf Project: " + (ID);
-		str += "\nBudget Time: " + (this.budgetTime != -1 ? this.budgetTime : "");
-		str += "\nStart: " + (this.start != null ? "Week " + this.start.get(Calendar.WEEK_OF_YEAR) + " Year: " + this.start.get(Calendar.YEAR) : "");
-		str += "\nEnd: " + (this.end != null ? "Week " + this.end.get(Calendar.WEEK_OF_YEAR) + " Year: " + this.end.get(Calendar.YEAR) : "");
-		str += "\nFull Time: " + (this.fulltime == true ? "true" : "false");
+	public String[] getInfo(int ID) {
+		String[] str = new String[6];
+		str[0] = "Activity: " + (this.name != null ? this.name : "");
+		str[1] = "Project: " + (ID);
+		str[2] = "Budget Time: " + (this.budgetTime != -1 ? this.budgetTime : "");
+		str[3] = "Start: " + (this.start != null ? "Week " + this.start.get(Calendar.WEEK_OF_YEAR) + " Year: " + this.start.get(Calendar.YEAR) : "");
+		str[4] = "End: " + (this.end != null ? "Week " + this.end.get(Calendar.WEEK_OF_YEAR) + " Year: " + this.end.get(Calendar.YEAR) : "");
+		str[5] = "Full Time: " + (this.fulltime == true ? "true" : "false");
 		return str;
 	}
 	

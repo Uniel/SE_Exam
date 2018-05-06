@@ -34,18 +34,18 @@ public class Project {
 		leader = worker;
 	}
 	
-	public String getInfo() {
-		String str = "";
-		str += "Name: " + (this.name != null ? this.name : "");
-		str += "\nType: " + (this.type != null ? this.type : "");
-		str += "\nCustomer: " + (this.customer != null ? this.customer : "");
-		str += "\nLeader: " + (this.leader != null ? this.leader.getInitials() : "");
-		str += "\nStart: " + (this.start != null ? "Week " + this.start.get(Calendar.WEEK_OF_YEAR) + " Year: " + this.start.get(Calendar.YEAR) : "");
-		str += "\nEnd: " + (this.end != null ? "Week " + this.end.get(Calendar.WEEK_OF_YEAR) + " Year:" + this.end.get(Calendar.YEAR) : "");
+	public String[] getInfo() {
+		String[] str = new String[6];
+		str[0] = "Name: " + (this.name != null ? this.name : "");
+		str[1] = "Type: " + (this.type != null ? this.type : "");
+		str[2] = "Customer: " + (this.customer != null ? this.customer : "");
+		str[3] = "Leader: " + (this.leader != null ? this.leader.getInitials() : "");
+		str[4] = "Start: " + (this.start != null ? "Week " + this.start.get(Calendar.WEEK_OF_YEAR) + " Year: " + this.start.get(Calendar.YEAR) : "");
+		str[5] = "End: " + (this.end != null ? "Week " + this.end.get(Calendar.WEEK_OF_YEAR) + " Year:" + this.end.get(Calendar.YEAR) : "");
 		return str;
 	}
 	
-	public String getActInfo(String act) {
+	public String[] getActInfo(String act) {
 		return findActivityWithName(act).getInfo(this.projectID);
 	}
 	
