@@ -8,7 +8,7 @@ public class ProjectService {
 	private App application;
 	private DateServer dateServer = new DateServer();
 	
-	private boolean TEST_MODE = false;
+	//private boolean TEST_MODE = false;
 	private int serialNumber = 1;
 	private int thisYear = 1;
 
@@ -38,7 +38,7 @@ public class ProjectService {
 	
 	private int calcProjectID() {
 		while(true) {
-			if(TEST_MODE) {System.out.println("PS: Generating ID from year and serial "+ thisYear + " : " + serialNumber);}
+			//if(TEST_MODE) {System.out.println("PS: Generating ID from year and serial "+ thisYear + " : " + serialNumber);}
 			int ID = ((thisYear%100) * 10000) + (serialNumber%10000);
 			updateSerialNumber();
 			if(!application.idExists(ID)) {
@@ -54,8 +54,8 @@ public class ProjectService {
 	private void updateProjectNumber() {
 		Calendar date = dateServer.getDate();
 		nextYear = date.get(Calendar.YEAR);
-		if(TEST_MODE){System.out.println("PS.updPno: Checking if date is after the saved year of " + thisYear);}
-		if(TEST_MODE){System.out.println("PS.updPno: Gets calendar with year: " + nextYear);}
+		//if(TEST_MODE){System.out.println("PS.updPno: Checking if date is after the saved year of " + thisYear);}
+		//if(TEST_MODE){System.out.println("PS.updPno: Gets calendar with year: " + nextYear);}
 		if(nextYear != thisYear) {
 			thisYear = nextYear;
 			serialNumber = 1;

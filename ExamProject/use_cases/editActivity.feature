@@ -19,6 +19,11 @@ Scenario: Add an already existing activity to existing project
 	When I add the activity "Programming" to the project with ID 180001
 	Then I get the error message "That activity already exists"
 	
+Scenario: Add an activity with an invalid name
+	Given the project with ID 180001 has been created
+	When I add the activity "cancel" to the project with ID 180001
+	Then I get the error message "That's an invalid or protected name"
+	
 Scenario: Remove an existing activity from a project
 	Given the project with ID 180001 has been created
 	And the activity "Programming" has already been added to the project with ID 180001
@@ -64,6 +69,16 @@ Scenario: Set start and end time of activity
 	And I set the end of the activity "Programming" in the project with ID 180001 to week 7 of 2130
 	Then the start of the activity "Programming" in the project with ID 180001 is week 4 of 2130
 	And the end of the activity "Programming" in the project with ID 180001 is week 7 of 2130
+	
+Scenario: Set start time of non existing activity
+	Given the project with ID 180001 has been created
+	When I set the start of the activity "Programming" in the project with ID 180001 to week 4 of 2130
+	Then I get the error message "That activity does not exist"
+	
+Scenario: Set start time of non existing activity
+	Given the project with ID 180001 has been created
+	When I set the end of the activity "Programming" in the project with ID 180001 to week 4 of 2130
+	Then I get the error message "That activity does not exist"
 	
 Scenario: Set start time of activity after end time
 	Given the project with ID 180001 has been created

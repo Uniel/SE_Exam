@@ -93,7 +93,7 @@ public class Project {
 			for (Activity activity : activities) {
 				if (activity.getStart().before(calendar)) {
 					flag = true;
-					throw new OperationNotAllowedException("There are activities in this project which start after this time");
+					throw new OperationNotAllowedException("There are activities in this project which start before this time");
 				}
 			}
 			if (flag == false) {
