@@ -11,8 +11,6 @@ import org.junit.Test;
 import app.Activity;
 import app.App;
 import app.OperationNotAllowedException;
-import app_acceptance_tests.WorkerSteps;
-import cucumber.api.java.en.Given;
 
 public class IsAvailable {
 	

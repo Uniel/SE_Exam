@@ -3,11 +3,8 @@ package app_acceptance_tests;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
-import org.mockito.Mockito;
 
 import app.DateServer;
 import app.ProjectService;

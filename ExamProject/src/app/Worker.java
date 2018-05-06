@@ -49,7 +49,7 @@ public class Worker {
 				if (a.getFulltime() || activity.getFulltime()) {
 					return false;
 				} else {
-					n = ++n;
+					n++;
 				}
 			}
 		}
