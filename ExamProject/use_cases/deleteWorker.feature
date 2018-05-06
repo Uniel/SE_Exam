@@ -8,13 +8,13 @@ Scenario: User deletes a worker
 	When I delete the worker "DANK"
 	Then the worker "DANK" does not exist
 	
-Scenario: User delete a worker which does not exist
+Scenario: User deletes a worker which does not exist
     Given I have the worker "DANK"
 	And the worker "DANK" does not exist
 	When I delete the worker "DANK"
 	Then I get the error message "This worker does not exist"
 	
-Scenario: User delete which is assigned to an activity
+Scenario: User deletes a worker who is assigned to an activity
     Given I have the worker "DANK"
 	And I add the worker "DANK"
 	And the project with ID 180000 has been created
