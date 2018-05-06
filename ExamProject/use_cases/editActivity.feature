@@ -116,3 +116,9 @@ Scenario: Finding parent project of activity
 	Given the project with ID 180001 has been created
 	And the activity "Programming" has already been added to the project with ID 180001
 	Then the activity "Programming" in in the project with ID 180001 has the parent project 180001
+	
+Scenario: Listing activities in project
+	Given the project with ID 180001 has been created
+	And the activity "Programming" has already been added to the project with ID 180001
+	When I ask for the list of activities in the project with ID 180001
+	Then I get a list of activities of length 1 containing the activity "Programming"

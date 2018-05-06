@@ -12,6 +12,7 @@ import java.util.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import app.Activity;
 import app.App;
 import app.Project;
 import cucumber.api.java.en.Given;
@@ -25,6 +26,7 @@ public class ProjectSteps {
 	private WorkerHelper workerHelper;
 	private List<Project> projects = new ArrayList<>();
 	MockDateHolder dateHolder;
+	private List<Activity> activities = new ArrayList<Activity>();
 	
 	public ProjectSteps(App app, ErrorMessageHolder errorMessage, MockDateHolder dateHolder, WorkerHelper workerHelper) {
 		this.app = app;
@@ -227,5 +229,16 @@ public class ProjectSteps {
 	public void theProjectEndOfTheProjectWithIDIsWeekOf(int ID, int week, int year) throws Exception {
 	    assertTrue(app.selectProject(ID).getEnd().get(Calendar.WEEK_OF_YEAR) == week);
 	    assertTrue(app.selectProject(ID).getEnd().get(Calendar.YEAR) == year);
+	}
+
+	@When("^I ask for the list of activities in the project with ID (\\d+)$")
+	public void iAskForTheListOfActivitiesInTheProjectWithID(int ID) throws Exception {
+	    activities = app.selectProject(ID).getActivities();
+	}
+
+	@Then("^I get a list of activities of length (\\d+) containing the activity \"([^\"]*)\"$")
+	public void iGetAListOfActivitiesOfLengthContainingTheActivity(int n, String activity) throws Exception {
+	    assertTrue(activities.size() == n);
+	    assertTrue(activities.get(0).getName().equals(activity));
 	}
 }
