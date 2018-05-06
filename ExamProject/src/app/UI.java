@@ -154,7 +154,11 @@ public class UI {
 		println("At any input promt you can type cancel to cancel");
 	}
 	private void printActivitiesOfProject(int iD) {
-		System.out.println("Activities in project:\n" + app.getProjectActivities(iD));
+		String[] str = app.getProjectActivities(iD);
+		System.out.println("Activities in project:");
+		for(int i = 0; i <= str.length-1; i++) {
+			System.out.println("> " + str[i]);
+		}
 	}
 	private void editProjectInfo(int i, int ID) {
 		String input;

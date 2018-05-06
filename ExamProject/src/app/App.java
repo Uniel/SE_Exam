@@ -45,7 +45,7 @@ public class App {
 	public String[] getInfoOfActivity(int ID, String ACT) {
 		return findProjectWithID(ID).getActInfo(ACT);
 	}
-	public String getProjectActivities(int iD) {
+	public String[] getProjectActivities(int iD) {
 		return findProjectWithID(iD).getActivityList();
 	}
 	public String getActivtyOfProject(int ID, String name) throws OperationNotAllowedException{

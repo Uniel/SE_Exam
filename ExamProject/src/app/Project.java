@@ -221,10 +221,12 @@ public class Project {
 		return (findActivityWithName(activity).getStart() != null || findActivityWithName(activity).getStart() != null);
 	}
 	
-	public String getActivityList() {
-		String str = "";
+	public String[] getActivityList() {
+		String[] str = new String[activities.size()];
+		int i = 0;
 		for(Activity a : activities) {
-			str += "> " + a.getName() + "\n";
+			str[i] = a.getName();
+			i++;
 		}
 		return str;
 	}
