@@ -108,7 +108,11 @@ public class WorkerSteps {
 	
 	@Given("^the worker \"([^\"]*)\" is on vacation from week (\\d+) to week (\\d+) of (\\d+)$")
 	public void theWorkerIsOnVacationFromWeekToWeekOf(String initials, int startWeek, int endWeek, int year) throws Exception {
-	    app.assignVacation(worker, startWeek, endWeek, year, year);
+	    try {
+	    	app.assignVacation(worker, startWeek, endWeek, year, year);
+	    } catch (Exception e) {
+			errorMessage.setErrorMessage(e.getMessage());
+		}
 	}
 	
 	@When("^I search for assigned workers of the activity \"([^\"]*)\" in the project with ID (\\d+)$")
@@ -166,7 +170,6 @@ public class WorkerSteps {
 	    }
 	}
 
-	
 	@When("^I remove the worker \"([^\"]*)\" from the activity \"([^\"]*)\" in the project with ID (\\d+)$")
 	public void iRemoveTheWorkerFromTheActivityInTheProjectWithID(String initials, String activity, int ID) throws Exception {
 	    try {
@@ -192,5 +195,15 @@ public class WorkerSteps {
 	    } catch (Exception e) {
 	    	errorMessage.setErrorMessage(e.getMessage());
 	    }
+	}
+	
+	@When("^I select the worker \"([^\"]*)\"$")
+	public void iSelectTheWorker(String initials) throws Exception {
+		worker = app.selectWorker(initials);
+	}
+
+	@Then("^I get the worker \"([^\"]*)\"$")
+	public void iGetTheWorker(String initials) throws Exception {
+		assertTrue(worker.getInitials().equals(initials));
 	}
 }

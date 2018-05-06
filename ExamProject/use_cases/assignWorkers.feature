@@ -71,6 +71,12 @@ Scenario: User tries to assign non-existing worker to activity
 	Then the worker "BJBL" is not assigned to the activity "Kick ass and chew bubblegum" in the project with ID 180001
 	And I get the error message "This worker does not exist"
 	
+Scenario: User tries to assign non-existing worker to vacation
+	Given I have the worker "BJBL"
+	When the worker "BJBL" is on vacation from week 5 to week 9 of 2020
+	And the worker "BJBL" does not exist
+	Then I get the error message "This worker does not exist"
+	
 Scenario: User tries to assign a worker to an activity in a non-existing project
 	Given I have the worker "BJBL"
 	And I add the worker "BJBL"

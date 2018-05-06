@@ -44,3 +44,10 @@ Scenario: Creating a worker with blank name (version 2)
     Given I have the worker ".  "
     When I add the worker ".  "
     Then I get the error message "Worker must have initials"
+    
+Scenario: Selecting a worker
+	Given I have the worker "DANK"
+	And the worker "DANK" does not exist
+	And I add the worker "DANK"
+	When I select the worker "DANK"
+	Then I get the worker "DANK"
