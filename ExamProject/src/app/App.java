@@ -197,6 +197,15 @@ public class App {
 	}
 	
 	public List<Project> projectSearch(String search) throws OperationNotAllowedException{
+		List<Project> results = searchForProject(search);		
+		if(results.isEmpty()) {
+			throw new OperationNotAllowedException("No projects containing that string found");
+		} else {
+			return results;
+		}
+	}
+	
+	private List<Project> searchForProject(String search) throws OperationNotAllowedException{
 		List<Project> results = new ArrayList<>();		
 		if(search.trim().equals("*")) {
 			return getProjects();
@@ -209,11 +218,7 @@ public class App {
 				}
 			}
 		}
-		if(results.isEmpty()) {
-			throw new OperationNotAllowedException("No projects containing that string found");
-		} else {
-			return results;
-		}
+		return results;
 	}
 
 	private boolean nameOrIDMatch(String search, Project p) {
