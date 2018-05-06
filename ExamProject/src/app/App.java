@@ -205,7 +205,7 @@ public class App {
 		}
 	}
 	
-	private List<Project> searchForProject(String search) throws OperationNotAllowedException{
+	public List<Project> searchForProject(String search) throws OperationNotAllowedException{
 		List<Project> results = new ArrayList<>();		
 		if(search.trim().equals("*")) {
 			return getProjects();
@@ -227,7 +227,16 @@ public class App {
 	
 	/*Worker functions*/
 	
-	public List<Worker> findAvailableWorkers(int ID, String activity) throws OperationNotAllowedException {
+	public List<Worker> findAvailableWorkers(int ID, String activity) throws OperationNotAllowedException {																					
+		List<Worker> availableWorkers = getAvailableWorkers(ID, activity); 
+		if (availableWorkers.isEmpty()) {
+			throw new OperationNotAllowedException("No workers available");
+		} else {
+			return availableWorkers;
+		}
+	}
+	
+	public List<Worker> getAvailableWorkers(int ID, String activity) throws OperationNotAllowedException{
 		if (ID == 0) {																						// 1
 			throw new OperationNotAllowedException("You have to specify a project ID");
 		} else if (activity.equals("")) {																	// 2
@@ -243,11 +252,7 @@ public class App {
 					availableWorkers.add(w);
 				}
 			}
-			if (availableWorkers.isEmpty()) {																// 7
-				throw new OperationNotAllowedException("No workers available");
-			} else {
-				return availableWorkers;
-			}
+			return availableWorkers;
 		}
 	}
 	
