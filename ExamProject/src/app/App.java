@@ -11,11 +11,9 @@ public class App {
 	
 	private List<Project> projects = new ArrayList<>();
 	private List<Worker> workers = new ArrayList<>();
-	private List<Date> dates = new ArrayList<>();	
 	
 	public List<Project> getProjects(){return projects;}
 	public List<Worker> getWorkers(){return workers;}
-	public List<Date> getDates(){return dates;}
 	
 
 	

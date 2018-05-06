@@ -84,7 +84,9 @@ public class WorkerSteps {
 	@Then("^the worker \"([^\"]*)\" is not assigned to the activity \"([^\"]*)\" in the project with ID (\\d+)$")
 	public void theWorkerIsNotAssignedToTheActivityInTheProjectWithID(String initials, String activity, int ID) throws Exception {
 		assertFalse(app.selectProject(ID).findActivityWithName(activity).listWorkers().contains(worker));
-	    assertFalse(worker.getAssignedActivities().contains(app.selectProject(ID).findActivityWithName(activity)));
+	    if (app.workerExists(initials)) {
+	    	assertFalse(worker.getAssignedActivities().contains(app.selectProject(ID).findActivityWithName(activity)));
+	    }
 	}
 	
 	@Given("^the worker \"([^\"]*)\" is assigned to (\\d+) activities which start on week (\\d+) of (\\d+) and end on week (\\d+) of (\\d+)$")
