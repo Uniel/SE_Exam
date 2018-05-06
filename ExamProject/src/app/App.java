@@ -260,7 +260,7 @@ public class App {
 		}
 	}
 	
-	private boolean workerExists(String initials) {
+	public boolean workerExists(String initials) {
 		for(Worker w : workers) {
 			if(w.getInitials().equals(initials.toUpperCase()) ) {
 				return true;

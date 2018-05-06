@@ -2825,6 +2825,91 @@ formatter.match({
 formatter.result({
   "status": "passed"
 });
+formatter.scenario({
+  "name": "Searching for available workers for an activity which does not exist",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "the project with ID 184444 has been created",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I search for available workers for the activity \"Free Tibet\" in the project with ID 184444",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "WorkerSteps.iSearchForAvailableWorkersForTheActivityInTheProjectWithID(String,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I get the error message \"This activity does not exist in that project\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "MiscSteps.iGetTheErrorMessage(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "Searching for available workers with a blank project",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "I search for available workers for the activity \"Free Tibet\" without specifying project ID",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "WorkerSteps.iSearchForAvailableWorkersForTheActivityWithoutSpecifyingProjectID(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I get the error message \"You have to specify a project ID\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "MiscSteps.iGetTheErrorMessage(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "Searching for available workers for blank activity",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "I search for available workers for the activity \"\" in the project with ID 184444",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "WorkerSteps.iSearchForAvailableWorkersForTheActivityInTheProjectWithID(String,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I get the error message \"You have to specify an activity\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "MiscSteps.iGetTheErrorMessage(String)"
+});
+formatter.result({
+  "status": "passed"
+});
 formatter.uri("use_cases/listProject.feature");
 formatter.feature({
   "name": "List projects",
