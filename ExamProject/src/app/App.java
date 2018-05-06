@@ -62,8 +62,8 @@ public class App {
 		List<Project> results = projectSearch(name);
 		String[][] str = new String[results.size()][2];
 		if(!results.isEmpty()) {
+			int i = 0;
 			for(Project p : results) {
-				int i = 0;
 				str[i][0] = String.valueOf(p.getProjectID());
 				str[i][1] = (p.getName() != null ? p.getName() : "");
 				i++;
@@ -91,8 +91,8 @@ public class App {
 	public String[][] listWorkerActivities(String initials) throws OperationNotAllowedException {
 		List<Activity> activities = selectWorker(initials.toUpperCase()).getAssignedActivities();
 		String[][] str = new String[activities.size()][2];
+		int i = 0;
 		for(Activity a : activities) {
-			int i = 0;
 			str[i][0] = a.getName();
 			str[i][1] = String.valueOf(a.getParent());
 			i++;

@@ -1524,6 +1524,41 @@ formatter.result({
   "status": "passed"
 });
 formatter.scenario({
+  "name": "Add an activity with an invalid name",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "the project with ID 180001 has been created",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I add the activity \"cancel\" to the project with ID 180001",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "ActivitySteps.iAddTheActivityToTheProjectWithID(String,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I get the error message \"That\u0027s an invalid or protected name\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "MiscSteps.iGetTheErrorMessage(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
   "name": "Remove an existing activity from a project",
   "description": "",
   "keyword": "Scenario"
@@ -1879,6 +1914,76 @@ formatter.result({
   "status": "passed"
 });
 formatter.scenario({
+  "name": "Set start time of non existing activity",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "the project with ID 180001 has been created",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I set the start of the activity \"Programming\" in the project with ID 180001 to week 4 of 2130",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "ActivitySteps.iSetTheStartOfTheActivityInTheProjectWithIDToWeekOf(String,int,int,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I get the error message \"That activity does not exist\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "MiscSteps.iGetTheErrorMessage(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "Set start time of non existing activity",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "the project with ID 180001 has been created",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I set the end of the activity \"Programming\" in the project with ID 180001 to week 4 of 2130",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "ActivitySteps.iSetTheEndOfTheActivityInTheProjectWithIDToWeekOf(String,int,int,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I get the error message \"That activity does not exist\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "MiscSteps.iGetTheErrorMessage(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
   "name": "Set start time of activity after end time",
   "description": "",
   "keyword": "Scenario"
@@ -1929,6 +2034,231 @@ formatter.step({
 });
 formatter.match({
   "location": "MiscSteps.iGetTheErrorMessage(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "Set end time of activity after start time",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "the project with ID 180001 has been created",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the activity \"Programming\" has already been added to the project with ID 180001",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "ActivitySteps.theActivityHasAlreadyBeenCreatedInTheProjectWithID(String,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I set the start of the activity \"Programming\" in the project with ID 180001 to week 4 of 2130",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "ActivitySteps.iSetTheStartOfTheActivityInTheProjectWithIDToWeekOf(String,int,int,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I set the end of the activity \"Programming\" in the project with ID 180001 to week 2 of 2130",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "ActivitySteps.iSetTheEndOfTheActivityInTheProjectWithIDToWeekOf(String,int,int,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I get the error message \"Activity end must be after activity start\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "MiscSteps.iGetTheErrorMessage(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "Set budget time of activity",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "the project with ID 180001 has been created",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the activity \"Programming\" has already been added to the project with ID 180001",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "ActivitySteps.theActivityHasAlreadyBeenCreatedInTheProjectWithID(String,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I set the budget time of the activity \"Programming\" in the project with ID 180001 to 8.5 hours",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "ActivitySteps.iSetTheBudgetTimeOfTheActivityInTheProjectWithIDToHours(String,int,double)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the budget time of the actvity \"Programming\" in the project with ID 180001 is 8.5 hours",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "ActivitySteps.theBudgetTimeOfTheActvityInTheProjectWithIDIsHours(String,int,double)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "Set budget time of activity - round down",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "the project with ID 180001 has been created",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the activity \"Programming\" has already been added to the project with ID 180001",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "ActivitySteps.theActivityHasAlreadyBeenCreatedInTheProjectWithID(String,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I set the budget time of the activity \"Programming\" in the project with ID 180001 to 8.2 hours",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "ActivitySteps.iSetTheBudgetTimeOfTheActivityInTheProjectWithIDToHours(String,int,double)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the budget time of the actvity \"Programming\" in the project with ID 180001 is 8 hours",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "ActivitySteps.theBudgetTimeOfTheActvityInTheProjectWithIDIsHours(String,int,double)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "Set budget time of activity - round up",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "the project with ID 180001 has been created",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the activity \"Programming\" has already been added to the project with ID 180001",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "ActivitySteps.theActivityHasAlreadyBeenCreatedInTheProjectWithID(String,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I set the budget time of the activity \"Programming\" in the project with ID 180001 to 8.8 hours",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "ActivitySteps.iSetTheBudgetTimeOfTheActivityInTheProjectWithIDToHours(String,int,double)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the budget time of the actvity \"Programming\" in the project with ID 180001 is 9 hours",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "ActivitySteps.theBudgetTimeOfTheActvityInTheProjectWithIDIsHours(String,int,double)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "Finding parent project of activity",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "the project with ID 180001 has been created",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the activity \"Programming\" has already been added to the project with ID 180001",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "ActivitySteps.theActivityHasAlreadyBeenCreatedInTheProjectWithID(String,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the activity \"Programming\" in in the project with ID 180001 has the parent project 180001",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "ActivitySteps.theActivityInInTheProjectWithIDHasTheParentProject(String,int,int)"
 });
 formatter.result({
   "status": "passed"
@@ -3520,6 +3850,41 @@ formatter.result({
   "status": "passed"
 });
 formatter.scenario({
+  "name": "User sets project type to internal",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "the project with ID 184321 has been created",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I set the project type of the project with ID 184321 to be \"eXterNal\"",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "ProjectSteps.iSetTheProjectTypeOfTheProjectWithIDToBe(int,String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the project type of the project with ID 184321 is \"External\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectTypeOfTheProjectWithIDIs(int,String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
   "name": "User sets project type to something invalid",
   "description": "",
   "keyword": "Scenario"
@@ -3705,6 +4070,51 @@ formatter.result({
   "status": "passed"
 });
 formatter.scenario({
+  "name": "User sets project end to be before project start",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "the project with ID 184321 has been created",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I set project end of the project with ID 184321 to be week 8 of 2020",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "ProjectSteps.iSetProjectEndOfTheProjectWithIDToBeWeekOf(int,int,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I set project start of the project with ID 184321 to be week 9 of 2020",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "ProjectSteps.iSetProjectStartOfTheProjectWithIDToBeWeekOf(int,int,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I get the error message \"Project start must be before project end\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "MiscSteps.iGetTheErrorMessage(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
   "name": "User sets project end to be before the end of an activity in the project",
   "description": "",
   "keyword": "Scenario"
@@ -3761,6 +4171,71 @@ formatter.result({
 });
 formatter.step({
   "name": "I get the error message \"There are activities in this project which end after this time\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "MiscSteps.iGetTheErrorMessage(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
+  "name": "User sets project start to be after the start of an activity in the project",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "the project with ID 184321 has been created",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "ProjectSteps.theProjectWithIDHasBeenCreated(int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "the activity \"Final Countdown\" has already been added to the project with ID 184321",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "ActivitySteps.theActivityHasAlreadyBeenCreatedInTheProjectWithID(String,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I set the start of the activity \"Final Countdown\" in the project with ID 184321 to week 5 of 2020",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "ActivitySteps.iSetTheStartOfTheActivityInTheProjectWithIDToWeekOf(String,int,int,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I set the end of the activity \"Final Countdown\" in the project with ID 184321 to week 8 of 2020",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "ActivitySteps.iSetTheEndOfTheActivityInTheProjectWithIDToWeekOf(String,int,int,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I set project start of the project with ID 184321 to be week 7 of 2020",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "ProjectSteps.iSetProjectStartOfTheProjectWithIDToBeWeekOf(int,int,int)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I get the error message \"There are activities in this project which start before this time\"",
   "keyword": "Then "
 });
 formatter.match({
