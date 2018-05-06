@@ -141,13 +141,6 @@ public class App {
 	public List<Worker> returnWorkersOfActivity(int ID, String ACT) throws OperationNotAllowedException {
 		 return findProjectWithID(ID).getWorkersOfActivity(ACT);
 	}	
-//	public String returnWorkerListString(List<Worker> WorkersIN) {
-//		String str = "";
-//		for (Worker w : WorkersIN) {
-//			str += "> " + w.getInitials() + "\n";
-//		}
-//		return str;
-//	}
 	public void deleteWorker(String initials) throws OperationNotAllowedException {
 		deleteWorker(selectWorker(initials));
 	}

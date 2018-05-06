@@ -106,5 +106,19 @@ public class ActivitySteps {
 	    assertTrue(app.selectProject(ID).findActivityWithName(activity).getEnd().get(Calendar.WEEK_OF_YEAR) == week);
 	    assertTrue(app.selectProject(ID).findActivityWithName(activity).getEnd().get(Calendar.YEAR) == year);
 	}
-
+	
+	@When("^I set the budget time of the activity \"([^\"]*)\" in the project with ID (\\d+) to (.+) hours$")
+	public void iSetTheBudgetTimeOfTheActivityInTheProjectWithIDToHours(String activity, int ID, double hours) throws Exception {
+	    app.selectProject(ID).findActivityWithName(activity).setBudgetTime(hours);
+	}
+	
+	@Then("^the budget time of the actvity \"([^\"]*)\" in the project with ID (\\d+) is (.+) hours$")
+	public void theBudgetTimeOfTheActvityInTheProjectWithIDIsHours(String activity, int ID, double hours) throws Exception {
+	    assertTrue(app.selectProject(ID).findActivityWithName(activity).getBudgetTime() == hours);
+	}
+	
+	@Then("^the activity \"([^\"]*)\" in in the project with ID (\\d+) has the parent project (\\d+)$")
+	public void theActivityInInTheProjectWithIDHasTheParentProject(String activity, int ID, int parent) throws Exception {
+		    assertTrue(app.selectProject(ID).findActivityWithName(activity).getParent() == parent);
+	}
 }

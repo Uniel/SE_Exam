@@ -90,15 +90,13 @@ public class Activity {
 	}
 	
 	public void setBudgetTime(double hours) {
-		double time;
+		double time = -1;
 		if(hours%1 < 0.5) {
 			time = ((int)hours/1);
 		} else if (hours%1 > 0.5) {
-			time = ((int)hours/1) + 0.5;			
+			time = ((int)(hours + 1)/1);			
 		} else if (hours%1 == 0.5) {
 			time = hours;
-		} else {
-			time = 0;
 		}
 		budgetTime = time;
 	}
