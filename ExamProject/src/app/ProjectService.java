@@ -41,7 +41,7 @@ public class ProjectService {
 			//if(TEST_MODE) {System.out.println("PS: Generating ID from year and serial "+ thisYear + " : " + serialNumber);}
 			int ID = ((thisYear%100) * 10000) + (serialNumber%10000);
 			updateSerialNumber();
-			if(serialNumber > 9999) {
+			if(serialNumber >= 9999) {
 				throw new OperationNotAllowedException("The amount of projects generated this year is too damn high!");
 			}
 			if(!application.idExists(ID)) {

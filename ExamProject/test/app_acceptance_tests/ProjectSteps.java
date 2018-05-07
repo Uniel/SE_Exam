@@ -11,7 +11,6 @@ import java.util.Calendar;
 
 import app.Activity;
 import app.App;
-import app.OperationNotAllowedException;
 import app.Project;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
