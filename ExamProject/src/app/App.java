@@ -108,7 +108,7 @@ public class App {
 		findProjectWithID(ID).renameActivity(ACT, newName);
 		return newName;
 	}
-	public void setBudgetTimeOfProjectActivity(int ID, String ACT, double time) {
+	public void setBudgetTimeOfProjectActivity(int ID, String ACT, double time) throws NumberFormatException{
 		findProjectWithID(ID).findActivityWithName(ACT).setBudgetTime(time);
 	}
 	public double getBudgetTimeOfProjectActivity(int ID, String ACT) {

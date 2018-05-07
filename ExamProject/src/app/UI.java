@@ -291,7 +291,11 @@ public class UI {
 			println("Set budget time, how many hours? (rounded to half hours, seperated by .)");
 			input = sc.next();
 			if (cancelCheck(input)) {return;}
-			app.setBudgetTimeOfProjectActivity(ID, ACT, Double.parseDouble(input));
+			try {
+				app.setBudgetTimeOfProjectActivity(ID, ACT, Double.parseDouble(input));
+			} catch (NumberFormatException e1) {
+				System.out.println("That's not a valid number");
+			}
 			println("The activity " + ACT + " now has a budgetet time of " + app.getBudgetTimeOfProjectActivity(ID, ACT));
 			break;
 		case 3: // Start
