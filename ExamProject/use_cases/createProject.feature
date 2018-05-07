@@ -9,7 +9,6 @@ Scenario: Successfully create a project
 	Then the project with ID 190001 exists
 	And the serial number is now 0002
 	
-	# EDITERET - Selvom det ikke er plausibelt at det sker, så genererer vi blot et nyt ID, hvis det allerede generede findes
 Scenario: Conflict in project ID
 	Given the year is 2018
 	And the serial number is 0001
