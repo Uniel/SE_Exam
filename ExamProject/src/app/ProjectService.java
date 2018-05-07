@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 //import java.util.*;
 
+// Adam
 public class ProjectService {
 	private App application;
 	private DateServer dateServer = new DateServer();
@@ -11,30 +12,35 @@ public class ProjectService {
 	// private boolean TEST_MODE = false;
 	private int serialNumber = 1;
 	private int thisYear = 1;
-
 	private int nextYear = -10;
 
+	// Christian
 	public ProjectService(App app) {
 		this.application = app;
 	}
 
+	// Adam
 	public void setDateServer(DateServer dateServer) {
 		this.dateServer = dateServer;
 	}
 
+	// Adam
 	public int getYear() {
 		updateProjectNumber();
 		return thisYear;
 	}
 
+	// Adam
 	public void setSerial(int newSerial) {
 		serialNumber = newSerial;
 	}
 
+	// Christian
 	public int getSerial() {
 		return serialNumber;
 	}
 
+	// Adam
 	private int calcProjectID() throws OperationNotAllowedException {
 		while (true) {
 			// if(TEST_MODE) {System.out.println("PS: Generating ID from year and serial "+
@@ -50,10 +56,12 @@ public class ProjectService {
 		}
 	}
 
+	// Adam
 	private void updateSerialNumber() {
 		serialNumber++;
 	}
 
+	// Adam ( & Andreas)
 	private void updateProjectNumber() {
 		Calendar date = dateServer.getDate();
 		nextYear = date.get(Calendar.YEAR);
@@ -67,6 +75,7 @@ public class ProjectService {
 		}
 	}
 
+	// Adam
 	public int getId() throws OperationNotAllowedException {
 		updateProjectNumber();
 		return calcProjectID();

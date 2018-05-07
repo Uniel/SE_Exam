@@ -1,11 +1,13 @@
 package app;
 
+// Andreas
 public class OngoingProject extends Project {
 	
 	public OngoingProject(int ID) {
 		super(ID);
 	}
 	
+	// Andreas
 	@Override
 	public void addActivity(String initials) {
 		int n = 1;
@@ -21,6 +23,7 @@ public class OngoingProject extends Project {
 		}
 	}
 	
+	// Andreas
 	@Override
 	public void setDurationOfActivity(String name, int startWeek, int startYear, int endWeek, int endYear) throws OperationNotAllowedException {
 		findActivityWithName(name).setStart(startWeek, startYear);

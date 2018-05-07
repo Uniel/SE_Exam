@@ -3,16 +3,19 @@ package app;
 import java.util.List;
 import java.util.Scanner;
 
+// Adam 
 public class UI {
 
 	private App app;
 	Scanner sc = new Scanner(System.in);
 
+	// Adam
 	public UI(App application) {
 		this.app = application;
 	}
 
 	/* Main Menu */
+	// Adam
 	public void run() {
 		char choice = 0;
 		do {
@@ -34,6 +37,7 @@ public class UI {
 		sc.close();
 	}
 
+	// Adam
 	public void printMenu() {
 		println("Welcome to the planner tool!");
 		println("What do you want to do now?");
@@ -43,19 +47,23 @@ public class UI {
 		println("At any input promt you can type cancel to cancel");
 	}
 
+	// Adam
 	private char getChar(Scanner sc) {
 		return sc.next().charAt(0);
 	}
 
+	// Adam
 	private void println(String str) {
 		System.out.println(str);
 	}
 
+	// Andreas
 	private boolean cancelCheck(String str) {
 		return str.trim().toLowerCase().equals("cancel");
 	}
 
 	/* PROJECT MENU FUNCTIONS */
+	// Adam
 	public void projectMenu() {
 		char choice = 0;
 		do {
@@ -81,6 +89,7 @@ public class UI {
 		} while (choice == 0);
 	}
 
+	// Adam
 	private void projectSearch() {
 		println("Type a seach term, can be entirety or parts of the project name or ID");
 		String input = sc.next();
@@ -100,6 +109,7 @@ public class UI {
 		}
 	}
 
+	// Adam
 	public void printProjectMenu() {
 		println("\nProject menu");
 		println("What do you want to do now?");
@@ -111,6 +121,7 @@ public class UI {
 		println("At any input promt you can type cancel to cancel");
 	}
 
+	// Adam
 	private void createProject() {
 		int newProj;
 		try {
@@ -121,6 +132,7 @@ public class UI {
 		}
 	}
 
+	// Adam
 	public void printProjects() {
 		println("\nContained projects:");
 		for (Project p : app.getProjects()) {
@@ -129,6 +141,7 @@ public class UI {
 	}
 
 	/* EDIT PROJECT MENU */
+	// Adam
 	public void selectedProjectMenu() {
 		char choice = 0;
 		int ID = selectProject();
@@ -173,6 +186,7 @@ public class UI {
 		} while (choice == 0);
 	}
 
+	// Adam
 	private void createActivity(int iD) {
 		println("What should the activity be named?");
 		sc.nextLine();
@@ -187,6 +201,7 @@ public class UI {
 		}
 	}
 
+	// Adam
 	private int selectProject() {
 		int IDchoice = -1;
 		String input;
@@ -210,6 +225,7 @@ public class UI {
 		return IDchoice;
 	}
 
+	// Adam
 	public void printSelectedProjectMenu(int ID) {
 		println("\nSelected Project menu");
 		println("You've selected project " + ID + ", what now?");
@@ -227,6 +243,7 @@ public class UI {
 		println("At any input promt you can type cancel to cancel");
 	}
 
+	// Adam
 	private void printActivitiesOfProject(int iD) {
 		String[] str = app.getProjectActivities(iD);
 		System.out.println("Activities in project:");
@@ -235,6 +252,7 @@ public class UI {
 		}
 	}
 
+	// Adam
 	private void editProjectInfo(int i, int ID) {
 		String input;
 		String input2;
@@ -314,6 +332,7 @@ public class UI {
 		}
 	}
 
+	// Adam
 	private void deleteProject(int ID) {
 		println("You sure?  (Y for confirm)");
 		if (getChar(sc) == 'Y') {
@@ -326,6 +345,7 @@ public class UI {
 	}
 
 	/* EDIT ACTIVITIES */
+	// Adam
 	public void selectedActivityMenu(int id) {
 		char choice = 0;
 		int ID = id;
@@ -372,6 +392,7 @@ public class UI {
 		} while (choice == 0);
 	}
 
+	// Adam
 	public void printSelectedActivityMenu(int ID, String ACT) {
 		println("\nSelected activity menu");
 		println("You've selected activity " + ACT + ", what now?");
@@ -388,6 +409,7 @@ public class UI {
 		println("At any input promt you can type cancel to cancel");
 	}
 
+	// Adam
 	private void editActivity(int ID, String ACT, int i) {
 		String input;
 		String input2;
@@ -452,6 +474,7 @@ public class UI {
 		}
 	}
 
+	// Adam
 	private String selectActivity(int ID) {
 		println("Which activity?");
 		String ACTchoice = "";
@@ -470,6 +493,7 @@ public class UI {
 		return ACTchoice;
 	}
 
+	// Adam
 	private String renameActivity(int ID, String ACT) {
 		println("What do you want to rename the activity to?");
 		String newName = "";
@@ -486,6 +510,7 @@ public class UI {
 		return newName;
 	}
 
+	// Adam
 	private void deleteActivity(int ID, String ACT) {
 		println("You sure?  (Y to confirm)");
 		if (getChar(sc) == 'Y') {
@@ -497,6 +522,7 @@ public class UI {
 		}
 	}
 
+	// Adam
 	private void workerAssignation(int ID, String act) {
 		String selection = "0";
 		do {
@@ -525,6 +551,7 @@ public class UI {
 		}
 	}
 
+	// Adam
 	public void assignToActivity(int ID, String act, String initials) {
 		try {
 			app.assignToActivity(ID, act, initials);
@@ -534,6 +561,7 @@ public class UI {
 		}
 	}
 
+	// Adam
 	private void listWorkers(int ID, String ACT) {
 		println("Workers assigned to this activity is: \n");
 		try {
@@ -544,6 +572,7 @@ public class UI {
 	}
 
 	/* WORKERS */
+	// Andreas
 	private void workerMenu() {
 		char choice = 0;
 		do {
@@ -566,6 +595,7 @@ public class UI {
 		} while (choice == 0);
 	}
 
+	// Andreas
 	public void printWorkerMenu() {
 		println("Manage your workers, what now?");
 		println("1) List Workers");
@@ -575,11 +605,13 @@ public class UI {
 		println("At any input promt you can type cancel to cancel");
 	}
 
+	// Andreas
 	public void listWorkers() {
 		System.out.println("Workers found: \n");
 		System.out.println(returnWorkerListString(app.listWorkers()));
 	}
 
+	// Andreas
 	public void addWorker() {
 		println("What are the initials for the new worker? (max 4)");
 		String input = sc.next();
@@ -595,6 +627,7 @@ public class UI {
 
 	/* Edit Worker */
 
+	// Andreas
 	public void selectedWorkerMenu() {
 		char choice = 0;
 		String initials = selectWorker();
@@ -624,6 +657,7 @@ public class UI {
 		} while (choice == 0);
 	}
 
+	// Andreas
 	public void printSelectedWorkerMenu(String initials) {
 		println("\nSelected Worker menu");
 		println("You've selected worker " + initials + ", what now?");
@@ -634,6 +668,7 @@ public class UI {
 		println("b) Back");
 	}
 
+	// Andreas
 	public String selectWorker() {
 		println("Worker initials?");
 		String workerChoice = null;
@@ -652,6 +687,7 @@ public class UI {
 		return workerChoice.toUpperCase();
 	}
 
+	// Andreas
 	public void assignToActivity(String initials) {
 		String inp = "";
 		boolean cont = false;
@@ -684,6 +720,7 @@ public class UI {
 		}
 	}
 
+	// Andreas
 	public void seeActivities(String initials) {
 		try {
 			String str[][] = app.listWorkerActivities(initials);
@@ -696,6 +733,7 @@ public class UI {
 		}
 	}
 
+	// Andreas
 	public void assignVacation(String initials) {
 		println("In which week, and year does the vacation start? (type week and year seperated by line breaks.)");
 		String input = sc.next();
@@ -725,6 +763,7 @@ public class UI {
 		}
 	}
 
+	// Andreas
 	public void deleteWorker(String initials) {
 		println("You sure?  (Y to confirm)");
 		if (getChar(sc) == 'Y') {
@@ -737,6 +776,7 @@ public class UI {
 		}
 	}
 
+	// Andreas
 	public String returnWorkerListString(List<Worker> WorkersIN) {
 		String str = "";
 		for (Worker w : WorkersIN) {

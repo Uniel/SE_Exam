@@ -2,6 +2,7 @@ package app;
 
 import java.util.*;
 
+//Andreas
 public class Worker {
 
 	private List<Activity> assignedActivities = new ArrayList<Activity>();
@@ -9,22 +10,27 @@ public class Worker {
 	private String initials;
 	private int maxActivities = 20;
 
+	// Christian
 	public Worker(String initials) {
 		this.initials = initials;
 	}
 
+	// Christian
 	public String getInitials() {
 		return initials;
 	}
 	
+	// Christian
 	public void setInitials(String i) {
 		initials = i;
 	}
 	
+	// Christian
 	public List<Activity> getAssignedActivities(){
 		return assignedActivities;
 	}
 	
+	// Andreas
 	public void addActivity(Activity activity) throws OperationNotAllowedException {
 		//This method should NOT be called directly unless it is for testing purposes!
 		//Use the method assign in App instead.
@@ -38,10 +44,12 @@ public class Worker {
 		}
 	}
 
+	// Christian
 	public void removeActivity(Activity activity) {
 		assignedActivities.remove(activity);
 	}
-
+	
+	// Andreas
 	public boolean isAvailable(Activity activity) {
 		int n = 0;
 		for (Activity a : assignedActivities) {

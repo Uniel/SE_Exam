@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+// Adam
 public class Activity {
 
 	private List<Worker> assignedWorkers = new ArrayList<Worker>();
@@ -15,15 +16,18 @@ public class Activity {
 	private double budgetTime = -1;
 	private int belongsToProject;
 
+	// Adam
 	public Activity(String newName, int ID) {
 		this.name = newName;
 		this.belongsToProject = ID;
 	} // constructor
 
+	// Adam
 	public int getParent() {
 		return this.belongsToProject;
 	}
 
+	// Adam
 	public String[] getInfo(int ID) {
 		String[] str = new String[6];
 		str[0] = "Activity: " + (this.name != null ? this.name : "");
@@ -39,26 +43,32 @@ public class Activity {
 		return str;
 	}
 
+	// Andreas
 	public List<Worker> listWorkers() throws OperationNotAllowedException {
 		return assignedWorkers;
 	}
 
+	// Christian
 	public String getName() {
 		return name;
 	}
 
+	// Christian
 	public void setName(String n) {
 		name = n;
 	}
 
+	// Christian
 	public boolean getFulltime() {
 		return fulltime;
 	}
 
+	// Christian
 	public void setFulltime(boolean f) {
 		fulltime = f;
 	}
 
+	// Andreas (og Adam)
 	public void setStart(int week, int year) throws OperationNotAllowedException {
 		Calendar calendar = new GregorianCalendar();
 		calendar.set(Calendar.WEEK_OF_YEAR, week);
@@ -70,10 +80,12 @@ public class Activity {
 		}
 	}
 
+	// Christian
 	public Calendar getStart() {
 		return start;
 	}
 
+	// Andreas (og Adam)
 	public void setEnd(int week, int year) throws OperationNotAllowedException {
 		Calendar calendar = new GregorianCalendar();
 		calendar.set(Calendar.WEEK_OF_YEAR, week);
@@ -85,14 +97,17 @@ public class Activity {
 		}
 	}
 
+	// Christian
 	public Calendar getEnd() {
 		return end;
 	}
 
+	// Christian
 	public double getBudgetTime() {
 		return budgetTime;
 	}
 
+	// Adam
 	public void setBudgetTime(double hours) {
 		double time = -1;
 		if (hours % 1 < 0.5) {
@@ -105,6 +120,7 @@ public class Activity {
 		budgetTime = time;
 	}
 
+	// Andreas
 	public boolean overlaps(Activity activity) {
 		if (activity.getStart().before(end) && activity.getEnd().after(start)) {
 			return true;
@@ -113,6 +129,7 @@ public class Activity {
 		}
 	}
 
+	// Andreas
 	public void assignWorker(Worker worker) throws OperationNotAllowedException {
 		// This method should NOT be called directly!
 		// Use the assign method in App instead.
@@ -123,6 +140,7 @@ public class Activity {
 		}
 	}
 
+	// Andreas
 	public void removeWorker(Worker worker) {
 		assignedWorkers.remove(worker);
 	}
