@@ -498,17 +498,23 @@ public class UI {
 	}
 
 	private void workerAssignation(int ID, String act) {
-		println("Do you wish to (1) specify a worker or (2) see a list of available workers?\n");
-		int selection = sc.nextInt();
+		String selection = "0";
+		do {
+			println("Do you wish to (1) specify a worker or (2) see a list of available workers?\n");
+			selection = sc.next();
+			if(cancelCheck(selection)){
+				break;
+			}
+		} while(! (selection.equals("1") || selection.equals("2")));
 		switch (selection) {
-		case 2:
+		case "2":
 			try {
 				System.out.println(returnWorkerListString(app.returnAvailableWorkers(ID, act)));
 			} catch (OperationNotAllowedException e) {
 				System.out.println(e.getMessage());
 				break;
 			}
-		case 1:
+		case "1":
 			try {
 				app.assignToActivity(ID, act, selectWorker());
 				System.out.println("Worker added!");
